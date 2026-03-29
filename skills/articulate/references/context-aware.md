@@ -26,15 +26,28 @@ Do not ask again for a project that already has a cached context file.
 
 ## What to Read
 
-Scan the current working directory for these files, in priority order. Stop once you have enough to build a project summary. Do not read more than necessary.
+### Phase 1 — Structure scan (always, fast)
 
-1. **README.md** (or README) — primary source. Read the first 100 lines max.
-2. **package.json** — extract `name`, `description`, `keywords`
-3. **Cargo.toml** — extract `[package]` name and description
-4. **pyproject.toml** — extract `[project]` name and description
-5. **go.mod** — extract module name
-6. **CLAUDE.md** — extract project description sections only (not instructions)
+Run these before reading any files:
+
+- List top-level files and directories in the project root
+- Build a shallow directory tree (2-3 levels deep) to understand project shape
+- Identify key file types (.ts, .py, .go, .rs, .swift, .java, .rb, .php) for tech stack detection
+
+### Phase 2 — Signal files (read in priority order, stop when enough context)
+
+1. **README.md** (or README, README.rst) — first 150 lines max
+2. **Manifest files** — extract name, description, and key dependencies from the first match:
+   - `package.json`, `Cargo.toml`, `pyproject.toml`, `go.mod`
+   - `Gemfile`, `pom.xml`, `build.gradle`, `Package.swift`, `composer.json`
+3. **CLAUDE.md** — extract project description sections only (not instructions)
+4. **Source entry directories** — list top-level modules in `src/`, `lib/`, or `app/`
+5. **Test patterns** — check for `test/`, `tests/`, `spec/`, `__tests__/` and identify the framework
+6. **CI config** — `.github/workflows/`, `.gitlab-ci.yml` — extract pipeline stage names
 7. **docs/ index** — scan for an index.md or README.md in the docs directory
+8. **.env.example** (NOT .env) — read configuration shape without secrets
+
+Stop as soon as you have enough to fill the extraction fields below. Do not read more than necessary.
 
 ## What to Extract
 
@@ -46,6 +59,11 @@ Build a summary containing ONLY these fields:
 - **audience**: Who uses this (e.g., "mobile app developers", "enterprise teams")
 - **features**: 3-5 key features as short phrases
 - **techStack**: Primary languages/frameworks (e.g., "TypeScript, React, Node.js")
+- **projectStructure**: Brief directory layout description (e.g., "monorepo with packages/ and apps/")
+- **keyModules**: Top-level modules or packages (e.g., ["api", "core", "cli"])
+- **testFramework**: Testing framework if detected (e.g., "Jest", "pytest") or null
+- **ciPipeline**: CI system and key stages (e.g., "GitHub Actions: lint, test, deploy") or null
+- **dependencies**: Top 5-10 notable dependencies (libraries, not dev tooling)
 
 ## What NEVER to Include
 
@@ -72,6 +90,11 @@ Save the extracted context to `~/.articulate/contexts/{project-name}.json`:
   "audience": "mobile app developers, fitness platforms",
   "features": ["3D animations", "exercise library", "API access"],
   "techStack": "Swift, Node.js, Three.js",
+  "projectStructure": "monorepo with packages/api and packages/renderer",
+  "keyModules": ["api", "renderer", "cli"],
+  "testFramework": "Jest",
+  "ciPipeline": "GitHub Actions: lint, test, deploy-staging, deploy-prod",
+  "dependencies": ["three.js", "express", "prisma", "zod", "bull"],
   "cachedAt": "2026-03-29T10:00:00Z"
 }
 ```
@@ -105,14 +128,14 @@ The weak words remain weak — but the nouns and domain match the user's project
 Use the project as the setting for professional communication challenges:
 
 - Generic: `"A potential customer asks about your product's batch processing..."`
-- Context-aware: `"A fitness app PM asks if MoveKit supports custom animation speeds and wants to see a demo before committing to your API plan."`
+- Context-aware: `"Your CI pipeline failed on the deploy-staging step. Write a Slack message to the team explaining what broke and the rollback plan for MoveKit's renderer module."`
 
 ### PROMPT_CRAFT Integration
 
-Use the project domain as the subject of prompt-writing challenges:
+Use the project domain and detected tooling as the subject of prompt-writing challenges:
 
 - Generic: `"Write a prompt that generates API documentation for a REST endpoint."`
-- Context-aware: `"Write a prompt that generates API documentation for MoveKit's animation endpoints, targeting mobile developers who use Swift."`
+- Context-aware: `"Write a prompt that generates Jest test cases for MoveKit's api module, covering the animation upload and validation endpoints."`
 
 ### FILL_PRECISION Integration
 

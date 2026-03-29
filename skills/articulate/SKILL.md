@@ -31,7 +31,7 @@ All state lives at `~/.articulate/`. Create this directory on first run.
 
 ### Schemas
 
-**user.json** — Fields: `name` (string), `languages` (array, e.g. `["English"]`), `focusAreas` (array, e.g. `["prompt_engineering", "business_communication"]`), `dailyMinutes` (int), `selfAssessment` (1-5), `contextAware` (bool), `createdAt` (ISO8601), `lastUpdated` (ISO8601)
+**user.json** — Fields: `name` (string), `languages` (array, e.g. `["English"]`), `focusAreas` (array, e.g. `["prompt_engineering", "business_communication"]`), `dailyMinutes` (int), `selfAssessment` (1-5), `assessmentMethod` ("conversation_scan" | "dynamic"), `contextAware` (bool), `createdAt` (ISO8601), `lastUpdated` (ISO8601)
 
 **state.json** — Fields: `xp`, `level`, `rank`, `badge`, `streak`, `bestStreak`, `streakShields`, `lastPlayedDate` (ISO8601 or null), `todayMissionCount`, `totalCompleted`, `prestigeStars`, `missionCounts` (object with keys: rewrite, fill, prompt, scenario, boss, review), `perfectCount`, `highScoreCount`, `earnedBadges` (array), `weaknesses` (object: utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words — all ints), `weaknessHistory` (object), `currentSeason`, `lastBossDate`, `dailyWord`, `dailyWordDate`
 
@@ -157,6 +157,10 @@ After mission evaluation, check if the user's response contains the daily word. 
 ### Direct Request
 
 If `$ARGUMENTS` specifies a mission type, dispatch to that type after checking the unlock gate.
+
+### Dynamic Difficulty Recalibration
+
+If `assessmentMethod` is `"dynamic"`, re-evaluate effective difficulty every 5 missions: average last 5 scores from `history.json`. If avg > 80, increase difficulty within level. If avg < 50, decrease.
 
 ### Default Flow (empty or "go")
 

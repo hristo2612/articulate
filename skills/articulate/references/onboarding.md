@@ -67,12 +67,12 @@ Daily training target in minutes? (default: 5)
 ### Question 5: Self-Assessment
 
 ```
-Rate your active vocabulary 1-5 (1=basic, 5=advanced):
+Want me to scan your recent conversations to assess your vocabulary level? (yes/no)
 ```
 
-- Save to `user.json` field: `selfAssessment`
-- Must be an integer 1-5
-- This influences initial difficulty calibration:
+- If **yes**: Analyze the current session's prior messages (the conversation context before `/articulate` was invoked) for: vocabulary precision, hedging frequency, utility word usage, structural variety. Derive a score 1-5 with brief reasoning shown to the user. Save to `user.json` field `selfAssessment`. Save `"assessmentMethod": "conversation_scan"` to `user.json`.
+- If **no**: Set `selfAssessment` to `3` (mid-range). Save `"assessmentMethod": "dynamic"`. The system calibrates dynamically from mission performance — no need to self-assess.
+- Difficulty calibration:
   - 1-2: start with easiest RECRUIT challenges
   - 3: standard RECRUIT challenges
   - 4-5: slightly harder RECRUIT challenges (still Level 1, but tougher within tier)
@@ -101,6 +101,7 @@ After all questions are answered, create the following files at `~/.articulate/`
   "focusAreas": ["{answers to Q3}"],
   "dailyMinutes": {answer to Q4},
   "selfAssessment": {answer to Q5},
+  "assessmentMethod": "{conversation_scan or dynamic}",
   "contextAware": {answer to Q6},
   "createdAt": "{ISO date}",
   "lastUpdated": "{ISO date}"
