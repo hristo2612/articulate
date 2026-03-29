@@ -131,7 +131,7 @@ Key rules:
 3. Deliver challenge (MAX 8 lines)
 4. Wait for response
 5. Give feedback (MAX 12 lines) with teaching point
-6. If weak: offer hint + retry
+6. If weak (< 80): hint + retry. If strong (≥ 80): optional Quick Tap follow-up
 7. Score + XP + continue
 
 ---

@@ -252,22 +252,57 @@ These are HARD limits. Never exceed them.
 
 ## Back-and-Forth Flow
 
-Every mission follows this pattern:
+Every mission has 2-3 exchanges. This is what makes it feel like a conversation, not a quiz.
 
-1. **Challenge** → user responds
-2. **Feedback** → if score < 70: offer hint + retry. If ≥ 70: celebrate + teach.
-3. **Retry (if needed)** → user tries again → final feedback
-4. **Score + XP + continue menu**
+### Exchange 1: Challenge → Response
+Present the mission. User responds.
 
-**Retry format:**
+### Exchange 2: Feedback → Follow-up
+Two paths:
+
+**Path A — Missed/Close (score < 80):**
+1. React honestly (1 line)
+2. Hint — don't give the answer, point them in the right direction
+3. "Try again." → user retries → final feedback with score
+
+**Path B — Nailed it (score ≥ 80):**
+1. React with specific praise (1 line)
+2. Teaching point (💡)
+3. **Quick Tap** — a 5-second follow-up that builds on what they just did:
+
 ```
-Almost. Here's a hint: think about what *stage* of the problem you're at — investigating or fixing?
+⚡ Quick tap: use that same principle. One sentence.
 
-Try again. One word.
+> "The deployment _____ three production servers."
+
 >
 ```
 
-**Continue menu (ALWAYS after feedback):**
+The Quick Tap is OPTIONAL — only show it ~50% of the time (alternate sessions). It should feel like a bonus, not homework. If user says "done" or ignores it, skip straight to XP + continue.
+
+### Exchange 3 (if Quick Tap): Final reaction
+1-2 lines of reaction. No full scoring. Just ✅ or 🔶 + brief note.
+Then: Score + XP + continue menu.
+
+**Retry format (Path A):**
+```
+Close — but "resolve" implies conflict. What word says "put in order"?
+
+Try again.
+>
+```
+
+**Quick Tap format (Path B):**
+```
+�� Quick tap: same principle, new sentence.
+
+> "The refactor _____ our test coverage."
+
+One word.
+>
+```
+
+**Continue menu (ALWAYS at the end):**
 ```
 🎲 Another? `go` | 📊 Stats `stats` | ✌️ Done
 ```
