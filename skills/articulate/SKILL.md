@@ -90,7 +90,7 @@ For full level details, badges, prestige rules, and streak shields, read `refere
 
 ### Language Override
 
-Append `--en` or `--bg` to any mission command to force a language. Example: `/articulate rewrite --bg`.
+Append `--{lang}` (first 2-3 letters of the language name) to any mission command to force a language. Example: `/articulate rewrite --bg` for Bulgarian, `/articulate rewrite --es` for Spanish.
 
 ---
 
@@ -273,19 +273,18 @@ Triggered by `/articulate help`. Show:
 4. Tips:
    - "Start with `/articulate` for a full session."
    - "Use `/articulate quick` to skip the dashboard."
-   - "Add `--bg` or `--en` to force a language."
+   - "Add `--{lang}` to force a language (e.g., `--es` for Spanish)."
 
 ---
 
 ## Language Handling
 
-Read `~/.articulate/user.json` for configured languages.
+Read `~/.articulate/user.json` for configured languages. Any language is supported.
 
 - Single language: use it for all missions.
-- Multiple languages: alternate between them across sessions, or respect `--en`/`--bg` flags.
-- For language-specific rules, word lists, and weakness patterns, read `references/languages/{lang}.md`.
-  - English: `references/languages/english.md`
-  - Bulgarian: `references/languages/bulgarian.md`
+- Multiple languages: alternate between them across sessions, or respect `--{lang}` flags.
+- For languages with a dedicated reference file in `references/languages/`, read it for curated word lists, weakness patterns, and language-specific rules. Shipped examples: `english.md`, `bulgarian.md`.
+- For languages WITHOUT a reference file: generate appropriate precision vocabulary, weakness patterns, and exercise content dynamically. Use the same mission structure and scoring rubrics. The English and Bulgarian files serve as format examples.
 
 ---
 

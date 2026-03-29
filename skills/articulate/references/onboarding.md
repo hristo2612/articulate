@@ -29,11 +29,13 @@ What should I call you?
 ### Question 2: Languages
 
 ```
-Training languages? (English / Bulgarian / both)
+What language(s) do you want to train in? (e.g., English, Spanish, Bulgarian — any language works)
 ```
 
 - Save to `user.json` field: `languages`
-- Valid values: `["english"]`, `["bulgarian"]`, `["english", "bulgarian"]`
+- Parse the user's answer into an array of language names, normalized to lowercase
+- Any language is valid — not limited to English and Bulgarian
+- Multiple languages: store as array, e.g. `["english", "spanish"]`
 - Default if unclear: `["english"]`
 
 ### Question 3: Focus Areas
