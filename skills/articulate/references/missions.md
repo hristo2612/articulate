@@ -347,9 +347,20 @@ One word.
 ```
 
 **Continue menu (ALWAYS at the end):**
+
+If the user learned a NEW word (especially when they missed and were shown the answer):
 ```
-🎲 Another? `go` | 📊 Stats `stats` | ✌️ Done
+🎲 Another? `go` | 📝 Practice "{word}" `practice` | 💾 Save `save` | ✌️ Done
 ```
+
+Otherwise:
+```
+🎲 Another? `go` | 💾 Save `save` | ✌️ Done
+```
+
+**📝 Practice:** Generates a NEW mission that specifically uses the word they just learned. E.g., if they learned "exemplary," the next mission might be a Fill with a blank where "exemplary" fits, or a Punch where using "exemplary" would improve the sentence. The goal: make them USE the word immediately so it sticks.
+
+**💾 Save:** Writes all pending progress to `~/.articulate/` files (state.json, history.json, lexicon.json). Until the user saves, keep changes in memory only. This avoids wasting time on file I/O every turn.
 
 ## Mission Selection Algorithm
 

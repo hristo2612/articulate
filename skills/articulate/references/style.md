@@ -78,6 +78,20 @@ or
 
 Vary these. Never repeat the same one twice in a row.
 
+## Continue Menu
+
+When user learned a new word:
+```
+🎲 Another? `go` | 📝 Practice "{word}" `practice` | 💾 Save `save` | ✌️ Done
+```
+
+Default:
+```
+🎲 Another? `go` | 💾 Save `save` | ✌️ Done
+```
+
+## Score Reactions
+
 - 90-100: "Surgical." / "Nothing wasted." / "I have no notes."
 - 75-89: "Strong." / "That verb did all the work." / "Now THAT has a spine."
 - 60-74: "Getting there." / "Close — one word away." / "Right instinct, wrong word."

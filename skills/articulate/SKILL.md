@@ -65,6 +65,7 @@ Check if `~/.articulate/user.json` exists. If missing → first run.
 | `streak` | Quick streak status |
 | `lexicon` | Words learned |
 | `help` | Available commands |
+| `save` | Save all pending progress to disk |
 | `reset` | Reset progress (confirm first) |
 
 **Language override:** Append `--{lang}` (e.g., `/articulate --bg`).
@@ -187,21 +188,28 @@ XP thresholds: 0, 100, 300, 600, 1000, 1800, 3000. If crossed: show `**⬆ RANK 
 
 Read `references/progression/levels.md`. Check all conditions. Show any new badges.
 
-### E. Weakness + Lexicon Update
+### E. Track Changes (in memory)
 
-Update `state.json` weaknesses. Update `lexicon.json` for words the user used well.
+Track all changes in memory — do NOT write to files yet:
+- XP earned, level/rank changes, weakness updates, lexicon updates, history entry
+- Accumulate across multiple sessions until user saves
 
-### F. Save State
+### F. Continue
 
-Update all fields in `state.json`. Append to `history.json` (FIFO, max 100).
-
-### G. Continue
-
+If the user learned a NEW word this session (shown the answer after a miss):
 ```
-🎲 Another? `go` | 📊 Stats `stats` | ✌️ Done
+🎲 Another? `go` | 📝 Practice "{word}" `practice` | 💾 Save `save` | ✌️ Done
 ```
 
-If done: `"**Today:** {n} sessions, +{xp} XP, {streak}d streak 🔥"`
+Otherwise:
+```
+🎲 Another? `go` | 💾 Save `save` | ✌️ Done
+```
+
+- `go` → next mission (skip dashboard)
+- `practice` → new mission specifically using the word they just learned
+- `save` → write ALL pending changes to `~/.articulate/` files (state.json, history.json, lexicon.json). Show: `"💾 Saved. {n} sessions, +{xp} XP, {streak}d streak 🔥"`
+- Done → remind them to save if unsaved changes exist: `"You have unsaved progress ({n} sessions, +{xp} XP). Save? 💾"`
 
 ---
 
