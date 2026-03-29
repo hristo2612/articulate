@@ -16,6 +16,19 @@ Spaced repetition for language precision. The operator revisits a challenge they
 
 ---
 
+## Pre-Mission Briefing
+
+Before presenting the REVIEW challenge, deliver a 3-5 line briefing that reminds the operator what they are revisiting and what to focus on improving. Tailor based on the original mission's data:
+
+- **If original score was low (< 60):** Frame it as a redemption opportunity. E.g., "Last time, this one got away from you — **{original_score}/100**. Your vocabulary has grown since then. Show the difference."
+- **If original score was mid-range (60-79):** Frame it as a polish opportunity. E.g., "You scored **{original_score}** on this one {N} days ago. Solid but not sharp. The question: can you find the words that eluded you last time?"
+- **If original score was high (80+):** Frame it as a consistency test. E.g., "You scored **{original_score}** on this one — strong work. Can you match or beat that from cold recall? Consistency is the real test."
+- **Always include:** A one-line reminder of what weakness category was detected in the original attempt (if any), without revealing the specific words. E.g., "Last time I flagged **weak verbs** — see if those have tightened up."
+
+Format: Start with 🔄 **Review intel:** then the framing, then the weakness hint. Keep it under 4 lines total.
+
+---
+
 ## Generation Rules
 
 ### Selecting a Review Challenge

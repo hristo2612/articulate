@@ -12,6 +12,19 @@ The operator receives a weak sentence containing 2-4 utility/vague words. They r
 
 ---
 
+## Pre-Mission Briefing
+
+Before presenting the REWRITE challenge, deliver a 3-5 line briefing that primes the operator. Pick ONE of these angles per mission (rotate across sessions):
+
+- **Weak → strong verb swap:** Show a single verb upgrade. E.g., _"helps"_ → _"accelerates"_, _"does"_ → _"executes"_, _"makes"_ → _"transforms"_.
+- **Conciseness technique:** Show how cutting filler words tightens a phrase. E.g., _"is basically a very important tool"_ → _"is a critical tool"_ — 3 words cut, same meaning.
+- **Precision noun upgrade:** Show a vague-to-specific noun swap. E.g., _"the thing we built"_ → _"the onboarding flow we shipped"_.
+- **Power of specificity:** Show how adding one concrete detail changes impact. E.g., _"it's really fast"_ → _"sub-200ms response time"_.
+
+Format: Start with 💡 **Quick intel:** then the technique, then the example, then a one-line bridge to the mission. Keep it under 4 lines total.
+
+---
+
 ## Generation Rules
 
 ### Sentence Source Material

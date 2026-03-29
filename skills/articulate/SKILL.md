@@ -31,7 +31,7 @@ All state lives at `~/.articulate/`. Create this directory on first run.
 
 ### Schemas
 
-**user.json** — Fields: `name` (string), `languages` (array, e.g. `["English"]`), `focusAreas` (array, e.g. `["prompt_engineering", "business_communication"]`), `dailyMinutes` (int), `selfAssessment` (1-5), `assessmentMethod` ("conversation_scan" | "dynamic"), `contextAware` (bool), `createdAt` (ISO8601), `lastUpdated` (ISO8601)
+**user.json** — Fields: `name` (string), `languages` (array, e.g. `["English"]`), `focusAreas` (array, e.g. `["prompt_engineering", "business_communication"]`), `dailyMinutes` (int), `selfAssessment` (1-5), `assessmentMethod` ("conversation_scan" | "dynamic"), `assessmentNotes` (string or null), `contextAware` (bool), `createdAt` (ISO8601), `lastUpdated` (ISO8601)
 
 **state.json** — Fields: `xp`, `level`, `rank`, `badge`, `streak`, `bestStreak`, `streakShields`, `lastPlayedDate` (ISO8601 or null), `todayMissionCount`, `totalCompleted`, `prestigeStars`, `missionCounts` (object with keys: rewrite, fill, prompt, scenario, boss, review), `perfectCount`, `highScoreCount`, `earnedBadges` (array), `weaknesses` (object: utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words — all ints), `weaknessHistory` (object), `currentSeason`, `lastBossDate`, `dailyWord`, `dailyWordDate`
 
@@ -195,6 +195,16 @@ For each mission type, read the corresponding reference file. That file contains
 | REVIEW | `references/missions/review.md` |
 
 For template banks (curated challenges), read `templates/{type}-bank.md`.
+
+### Pre-Mission Briefing
+
+Before presenting ANY mission challenge, deliver a brief pre-mission briefing (3-5 lines max):
+- Introduce a relevant concept, technique, or precision word
+- Show a quick example: a weak phrase → a strong alternative
+- Connect it to what the user is about to practice
+- Keep it punchy — 10 seconds to read, not a lecture
+
+Example: "💡 **Quick intel:** The verb 'help' is one of English's weakest. It says something happened but not HOW. Watch: _'helps teams work faster'_ → _'accelerates team output'_. One verb, twice the impact. Now let's put that into practice."
 
 ---
 

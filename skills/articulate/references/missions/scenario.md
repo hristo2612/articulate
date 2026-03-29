@@ -14,6 +14,19 @@ A real-world professional communication challenge with full context. The operato
 
 ---
 
+## Pre-Mission Briefing
+
+Before presenting the SCENARIO challenge, deliver a 3-5 line briefing that sets the professional context and introduces a communication technique. Pick ONE of these angles per mission (rotate across sessions):
+
+- **Register calibration:** Remind the operator that audience determines word choice. E.g., "Writing to an investor? _'We fixed the bug'_ → _'We resolved the latency issue within 2 hours of detection.'_ Same event, different weight."
+- **The opening line principle:** The first sentence determines whether the reader continues. E.g., _"I wanted to reach out about..."_ → _"Your API processes 2M calls/day — here's how to cut your error rate in half."_ Lead with value, not throat-clearing.
+- **Word budget awareness:** In a 60-word response, every word costs ~1.7% of your budget. Filler like _"I just wanted to let you know that"_ burns 15% on zero information.
+- **Subtext technique:** Show how word choice carries implicit meaning. E.g., _"We're looking into it"_ signals uncertainty. _"We've identified the root cause and are deploying a fix"_ signals control.
+
+Format: Start with 💡 **Quick intel:** then the technique, then a one-line example, then a bridge to the scenario. Keep it under 4 lines total.
+
+---
+
 ## Generation Rules
 
 ### Scenario Components

@@ -14,6 +14,19 @@ The operator receives a GOAL -- something they would want an LLM to accomplish. 
 
 ---
 
+## Pre-Mission Briefing
+
+Before presenting the PROMPT CRAFT challenge, deliver a 3-5 line briefing that introduces a prompt engineering technique. Pick ONE of these angles per mission (rotate across sessions):
+
+- **Specificity over vagueness:** Show how quantifying a constraint changes output quality. E.g., _"Keep it short"_ → _"Maximum 80 words"_ — the LLM now has a target, not a suggestion.
+- **Structure as control:** Show how breaking a prompt into sections (context → task → constraints → format) gives the LLM rails to follow. One messy paragraph vs. labeled sections — same words, different results.
+- **Anti-pattern spotlight:** Name a common weak prompt habit. E.g., "The phrase _'make it good'_ tells an LLM nothing. Replace with what 'good' means: _'concise, data-driven, no adjectives without metrics'_."
+- **Constraint stacking:** Show how adding one more constraint sharpens output. E.g., adding _"Do not use the words: synergy, leverage, or innovative"_ forces the LLM to find original language.
+
+Format: Start with 💡 **Quick intel:** then the technique, then a one-line example, then a bridge to the mission. Keep it under 4 lines total.
+
+---
+
 ## Generation Rules
 
 ### Goal Design

@@ -14,6 +14,19 @@ The operator sees a sentence with ONE word replaced by `[___]`. The missing word
 
 ---
 
+## Pre-Mission Briefing
+
+Before presenting the FILL PRECISION challenge, deliver a 3-5 line briefing that warms up the operator's recall. Pick ONE of these angles per mission (rotate across sessions):
+
+- **Etymology tease:** Hint at the word's origin without naming it. E.g., "The word you need comes from Latin — it originally described the act of making something sharp. Today it means expressing ideas with clarity and precision."
+- **Register context:** Describe where the target word lives. E.g., "This word shows up in code reviews and performance reports. It describes something that should be fast but isn't — and carries a sense of reluctance."
+- **Semantic field primer:** Name 2-3 related words that orbit the target. E.g., "Think in the neighborhood of _methodical_, _efficient_, _structured_ — but more about cutting the unnecessary."
+- **Connotation contrast:** Show how two near-synonyms differ. E.g., "_Fast_ states a fact. The word you need implies _unwanted slowness_ — a system dragging its feet."
+
+Format: Start with 💡 **Quick intel:** then the angle, keeping it evocative but not giving the answer away. Keep it under 4 lines total.
+
+---
+
 ## Generation Rules
 
 ### Target Word Selection

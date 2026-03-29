@@ -64,24 +64,52 @@ Daily training target in minutes? (default: 5)
 - Must be a positive integer
 - Default: `5`
 
-### Question 5: Self-Assessment
+### Question 5: Vocabulary Assessment
 
 ```
 Want me to scan your recent conversations to assess your vocabulary level? (yes/no)
 ```
 
-- If **yes**: Analyze the current session's prior messages (the conversation context before `/articulate` was invoked) for: vocabulary precision, hedging frequency, utility word usage, structural variety. Derive a score 1-5 with brief reasoning shown to the user. Save to `user.json` field `selfAssessment`. Save `"assessmentMethod": "conversation_scan"` to `user.json`.
-- If **no**: Set `selfAssessment` to `3` (mid-range). Save `"assessmentMethod": "dynamic"`. The system calibrates dynamically from mission performance — no need to self-assess.
-- Difficulty calibration:
+- If **yes**: Scan the user's past AI conversations to analyze their writing patterns. Search these locations in order:
+
+  **Claude Code conversations:**
+  1. List JSONL files in `~/.claude/projects/` (all subdirectories)
+  2. Pick the 3-5 most recent `.jsonl` files (by modification time)
+  3. Extract user messages: lines with `"type": "user"`, text in `message.content`
+  4. Collect 20-30 substantial user messages (skip one-word answers, file paths, commands)
+
+  **Codex conversations (if available):**
+  1. Read `~/.codex/history.jsonl` — user text in the `text` field
+  2. Also check `~/.codex/archived_sessions/*.jsonl` for longer messages
+
+  **Analysis:** From the collected messages, evaluate:
+  - **Vocabulary precision:** Does the user use specific nouns/verbs or default to "thing", "stuff", "do", "make"?
+  - **Hedging frequency:** How often do they use "I think", "maybe", "kind of", "sort of"?
+  - **Filler words:** Count "basically", "literally", "actually", "just", "really", "very"
+  - **Sentence structure:** Flat and repetitive, or varied with subordination and contrast?
+  - **Register range:** Do they shift between casual and professional, or stay flat?
+
+  Derive a score 1-5 with specific examples from their writing. Show the user a brief summary:
+  "Based on your recent conversations, I'd rate your active vocabulary at **{score}/5**. I noticed you tend to {top 2-3 patterns}. Here's what we'll focus on."
+
+  Save findings to `user.json`:
+  - `selfAssessment`: derived score (1-5)
+  - `assessmentMethod`: "conversation_scan"
+  - `assessmentNotes`: brief summary of patterns found (for the AI to reference in future sessions)
+
+- If **no**: Set `selfAssessment` to 3, `assessmentMethod` to "dynamic". Calibrates from mission performance.
+- If no conversation files found: Tell the user "No past conversations found to scan. Starting at mid-range — I'll calibrate from your missions." Set to dynamic mode.
+
+- Difficulty calibration from score:
   - 1-2: start with easiest RECRUIT challenges
   - 3: standard RECRUIT challenges
-  - 4-5: slightly harder RECRUIT challenges (still Level 1, but tougher within tier)
+  - 4-5: slightly harder RECRUIT challenges
 
 ### Question 6: Context-Aware Missions
 
 ```
 Enable context-aware missions? (yes/no)
-These use your project's README and package.json to generate relevant challenges.
+When enabled, I'll scan your current project to understand what you're building and generate missions relevant to your actual work.
 ```
 
 - Save to `user.json` field: `contextAware`
@@ -102,6 +130,7 @@ After all questions are answered, create the following files at `~/.articulate/`
   "dailyMinutes": {answer to Q4},
   "selfAssessment": {answer to Q5},
   "assessmentMethod": "{conversation_scan or dynamic}",
+  "assessmentNotes": "{brief summary of patterns found, or null}",
   "contextAware": {answer to Q6},
   "createdAt": "{ISO date}",
   "lastUpdated": "{ISO date}"

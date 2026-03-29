@@ -18,6 +18,19 @@ Multi-part challenge combining multiple language skills in a connected sequence.
 
 ---
 
+## Pre-Mission Briefing
+
+Before presenting the BOSS challenge, deliver a 3-5 line briefing that hypes the multi-part structure and introduces the skill combination being tested. Pick ONE of these angles per mission (rotate across sessions):
+
+- **Connected precision:** Explain that this mission tests whether the operator can carry a core idea across different audiences and formats. E.g., "A value prop that works in 10 words must also work in a 60-word email. Same DNA, different deployment. That is the test."
+- **Register shifting:** Preview the audience shifts coming. E.g., "You will write for an engineer, then rewrite for an investor. The facts stay the same — the vocabulary, emphasis, and structure change completely."
+- **Compression under pressure:** Warn that each part tightens the constraint. E.g., "Part 1 gives you room. Part 3 does not. The skill is knowing which words survive the cut and which were dead weight all along."
+- **Consistency check:** Frame the challenge as a coherence test. E.g., "Can your core message survive three transformations without losing its spine? That is what separates a SPECIALIST from an OPERATIVE."
+
+Format: Start with 💀 **Boss intel:** then the angle, keeping it intense and motivating. Keep it under 4 lines total.
+
+---
+
 ## Frequency Enforcement
 
 Before generating a BOSS mission, check `lastBossDate` in `~/.articulate/state.json`:
