@@ -28,12 +28,14 @@ Rotate through these to keep sessions varied. Track in history.json to avoid clu
 
 ## Quality Bar
 
-Every story MUST meet all four criteria:
+Every story MUST meet all six criteria:
 
-1. **Genuine surprise** — contains a fact that makes the reader stop and think
+1. **Genuine surprise** — contains a fact that makes the reader stop and think. Test: would someone say "wait, really?" If not, find a better angle.
 2. **Cited origin** — names the actual language of origin (Latin, Old Norse, Proto-Germanic, etc.)
-3. **Narrative arc** — reads as a story, not a dictionary entry. Has movement, tension, or irony
+3. **Narrative arc** — reads as a story, not a dictionary entry. Has movement, tension, or irony. Use time markers ("In 1300...", "By the 1920s..."), sensory details, and concrete scenes.
 4. **Modern connection** — explains how the etymology shapes the word's current usage or connotation
+5. **Sensory anchoring** — include at least one vivid image: a line in the dirt, a printing press, a Roman road junction. Abstract facts don't stick; scenes do.
+6. **Emotional hook** — open with the most surprising detail, not chronological background. Lead with irony, paradox, or the "wait, what?" moment. Don't bury the lede.
 
 ## Exercise Design
 
@@ -97,4 +99,4 @@ Use the axis bar format from style.md for display.
 
 After scoring: save to history.json, update XP, then:
 
-> "Another dig? Or back to work."
+> "🔍 Another dig? 🔥 Roast my writing? Or back to work."
