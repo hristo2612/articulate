@@ -222,8 +222,8 @@ Flip to formal. Same info, boardroom tone.
 ```
 
 **Feedback:**
-- Did they actually change register or just swap a few words?
-- Is the new version natural in the target register?
+- Did they actually change tone or just swap a few words?
+- Is the new version natural in the target tone?
 - Show gold standard.
 
 ```
@@ -368,7 +368,7 @@ Occasionally throw a curveball to keep it fresh:
 - **Reverse Swap:** Instead of replacing a weak word, show a sentence with a STRONG word and ask: "Why is this word perfect here? What would be worse?" (tests understanding, not just replacement)
 - **Speed Trim:** "You have 3 words. GO." — ultra-tight constraint
 - **Blind Punch:** Show the sentence with the VERB hidden: "The meeting [???] three blockers." User guesses the verb, THEN sees the original flat version.
-- **Double Flip:** Flip twice — casual → formal → poetic (or any other register chain)
+- **Double Flip:** Flip twice — casual → formal → poetic (or any other tone chain)
 
 These show up randomly (~10% of sessions). Don't announce them as special — just present them. The surprise IS the point.
 

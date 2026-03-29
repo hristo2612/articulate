@@ -22,7 +22,7 @@ the user triggers a Prestige reset.
 
 ### Level-Up Rules
 
-All modes (Word Archaeology, Roast, Ambient Coach) are available from Level 1.
+All modes (Lucky missions, Roast, Ambient Coach) are available from Level 1.
 Levels are motivational milestones, not unlock gates.
 
 1. After every XP award, compare `state.json → xp` against the table above.
@@ -66,7 +66,7 @@ the ISO timestamp of when they were earned.
 | 🤖 | Machine | Achieve a 30-day streak |
 | 🎯 | Precision Strike | Score 90+ on 5 sessions |
 | 🏆 | Sharpshooter | Score 90+ on 20 sessions |
-| 🔍 | Archaeologist | Complete 10 Word Archaeology sessions |
+| 🎲 | Lucky Streak | Complete 10 Lucky missions |
 | 🔥 | Roast Master | Complete 10 Roast sessions |
 | 🎖️ | Veteran | Complete 50 total sessions |
 | ⚔️ | Centurion | Complete 100 total sessions |
@@ -84,7 +84,7 @@ After every session completion, run these checks in order:
 4. **🤖 Machine** — `state.json → streak` >= 30
 5. **🎯 Precision Strike** — count entries in `history.json` where `score >= 90` >= 5
 6. **🏆 Sharpshooter** — count entries in `history.json` where `score >= 90` >= 20
-7. **🔍 Archaeologist** — `state.json → sessionCounts.archaeology` >= 10
+7. **🎲 Lucky Streak** — `state.json → sessionCounts.lucky` >= 10
 8. **🔥 Roast Master** — `state.json → sessionCounts.roast` >= 10
 9. **🎖️ Veteran** — `history.json` length >= 50
 10. **⚔️ Centurion** — `history.json` length >= 100
