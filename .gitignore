@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node (if we ever add tooling)
+node_modules/
+
+# User state is at ~/.articulate/, not in this repo.
+# Nothing to ignore for data — it doesn't live here.
