@@ -1,6 +1,6 @@
 # Progression — Levels, Badges & Rank Systems
 
-> Self-contained reference for managing operator rank, badges, prestige,
+> Self-contained reference for managing rank, badges, prestige,
 > streak shields, and decay.
 
 ---
@@ -8,25 +8,27 @@
 ## Level Table
 
 Seven ranks from RECRUIT to MASTERMIND. XP is cumulative — never resets unless
-the operator triggers a Prestige reset.
+the user triggers a Prestige reset.
 
-| Level | Rank | XP Threshold | Badge | Unlocks |
-|-------|------|-------------|-------|---------|
-| 1 | RECRUIT | 0 | ⬜ | REWRITE, FILL |
-| 2 | INITIATE | 100 | 🟩 | PROMPT_CRAFT, REVIEW |
-| 3 | OPERATIVE | 300 | 🟨 | SCENARIO |
-| 4 | SPECIALIST | 600 | 🟧 | BOSS |
-| 5 | COMMANDER | 1000 | 🔴 | User-generated challenges |
-| 6 | ARCHITECT | 1800 | 💎 | Teach mode |
-| 7 | MASTERMIND | 3000 | 👑 | Prestige system |
+| Level | Rank | XP Threshold | Badge |
+|-------|------|-------------|-------|
+| 1 | RECRUIT | 0 | ⬜ |
+| 2 | INITIATE | 100 | 🟩 |
+| 3 | OPERATIVE | 300 | 🟨 |
+| 4 | SPECIALIST | 600 | 🟧 |
+| 5 | COMMANDER | 1000 | 🔴 |
+| 6 | ARCHITECT | 1800 | 💎 |
+| 7 | MASTERMIND | 3000 | 👑 |
 
 ### Level-Up Rules
 
+All modes (Word Archaeology, Roast, Ambient Coach) are available from Level 1.
+Levels are motivational milestones, not unlock gates.
+
 1. After every XP award, compare `state.json → xp` against the table above.
-2. If XP crosses the next threshold, the operator levels up.
+2. If XP crosses the next threshold, the user levels up.
 3. Show a level-up banner (see `references/style.md` for template).
-4. Announce newly unlocked mission types.
-5. A single XP award can trigger multiple level-ups — check all thresholds.
+4. A single XP award can trigger multiple level-ups — check all thresholds.
 
 ### Dashboard Display
 
@@ -35,7 +37,7 @@ Show rank with badge emoji, XP progress bar toward next level, and streak:
 ```
  🟨 OPERATIVE  XP: 342/600  🔥 12d
  ████████████████░░░░░░░ 57%
- Today: 2 missions  Total: 47
+ Today: 2 sessions  Total: 47
 ```
 
 For MASTERMIND (max level), show XP total with no "next" threshold:
@@ -43,7 +45,7 @@ For MASTERMIND (max level), show XP total with no "next" threshold:
 ```
  👑 MASTERMIND  XP: 4210  🔥 45d
  ████████████████████████ MAX
- Today: 1 mission  Total: 203
+ Today: 1 session  Total: 203
 ```
 
 ---
@@ -58,24 +60,23 @@ the ISO timestamp of when they were earned.
 
 | Badge | Name | Condition |
 |-------|------|-----------|
-| ⚡ | First Blood | Complete first mission |
+| ⚡ | First Blood | Complete first session |
 | 🔥 | On Fire | Achieve a 3-day streak |
 | 💀 | Unstoppable | Achieve a 7-day streak |
 | 🤖 | Machine | Achieve a 30-day streak |
-| 🎯 | Precision Strike | Score 90+ on 5 missions |
-| 🏆 | Sharpshooter | Score 90+ on 20 missions |
-| ✏️ | Rewriter | Complete 10 REWRITE missions |
-| 🎭 | Operator | Complete 10 SCENARIO missions |
-| 🧠 | Prompt Engineer | Complete 10 PROMPT_CRAFT missions |
-| 🎖️ | Veteran | Complete 50 total missions |
-| ⚔️ | Centurion | Complete 100 total missions |
+| 🎯 | Precision Strike | Score 90+ on 5 sessions |
+| 🏆 | Sharpshooter | Score 90+ on 20 sessions |
+| 🔍 | Archaeologist | Complete 10 Word Archaeology sessions |
+| 🔥 | Roast Master | Complete 10 Roast sessions |
+| 🎖️ | Veteran | Complete 50 total sessions |
+| ⚔️ | Centurion | Complete 100 total sessions |
 | 💪 | Powerhouse | Earn 1000 cumulative XP |
-| 🌍 | Polyglot | Complete missions in 2+ languages |
+| 🌍 | Polyglot | Complete sessions in 2+ languages |
 | 📈 | Improver | Any weakness category drops 30+ points from peak |
 
 ### Badge Check Logic
 
-After every mission completion, run these checks in order:
+After every session completion, run these checks in order:
 
 1. **⚡ First Blood** — `history.json` length >= 1
 2. **🔥 On Fire** — `state.json → streak` >= 3
@@ -83,19 +84,18 @@ After every mission completion, run these checks in order:
 4. **🤖 Machine** — `state.json → streak` >= 30
 5. **🎯 Precision Strike** — count entries in `history.json` where `score >= 90` >= 5
 6. **🏆 Sharpshooter** — count entries in `history.json` where `score >= 90` >= 20
-7. **✏️ Rewriter** — count entries in `history.json` where `type == "REWRITE"` >= 10
-8. **🎭 Operator** — count entries in `history.json` where `type == "SCENARIO"` >= 10
-9. **🧠 Prompt Engineer** — count entries in `history.json` where `type == "PROMPT_CRAFT"` >= 10
-10. **🎖️ Veteran** — `history.json` length >= 50
-11. **⚔️ Centurion** — `history.json` length >= 100
-12. **💪 Powerhouse** — `state.json → xp` >= 1000
-13. **🌍 Polyglot** — distinct `language` values in `history.json` >= 2
-14. **📈 Improver** — any weakness category in `state.json → weaknessHistory` dropped 30+ percentage points from its recorded peak
+7. **🔍 Archaeologist** — `state.json → sessionCounts.archaeology` >= 10
+8. **🔥 Roast Master** — `state.json → sessionCounts.roast` >= 10
+9. **🎖️ Veteran** — `history.json` length >= 50
+10. **⚔️ Centurion** — `history.json` length >= 100
+11. **💪 Powerhouse** — `state.json → xp` >= 1000
+12. **🌍 Polyglot** — distinct `language` values in `history.json` >= 2
+13. **📈 Improver** — any weakness category in `state.json → weaknessHistory` dropped 30+ percentage points from its recorded peak
 
 If a badge is newly earned (not already in `state.json → badges`):
 - Add it with timestamp
 - Show the badge-earned celebration (see `references/style.md`)
-- Multiple badges can trigger in a single mission — show all
+- Multiple badges can trigger in a single session — show all
 
 ### Badge Display Format
 
@@ -112,13 +112,13 @@ Show earned badges in order. Unearned badges are omitted — show the count
 
 ## Prestige System
 
-Available only at Level 7 (MASTERMIND). Prestige is optional and operator-
+Available only at Level 7 (MASTERMIND). Prestige is optional and user-
 initiated — never prompt or auto-trigger.
 
 ### How It Works
 
 1. Operator reaches MASTERMIND (3000+ XP) and requests prestige reset.
-2. Confirm with the operator: "Prestige resets your rank to RECRUIT and
+2. Confirm with the user: "Prestige resets your rank to RECRUIT and
    zeroes your XP. Badges are preserved. Proceed?"
 3. On confirmation:
    - Set `state.json → level` to 1
@@ -206,7 +206,7 @@ Prevents rank inflation from abandoned training. Encourages consistency.
 
 ### Trigger
 
-7 consecutive calendar days with zero completed missions.
+7 consecutive calendar days with zero completed sessions.
 
 ### Effect
 
@@ -236,12 +236,12 @@ if days_inactive >= 7:
  ⚠ {days_inactive} days inactive.
  Rank dropped: {old_rank} → {new_rank}
  XP preserved at {xp}.
- Complete 3 missions to restore your rank.
+ Complete 3 sessions to restore your rank.
 ```
 
 ### Restoration
 
-- After rank decay, the operator must complete **3 missions** to restore
+- After rank decay, the user must complete **3 sessions** to restore
   their rank to the level their XP warrants.
 - Track restoration progress in `state.json → decayRecovery`:
 
@@ -249,19 +249,19 @@ if days_inactive >= 7:
 {
   "decayRecovery": {
     "active": true,
-    "missionsRequired": 3,
-    "missionsCompleted": 1,
+    "sessionsRequired": 3,
+    "sessionsCompleted": 1,
     "targetLevel": 4,
     "targetRank": "SPECIALIST"
   }
 }
 ```
 
-- After each mission during recovery, increment `missionsCompleted`.
-- When `missionsCompleted >= 3`:
+- After each session during recovery, increment `sessionsCompleted`.
+- When `sessionsCompleted >= 3`:
   - Set level and rank to what XP warrants (recalculate from XP thresholds).
   - Clear `decayRecovery`.
-  - Show restoration message: `"Rank restored: {rank} — welcome back, operator."`
+  - Show restoration message: `"Rank restored: {rank} — welcome back."`
 
 ### Interaction with Streak
 

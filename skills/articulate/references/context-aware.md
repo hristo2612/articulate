@@ -1,25 +1,16 @@
-# Context-Aware Missions
+# Context-Aware Sessions
 
 ## Purpose
 
-Read the user's current project to generate missions that use real project nouns, domain terms, and scenarios. This makes missions feel relevant rather than generic.
-
-## Opt-In Check
-
-Before any context gathering:
-
-1. Read `~/.articulate/user.json`
-2. Check the `contextAware` field
-3. If `false` — skip everything in this file. Use generic challenges only.
-4. If `true` — proceed with context gathering
+Read the user's current project to generate sessions that use real project nouns, domain terms, and scenarios. Context scanning runs automatically whenever you invoke Articulate in a project directory — no toggle needed.
 
 ## First Time in a New Project
 
 When the user invokes `/articulate` in a project directory that has no cached context:
 
 1. Detect the project name from the directory name or manifest file
-2. Ask: `"I notice you're working on {project}. Want me to generate missions based on this? (yes/no)"`
-3. If the user says no — skip context for this project, do NOT cache, use generic missions
+2. Ask: `"I notice you're working on {project}. Want me to generate sessions based on this? (yes/no)"`
+3. If the user says no — skip context for this project, do NOT cache, use generic sessions
 4. If the user says yes — proceed with context extraction below
 
 Do not ask again for a project that already has a cached context file.
@@ -67,7 +58,7 @@ Build a summary containing ONLY these fields:
 
 ## What NEVER to Include
 
-These must NEVER appear in context summaries or generated missions:
+These must NEVER appear in context summaries or generated sessions:
 
 - **Source code** — no functions, classes, or code snippets
 - **API keys** — never read .env files or any credentials
@@ -110,40 +101,24 @@ Rules for `{project-name}`:
 - If older than **7 days** — re-scan the project and overwrite the cache
 - If the user asks to refresh: re-scan immediately regardless of age
 
-## Mission Integration
+## Session Integration
 
-When generating missions, pass the cached context so the mission generator can weave in project-specific terms.
+When generating sessions, pass the cached context so the session generator can weave in project-specific terms.
 
-### REWRITE Integration
+### 🔍 Word Archaeology Integration
 
-Use project nouns and domain in the weak sentence:
+Use project domain terms when selecting etymology stories and exercises:
 
-- Generic: `"The thing we built is really good and helps people do stuff faster."`
-- Context-aware: `"The MoveKit API is a good thing that helps developers do exercise stuff in their apps."`
+- Generic: a story about the word "deploy" and its military origins
+- Context-aware: a story about "render" tied to MoveKit's animation rendering pipeline — from Latin *reddere* (to give back)
 
-The weak words remain weak — but the nouns and domain match the user's project.
+The etymology stays genuine — but the word choice and exercise connect to the user's project.
 
-### SCENARIO Integration
+### 🔥 Roast Integration
 
-Use the project as the setting for professional communication challenges:
+When scanning for weak writing, prioritize passages related to the current project:
 
-- Generic: `"A potential customer asks about your product's batch processing..."`
-- Context-aware: `"Your CI pipeline failed on the deploy-staging step. Write a Slack message to the team explaining what broke and the rollback plan for MoveKit's renderer module."`
+- Generic: scan any recent conversation for weak writing
+- Context-aware: scan conversations about MoveKit for vague descriptions of features, hedging in technical decisions, filler in commit messages
 
-### PROMPT_CRAFT Integration
-
-Use the project domain and detected tooling as the subject of prompt-writing challenges:
-
-- Generic: `"Write a prompt that generates API documentation for a REST endpoint."`
-- Context-aware: `"Write a prompt that generates Jest test cases for MoveKit's api module, covering the animation upload and validation endpoints."`
-
-### FILL_PRECISION Integration
-
-Use project context in the surrounding sentence:
-
-- Generic: `"The system's response time was [___], often exceeding 3 seconds."`
-- Context-aware: `"MoveKit's animation rendering pipeline was [___], dropping frames on older devices."`
-
-### REVIEW Integration
-
-When reviewing past missions, if the original was context-aware, use the same project context for the review challenge.
+The roast targets real writing about things the user cares about.

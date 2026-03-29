@@ -4,14 +4,7 @@
 
 Display on first run:
 
-**ARTICULATE** — Precision Language Training
-
-## Intro Text
-
-```
-Welcome, operator. You write. We evaluate. You level up.
-Let's configure your training profile.
-```
+Hey! I'm **Articulate** — your language nerd sidekick. I dig up fascinating word stories, roast your weak writing, and drop tips while you work. Let's set up.
 
 ## Setup Questions
 
@@ -34,85 +27,17 @@ What language(s) do you want to train in? (e.g., English, Spanish, Bulgarian —
 
 - Save to `user.json` field: `languages`
 - Parse the user's answer into an array of language names, normalized to lowercase
-- Any language is valid — not limited to English and Bulgarian
+- Any language is valid — not limited to a preset list
 - Multiple languages: store as array, e.g. `["english", "spanish"]`
 - Default if unclear: `["english"]`
 
-### Question 3: Focus Areas
+### Question 3: Ambient Coaching
 
 ```
-Focus areas? Pick 1-3 (enter numbers, e.g. "1,3,5"):
-
-  1. prompt_engineering
-  2. business_communication
-  3. technical_writing
-  4. interview_prep
-  5. general_fluency
+Enable ambient coaching? When enabled, I'll drop quick vocabulary tips as you work. (yes/no)
 ```
 
-- Save to `user.json` field: `focusAreas`
-- Store as array of strings, e.g. `["prompt_engineering", "technical_writing"]`
-- Must pick at least 1, max 3
-
-### Question 4: Daily Training Target
-
-```
-Daily training target in minutes? (default: 5)
-```
-
-- Save to `user.json` field: `dailyMinutes`
-- Must be a positive integer
-- Default: `5`
-
-### Question 5: Vocabulary Assessment
-
-```
-Want me to scan your recent conversations to assess your vocabulary level? (yes/no)
-```
-
-- If **yes**: Scan the user's past AI conversations to analyze their writing patterns. Search these locations in order:
-
-  **Claude Code conversations:**
-  1. List JSONL files in `~/.claude/projects/` (all subdirectories)
-  2. Pick the 3-5 most recent `.jsonl` files (by modification time)
-  3. Extract user messages: lines with `"type": "user"`, text in `message.content`
-  4. Collect 20-30 substantial user messages (skip one-word answers, file paths, commands)
-
-  **Codex conversations (if available):**
-  1. Read `~/.codex/history.jsonl` — user text in the `text` field
-  2. Also check `~/.codex/archived_sessions/*.jsonl` for longer messages
-
-  **Analysis:** From the collected messages, evaluate:
-  - **Vocabulary precision:** Does the user use specific nouns/verbs or default to "thing", "stuff", "do", "make"?
-  - **Hedging frequency:** How often do they use "I think", "maybe", "kind of", "sort of"?
-  - **Filler words:** Count "basically", "literally", "actually", "just", "really", "very"
-  - **Sentence structure:** Flat and repetitive, or varied with subordination and contrast?
-  - **Register range:** Do they shift between casual and professional, or stay flat?
-
-  Derive a score 1-5 with specific examples from their writing. Show the user a brief summary:
-  "Based on your recent conversations, I'd rate your active vocabulary at **{score}/5**. I noticed you tend to {top 2-3 patterns}. Here's what we'll focus on."
-
-  Save findings to `user.json`:
-  - `selfAssessment`: derived score (1-5)
-  - `assessmentMethod`: "conversation_scan"
-  - `assessmentNotes`: brief summary of patterns found (for the AI to reference in future sessions)
-
-- If **no**: Set `selfAssessment` to 3, `assessmentMethod` to "dynamic". Calibrates from mission performance.
-- If no conversation files found: Tell the user "No past conversations found to scan. Starting at mid-range — I'll calibrate from your missions." Set to dynamic mode.
-
-- Difficulty calibration from score:
-  - 1-2: start with easiest RECRUIT challenges
-  - 3: standard RECRUIT challenges
-  - 4-5: slightly harder RECRUIT challenges
-
-### Question 6: Context-Aware Missions
-
-```
-Enable context-aware missions? (yes/no)
-When enabled, I'll scan your current project to understand what you're building and generate missions relevant to your actual work.
-```
-
-- Save to `user.json` field: `contextAware`
+- Save to `user.json` field: `coachingEnabled`
 - Store as boolean: `true` or `false`
 - Default if unclear: `false`
 
@@ -126,12 +51,7 @@ After all questions are answered, create the following files at `~/.articulate/`
 {
   "name": "{answer to Q1}",
   "languages": ["{answer to Q2}"],
-  "focusAreas": ["{answers to Q3}"],
-  "dailyMinutes": {answer to Q4},
-  "selfAssessment": {answer to Q5},
-  "assessmentMethod": "{conversation_scan or dynamic}",
-  "assessmentNotes": "{brief summary of patterns found, or null}",
-  "contextAware": {answer to Q6},
+  "coachingEnabled": false,
   "createdAt": "{ISO date}",
   "lastUpdated": "{ISO date}"
 }
@@ -149,16 +69,12 @@ After all questions are answered, create the following files at `~/.articulate/`
   "bestStreak": 0,
   "streakShields": 0,
   "lastPlayedDate": null,
-  "todayMissionCount": 0,
+  "todaySessionCount": 0,
   "totalCompleted": 0,
   "prestigeStars": 0,
-  "missionCounts": {
-    "rewrite": 0,
-    "fill": 0,
-    "prompt": 0,
-    "scenario": 0,
-    "boss": 0,
-    "review": 0
+  "sessionCounts": {
+    "archaeology": 0,
+    "roast": 0
   },
   "perfectCount": 0,
   "highScoreCount": 0,
@@ -171,11 +87,7 @@ After all questions are answered, create the following files at `~/.articulate/`
     "weak_verbs": 0,
     "filler_words": 0
   },
-  "weaknessHistory": {},
-  "currentSeason": null,
-  "lastBossDate": null,
-  "dailyWord": null,
-  "dailyWordDate": null
+  "weaknessHistory": {}
 }
 ```
 
@@ -199,14 +111,12 @@ Create as an empty directory:
 mkdir -p ~/.articulate/contexts
 ```
 
-## First Mission
+## First Session
 
 After file creation, do NOT ask the user to invoke `/articulate` again. Immediately proceed:
 
-1. Display a brief confirmation: `"Profile locked in. Deploying your first mission, {name}."`
-2. Run a REWRITE mission at easy difficulty (RECRUIT level)
-3. Read `references/missions/rewrite.md` for mission rules
-4. Generate a simple sentence with 2-3 obvious weak words
-5. If `selfAssessment` is 1-2, use the simplest possible challenge
-6. Follow the full mission flow: present challenge, wait for response, evaluate, score, show debrief
-7. After the first mission completes, run the standard post-mission flow (XP, state save, continue prompt)
+1. Display a brief confirmation: `"Profile saved. Let's kick things off with a word story, {name}."`
+2. Run a **Word Archaeology** session
+3. Read `references/word-archaeology.md` for session rules
+4. Follow the full session flow: present story, exercise, wait for response, evaluate, score, show feedback
+5. After the first session completes, run the standard post-session flow (XP, state save, continue prompt)
