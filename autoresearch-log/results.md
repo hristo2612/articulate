@@ -21,4 +21,6 @@
 | 4 | Response flow arc + personality energy | 25 | 23 | 22 | 70 | ✓ Keep |
 | 5 | Onboarding transition + roast feedback | — | — | — | — | ✓ Keep |
 | 6-10 | Topic diversity, ambient tips, etymology hooks, continue menu, personality | — | — | — | — | ✓ Keep |
-| **Final** | **All improvements combined** | **25** | **24** | **23** | **72** | **🏆 Best** |
+| **10** | **All improvements combined** | **25** | **24** | **23** | **72** | **🏆 Best** |
+| 11-20 | Scoring, exercise variety, roast polish, personality | — | — | — | — | ✓ Keep |
+| **20** | **Final test** | **25** | **25** | **23** | **73** | **🏆 New best** |
