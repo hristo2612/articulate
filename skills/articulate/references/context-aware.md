@@ -103,22 +103,21 @@ Rules for `{project-name}`:
 
 ## Session Integration
 
-When generating sessions, pass the cached context so the session generator can weave in project-specific terms.
+Pass cached context to mission generation. Every mission should feel connected to the user's actual work.
 
-### 🔍 Word Archaeology Integration
+### Mission Integration
 
-Use project domain terms when selecting etymology stories and exercises:
+Use project domain terms in challenges:
 
-- Generic: a story about the word "deploy" and its military origins
-- Context-aware: a story about "render" tied to MoveKit's animation rendering pipeline — from Latin *reddere* (to give back)
-
-The etymology stays genuine — but the word choice and exercise connect to the user's project.
+- **Swap:** Use sentences about the user's domain. "We need to **handle** the checkout flow" instead of generic "handle the task."
+- **Trim:** Pull bloated phrases from project-relevant scenarios. "In order to facilitate the process of deploying to staging..."
+- **Punch:** Flatten sentences about the user's actual features. "The cart update went well."
+- **Snipe:** Prioritize passages from conversations about the current project.
+- **Flip:** Use project scenarios for tone flips. Casual dev chat about a deploy → formal incident report.
+- **Fill:** Use project-specific sentences. "The _____ of our checkout flow caused cart abandonment."
 
 ### 🔥 Roast Integration
 
-When scanning for weak writing, prioritize passages related to the current project:
-
-- Generic: scan any recent conversation for weak writing
-- Context-aware: scan conversations about MoveKit for vague descriptions of features, hedging in technical decisions, filler in commit messages
-
-The roast targets real writing about things the user cares about.
+Prioritize passages related to the current project:
+- Scan conversations about the project for vague descriptions, hedging in decisions, filler in commit messages.
+- Project-specific roasts feel more relevant and memorable.
