@@ -163,11 +163,14 @@ Always on. If project context is available:
 
 ## Post-Session Flow
 
-Run after every scored session (archaeology or roast).
+**IMPORTANT:** After the user submits their exercise answer, you MUST show feedback before moving on. Never skip straight to the next session or ask "Another?" without scoring first.
 
-### A. Score
+### A. React + Score
 
-Read `references/progression/scoring.md` for the rubric. Score range: 0-100.
+1. **React first** — one genuine sentence about what worked or didn't (specific, not generic)
+2. **Show the score** using axis bars with ✓/✗ markers (read `references/progression/scoring.md` for rubric)
+3. **Gold standard** — show one ideal version in a `>` blockquote, explain in 1-2 bullets WHY it works
+4. **Bonus** — if score ≥ 70, add a 💎 bonus etymology nugget
 
 ### B. Calculate XP
 
