@@ -1,17 +1,26 @@
 # Word Archaeology — The Science-Backed Method
 
-The default `/articulate` experience. Stacks four proven learning methods into a tight 2-response session:
+The default `/articulate` experience. **Two session formats that rotate** to prevent habituation (interleaving at the session level). Both are tight 2-response sessions.
 
+### Science behind it
 1. **Productive failure** (Kapur, 2008): write FIRST, struggle, THEN discover. 2x retention.
 2. **Contrastive analysis**: comparing versions forces deeper processing.
 3. **Protégé effect** (Biswas, 2005): teaching someone else is the strongest form of learning.
-4. **Elaborative interrogation** (Pressley, 1987): generating "WHY" explanations = 2x retention.
+4. **Reverse engineering**: analyzing expert work builds pattern recognition (Chi et al., 1989).
+5. **Interleaving** (Rohrer & Taylor, 2007): mixing formats > repeating one format.
 
-## Session Structure
+## Format Selection
 
-Two user responses. Tight, focused, powerful.
+**Alternate between two formats.** Check `history.json` — if last session was Format A, do Format B, and vice versa. First session is always Format A.
 
-**Flow: challenge → struggle → teach → discover → retry.**
+- **Format A: The Challenge** — productive failure + protégé effect (write → teach → discover → retry)
+- **Format B: The Reverse** — reverse engineering + generation (analyze great writing → extract principle → apply it)
+
+---
+
+## Format A: The Challenge
+
+Two user responses. Flow: **challenge → struggle → teach → discover → retry.**
 
 ### Phase 1: The Challenge (no teaching yet)
 
@@ -208,7 +217,93 @@ Same scenario, same constraints. Break things with short words.
 >
 ```
 
-## Post-Session Flow
+---
+
+## Format B: The Reverse
+
+Two user responses. Flow: **analyze great writing → extract principle → apply it to YOUR work.**
+
+### Phase 1: The Specimen
+
+1. `## 🔍 Word Archaeology: The Specimen` — heading
+2. Present a SHORT piece of exceptional writing (2-4 sentences). Sources:
+   - Famous opening lines (adapted to professional context)
+   - Exceptional incident postmortems, changelogs, or tech writing
+   - Brilliant one-liners from speeches, journalism, or literature
+3. **The challenge:** "This is unusually effective writing. In 1-2 sentences, explain WHY it works. What's the specific technique?"
+4. `### 🔍 Your analysis` — space for response
+5. `>` blockquote
+
+**The specimen must be genuinely impressive** — the user should read it and think "damn, that's good" before they analyze it.
+
+### Phase 2: The Dig + Apply (after user analyzes)
+
+1. **Grade their analysis** — what they caught, what they missed
+2. `## 🔍 The Dig` — reveal the deeper layer through etymology/language history
+   - WHY that technique works at the word level
+   - The historical/linguistic reason behind its power
+   - 4-8 lines: surprise, cited origin, narrative arc
+3. `💡 **The principle:**` — the transferable technique (bold, 1-2 lines)
+4. **The application scenario** — a real-world writing task where this principle applies:
+   - `### ✏️ Now apply it` — specific scenario with constraints
+   - `>` blockquote
+
+### Phase 3: Scoring
+
+Score the application. One score (not double — no first attempt in this format).
+
+```
+**Score: {n}/100**
+├─ Technique:   {n}/25  (did they actually use the specimen's technique?)
+├─ Precision:   {n}/25
+├─ Naturalness: {n}/25
+└─ Impact:      {n}/25
+```
+
+### Example Format B Session
+
+```markdown
+## 🔍 Word Archaeology: The Specimen
+
+Read this:
+
+> "We can lick gravity, but sometimes the paperwork is overwhelming."
+> — Wernher von Braun, on NASA bureaucracy
+
+Four words do all the work: "lick" and "overwhelming." In 1-2 sentences, explain WHY this quote hits as hard as it does. What's the specific technique?
+
+### 🔍 Your analysis
+
+>
+```
+
+*[User writes: "The contrast between solving gravity (huge) and being beaten by paperwork (small) is funny. The word 'lick' is informal which makes it feel authentic."]*
+
+```markdown
+You caught the contrast — good. And "lick" being informal is true but not the real insight. Here's what you missed: the technique is **register collision**.
+
+## 🔍 The Dig: *lick* vs. *overcome*
+
+"Lick" comes from Old English *liccian* — a word about tongues and animals. By the 1800s, American English had turned it into slang for "beat" or "defeat" — a barroom word, a frontier word. When von Braun says "lick gravity," he's using a cowboy verb for humanity's greatest engineering achievement.
+
+"Overcome" would be the expected register: formal, Latinate, dignified. "Lick" is the wrong register — and that's exactly why it works. The mismatch between the word's lowness and the concept's grandness creates surprise. Your brain expects one register and gets another. That gap IS the humor.
+
+This is **register collision**: deliberately using a word from the wrong social stratum. It signals confidence (you don't need fancy words for fancy achievements) and creates memorability through surprise.
+
+💡 **The principle:** Register collision — using a deliberately "wrong" register — creates memorability. Low words for high concepts ("lick gravity") and high words for low concepts ("the olfactory assault of that dumpster") both work. The gap between word and concept IS the effect.
+
+### ✏️ Now apply it
+
+**Scenario:** Write a one-sentence summary of a major refactor you just completed. Use register collision — one word should be deliberately "wrong" for the context.
+
+Max 20 words.
+
+>
+```
+
+---
+
+## Post-Session Flow (both formats)
 
 After scoring: save to history.json, update XP, then:
 
