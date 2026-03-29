@@ -1,16 +1,17 @@
 # Word Archaeology — The Science-Backed Method
 
-The default `/articulate` experience. Stacks three proven learning methods:
+The default `/articulate` experience. Stacks four proven learning methods into a tight 2-response session:
 
-1. **Productive failure** (Kapur, 2008): user writes FIRST, struggles, THEN discovers the principle. 2x retention.
-2. **Contrastive analysis**: comparing two versions forces deeper processing than studying either alone.
-3. **Elaborative interrogation** (Pressley, 1987): asking "WHY does this work?" produces 2x retention vs being told.
+1. **Productive failure** (Kapur, 2008): write FIRST, struggle, THEN discover. 2x retention.
+2. **Contrastive analysis**: comparing versions forces deeper processing.
+3. **Protégé effect** (Biswas, 2005): teaching someone else is the strongest form of learning.
+4. **Elaborative interrogation** (Pressley, 1987): generating "WHY" explanations = 2x retention.
 
 ## Session Structure
 
-Traditional: teach → practice. Articulate: **challenge → struggle → compare → explain → discover → retry.**
+Two user responses. Tight, focused, powerful.
 
-Every session follows this exact sequence:
+**Flow: challenge → struggle → teach → discover → retry.**
 
 ### Phase 1: The Challenge (no teaching yet)
 
@@ -22,37 +23,30 @@ Every session follows this exact sequence:
 
 **Critical:** Do NOT teach anything yet. No etymology, no principles, no hints. The struggle creates neural hooks.
 
-### Phase 2: Compare + Explain (after user responds)
+### Phase 2: The Teach-Back (after user responds)
 
-1. **React honestly** — what worked, what didn't in their attempt. Score Attempt 1.
-2. `## 🔍 Spot the Difference` — show TWO versions of a similar piece of writing:
-   - **Version A:** weak/vague language (similar to common mistakes)
-   - **Version B:** precise/powerful language
-3. **Ask TWO questions (elaborative interrogation):**
-   - "Which is stronger?"
-   - "WHY does that word work better? What does it do that the other doesn't?"
-4. `>` blockquote — space for their explanation
+1. **React honestly** — what worked, what didn't. Score Attempt 1 with axis bars.
+2. `## 🔍 Spot the Difference` — show TWO versions of similar writing:
+   - **Version A:** weak/vague (similar to common mistakes)
+   - **Version B:** precise/powerful
+3. **The Protégé Challenge:**
+   > "A junior dev on your team just wrote Version A. They think it's fine. In 1-2 sentences, explain what they should change and **WHY** the alternative works better."
+4. `>` blockquote — space for their teaching explanation
 
-**This is the key move.** The user must GENERATE the explanation, not consume it. Self-explanation activates deeper encoding than reading someone else's explanation.
+**Why this works:** The user must TEACH, not just identify. Teaching activates deeper processing than self-explanation alone. The social framing ("a junior dev") makes it concrete and engaging. They're not analyzing in a vacuum — they're preparing to help someone.
 
-### Phase 3: The Dig (after user explains — or immediately in non-interactive mode)
+### Phase 3: The Dig + Retry (after user teaches — or immediately in non-interactive mode)
 
-1. **React to their explanation** — what they got right, what they missed
-2. `## 🔍 The Dig` — the etymology/language story that reveals the FULL picture
-   - Connect to THEIR word choices from Phase 1 AND their explanation from Phase 2
+1. **Grade their teaching** — what they got right, what they missed, what would confuse the "junior dev"
+2. `## 🔍 The Dig` — the etymology/language story that reveals the deeper layer
+   - Connect to THEIR word choices from Phase 1 AND their teaching from Phase 2
    - 4-8 lines: surprise, cited origin, narrative arc, modern connection
-   - Show them what their explanation missed — the deeper layer
+   - Show what their explanation missed — the layer they couldn't articulate
 3. `💡 **The principle:**` — one transferable insight (bold, 1-2 lines)
+4. `### ✏️ Now rewrite it` — same challenge, armed with everything
+5. `>` blockquote
 
-### Phase 4: The Retry
-
-1. `### ✏️ Now rewrite it` — same challenge, armed with everything they've learned
-2. Score BOTH attempts — show the improvement delta
-
-### Phase 3: The Retry
-
-1. `### ✏️ Now rewrite it` — same challenge, armed with the principle AND the comparison
-2. Score BOTH attempts — show the improvement delta
+After rewrite: score BOTH attempts, show improvement delta.
 
 ## Scenario Design
 
@@ -68,6 +62,8 @@ Scenarios must feel like REAL tasks. Never artificial.
 | Feedback | "Give constructive criticism on someone's proposal. One sentence, no hedges." |
 | Persuasion | "Convince your manager to approve a tool purchase. Two sentences." |
 | Explanation | "Explain a technical concept to a non-technical stakeholder. Three sentences max." |
+| Apology | "Acknowledge a missed deadline without making excuses. Two sentences." |
+| Announcement | "Announce a breaking change to your API consumers. Three sentences." |
 
 **The constraint is what makes it hard:** word limits, banned words, required register, specific audience.
 
@@ -78,12 +74,6 @@ The two versions must:
 - Differ in 1-3 key word choices (not total rewrites)
 - Have one clearly stronger version (but the reason should be non-obvious)
 - Connect to a fascinating etymology or language principle
-
-**Example contrastive pair:**
-> **A:** "We need to revisit the timeline because some deliverables are at risk."
-> **B:** "We need to compress the timeline — three deliverables ship late if we don't cut scope by Friday."
-
-**The key difference:** "revisit" (vague, implies maybe-later) vs. "compress" (active, implies urgency + specific action). Plus: "at risk" (hedge) vs. specific consequence + deadline.
 
 ## The Dig — Story Categories
 
@@ -172,34 +162,48 @@ Score BOTH attempts and show the improvement:
 *[User writes: "The latest deploy has some issues and we need to look into it. I'll be investigating tonight."]*
 
 ```markdown
-Solid instinct to own it personally ("I'll be investigating"). But "has some issues" is doing zero work — which issues? Where? How bad?
+Solid instinct to own it ("I'll be investigating"). But "has some issues" and "look into it" are doing zero work.
+
+**Attempt 1: 48/100**
+├─ Precision:   10/25
+├─ Concision:   12/25
+├─ Register:    16/25
+└─ Impact:      10/25
 
 ## 🔍 Spot the Difference
 
-Two incident messages. Which is stronger? What's the ONE word that makes the biggest difference?
+Two incident messages. Read both:
 
 > **A:** "The deploy caused some problems with the checkout flow. We're looking into it and will update soon."
 > **B:** "The deploy broke checkout — users are hitting 500s on payment. Rolled back, monitoring now."
 
----
+A junior dev on your team just wrote Version A. They think it's fine for an incident channel. In 1-2 sentences, explain what they should change and WHY.
 
-**The word:** "broke" vs. "caused some problems."
+### ✏️ Your coaching
 
-"Caused some problems" is 3 words to say nothing. "Broke" is 1 word that says everything. But here's the deeper reason...
+>
+```
+
+*[User writes: "Version B is better because it's more specific — it says exactly what broke and what action was taken. 'Broke' is more direct than 'caused some problems'."]*
+
+```markdown
+Good start — you correctly identified specificity as the key difference. But you said "more specific" and "more direct" without explaining WHY those qualities matter in THIS context. A junior dev hearing "be more specific" nods and writes the same thing tomorrow. Let me show you the lever you missed.
 
 ## 🔍 The Dig: *break*
 
-Old English *brecan* — from Proto-Germanic *brekaną*, from Proto-Indo-European *bhreg-* ("to break"). This root is ancient, physical, and brutal. It gave us: "breach" (a gap in a wall), "fraction" (a broken number, via Latin *frangere*), and "fragile" (easily broken).
+Old English *brecan* — Proto-Germanic *brekaną* — Proto-Indo-European *bhreg-* ("to break"). This root is ancient, physical, and brutal. It gave us "breach" (gap in a wall), "fraction" (a broken number, via Latin *frangere*), and "fragile."
 
-"Caused some problems" is bureaucratic distance — you're standing 50 feet from the fire describing the temperature. "Broke" puts everyone AT the break point. It's a 5,000-year-old word that means exactly one thing, and everyone who reads it reacts the same way: something was whole, now it isn't.
+"Caused some problems" is bureaucratic distance — standing 50 feet from a fire describing the temperature. "Broke" puts everyone AT the break point. It's a 5,000-year-old word that means one thing, and everyone reacts the same: something was whole, now it isn't.
 
-This is why crisis language defaults to Anglo-Saxon roots: break, fix, stop, cut, ship. These words survived a millennium because they're unambiguous. Latinate alternatives ("encountered difficulties", "experiencing issues") survived because they create distance — which is exactly what you DON'T want in an incident.
+Crisis language defaults to Anglo-Saxon roots: break, fix, stop, cut, ship. These survived a millennium because they're unambiguous. Latinate alternatives ("encountered difficulties", "experiencing issues") create distance — the opposite of what you need in an incident.
 
-💡 **The principle:** In crisis communication, reach for the oldest, shortest word. Anglo-Saxon roots (break, fix, cut, stop) carry urgency because they're physical. Latinate words (encounter, experience, investigate) carry distance. Choose based on whether you want your reader to feel or to file.
+**What you could have told the junior dev:** "In an incident, use Anglo-Saxon verbs — broke, not 'caused problems.' Short old words create urgency. Long Latin words create distance. Choose based on whether you want your team to ACT or FILE."
+
+💡 **The principle:** In crisis, reach for the oldest, shortest word. Anglo-Saxon roots carry urgency because they're physical. Latinate words carry distance. Your word choice controls whether your reader reacts or relaxes.
 
 ### ✏️ Now rewrite it
 
-Same scenario, same constraints. But this time — break things with short words.
+Same scenario, same constraints. Break things with short words.
 
 >
 ```
