@@ -1,94 +1,86 @@
 #!/usr/bin/env bash
 # Articulate — SessionStart hook
-# Checks streak status and injects a reminder into session context.
-# This is optional — Articulate works fine without it.
+# 1. Streak reminder if at risk
+# 2. Ambient coaching injection if enabled
 
 set -euo pipefail
 
 STATE_FILE="$HOME/.articulate/state.json"
+USER_FILE="$HOME/.articulate/user.json"
 
 # --- Detect platform ---
-PLATFORM=""
 if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
   PLATFORM="cursor"
-elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ]; then
-  PLATFORM="claude"
 else
-  # Unknown platform — default to Claude Code format
   PLATFORM="claude"
 fi
 
-# --- If no state file, nothing to remind about ---
-if [ ! -f "$STATE_FILE" ]; then
-  exit 0
-fi
-
-# --- Read state.json ---
-# Try jq first, fall back to grep/sed for environments without jq
+# --- JSON field reader (jq with grep/sed fallback) ---
 read_json_field() {
-  local file="$1"
-  local field="$2"
+  local file="$1" field="$2"
   if command -v jq >/dev/null 2>&1; then
     jq -r ".$field // empty" "$file" 2>/dev/null || echo ""
   else
-    # Fallback: naive JSON field extraction (handles simple flat values)
     sed -n "s/.*\"$field\"[[:space:]]*:[[:space:]]*\"\{0,1\}\([^,\"}\r\n]*\)\"\{0,1\}.*/\1/p" "$file" 2>/dev/null | head -1
   fi
 }
 
-STREAK=$(read_json_field "$STATE_FILE" "streak")
-LAST_PLAYED=$(read_json_field "$STATE_FILE" "lastPlayedDate")
+# --- 1. Streak reminder ---
+STREAK_MSG=""
 
-# --- No streak or no last played date — nothing to remind ---
-if [ -z "$STREAK" ] || [ "$STREAK" = "0" ] || [ "$STREAK" = "null" ]; then
-  exit 0
+if [ -f "$STATE_FILE" ]; then
+  STREAK=$(read_json_field "$STATE_FILE" "streak")
+  LAST_PLAYED=$(read_json_field "$STATE_FILE" "lastPlayedDate")
+
+  if [ -n "$STREAK" ] && [ "$STREAK" != "0" ] && [ "$STREAK" != "null" ] \
+     && [ -n "$LAST_PLAYED" ] && [ "$LAST_PLAYED" != "null" ]; then
+
+    # Cross-platform date math (BSD vs GNU)
+    TODAY_EPOCH="" LAST_EPOCH=""
+    if date -j -f "%Y-%m-%d" "2000-01-01" "+%s" >/dev/null 2>&1; then
+      TODAY_EPOCH=$(date -j -f "%Y-%m-%d" "$(date +%Y-%m-%d)" "+%s")
+      LAST_EPOCH=$(date -j -f "%Y-%m-%d" "$LAST_PLAYED" "+%s" 2>/dev/null || echo "")
+    else
+      TODAY_EPOCH=$(date -d "$(date +%Y-%m-%d)" "+%s")
+      LAST_EPOCH=$(date -d "$LAST_PLAYED" "+%s" 2>/dev/null || echo "")
+    fi
+
+    if [ -n "$LAST_EPOCH" ]; then
+      DAYS_SINCE=$(( (TODAY_EPOCH - LAST_EPOCH) / 86400 ))
+      if [ "$DAYS_SINCE" -eq 1 ]; then
+        STREAK_MSG="Your ${STREAK}-day streak is safe. Keep it going with /articulate"
+      elif [ "$DAYS_SINCE" -ge 2 ]; then
+        STREAK_MSG="🔥 Your **${STREAK}-day streak** is waiting. \`/articulate\` to keep it alive."
+      fi
+    fi
+  fi
 fi
-if [ -z "$LAST_PLAYED" ] || [ "$LAST_PLAYED" = "null" ]; then
-  exit 0
+
+# --- 2. Ambient coaching ---
+COACHING_MSG=""
+
+if [ -f "$USER_FILE" ]; then
+  COACHING=$(read_json_field "$USER_FILE" "coachingEnabled")
+  if [ "$COACHING" = "true" ]; then
+    COACHING_MSG='You have Articulate ambient coaching enabled. When you notice the user writing with vague, hedging, or imprecise language in their messages to you, occasionally offer a brief inline vocabulary tip. Format: 💡 *You wrote "X" — try "Y" for [reason].* Rules: max once per 3-4 user messages, one line only, placed after your main response with a blank line separator, only target natural language (never code), skip if user is rushed/debugging/emotional, never suggest the same tip twice in a session. Focus on: vague nouns (thing/stuff), weak verbs (do/make/get), hedging (I think maybe), filler (basically/literally/just/really).'
+  fi
 fi
 
-# --- Date math ---
-# Compute days since last played (cross-platform: macOS date vs GNU date)
-TODAY_EPOCH=""
-LAST_EPOCH=""
-
-if date -j -f "%Y-%m-%d" "2000-01-01" "+%s" >/dev/null 2>&1; then
-  # macOS (BSD) date
-  TODAY_EPOCH=$(date -j -f "%Y-%m-%d" "$(date +%Y-%m-%d)" "+%s")
-  LAST_EPOCH=$(date -j -f "%Y-%m-%d" "$LAST_PLAYED" "+%s" 2>/dev/null || echo "")
+# --- Combine output ---
+CONTEXT=""
+if [ -n "$STREAK_MSG" ] && [ -n "$COACHING_MSG" ]; then
+  CONTEXT="${STREAK_MSG}\\n\\n${COACHING_MSG}"
+elif [ -n "$STREAK_MSG" ]; then
+  CONTEXT="$STREAK_MSG"
+elif [ -n "$COACHING_MSG" ]; then
+  CONTEXT="$COACHING_MSG"
 else
-  # GNU date (Linux)
-  TODAY_EPOCH=$(date -d "$(date +%Y-%m-%d)" "+%s")
-  LAST_EPOCH=$(date -d "$LAST_PLAYED" "+%s" 2>/dev/null || echo "")
-fi
-
-if [ -z "$LAST_EPOCH" ]; then
-  exit 0
-fi
-
-DAYS_SINCE=$(( (TODAY_EPOCH - LAST_EPOCH) / 86400 ))
-
-# --- Build reminder message ---
-MESSAGE=""
-
-if [ "$DAYS_SINCE" -eq 0 ]; then
-  # Played today already — no reminder needed
-  exit 0
-elif [ "$DAYS_SINCE" -eq 1 ]; then
-  # Played yesterday — streak is safe
-  MESSAGE="Your ${STREAK}-day streak is safe. Keep it going with /articulate"
-elif [ "$DAYS_SINCE" -ge 2 ]; then
-  # Streak at risk
-  MESSAGE="⚠️ Your ${STREAK}-day streak is at risk! Type /articulate to save it."
-fi
-
-if [ -z "$MESSAGE" ]; then
   exit 0
 fi
 
 # --- Output platform-specific JSON ---
 if [ "$PLATFORM" = "cursor" ]; then
-  printf '{"additional_context": "%s"}\n' "$MESSAGE"
+  printf '{"additional_context": "%s"}\n' "$CONTEXT"
 else
-  printf '{"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": "%s"}}\n' "$MESSAGE"
+  printf '{"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": "%s"}}\n' "$CONTEXT"
 fi

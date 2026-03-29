@@ -1,51 +1,49 @@
 ---
 name: articulate
-description: "Use when the user invokes /articulate — precision language training skill for building active vocabulary through guided writing missions"
+description: "Use when the user invokes /articulate — language coaching through word archaeology, roast mode, and ambient tips"
 ---
-
-Read reference files ONLY when needed for the current action. Do not pre-read all references.
 
 # Articulate
 
-Precision language training through writing missions. Production over recognition — you write, get scored, level up.
+Your language nerd sidekick — not a drill instructor. Articulate makes vocabulary stick through curiosity, not repetition.
 
-Target session: 5 minutes. Each mission is a focused writing challenge with immediate feedback, XP, and progression tracking. All missions emphasize replacing vague, weak language with precise, high-impact alternatives.
+Three modes:
+- **🔍 Word Archaeology** — fascinating etymology stories + an exercise that flows from the story
+- **🔥 Roast Mode** — find weak spots in your real writing and challenge you to fix them
+- **💡 Ambient Coach** — drop vocabulary tips while you work
 
-For personality, tone, and formatting templates, read `references/style.md`.
+Read reference files ONLY when needed. Do not pre-read all references.
+For personality and formatting, read `references/style.md`.
 
 ---
 
 ## State Management
 
-All state lives at `~/.articulate/`. Create this directory on first run.
+All state lives at `~/.articulate/`. Create on first run with `mkdir -p`.
 
 ### Files
 
 | File | Purpose |
 |------|---------|
-| `~/.articulate/user.json` | Name, languages, focus areas, preferences |
-| `~/.articulate/state.json` | XP, level, rank, streak, badges, weaknesses, mission counts |
-| `~/.articulate/history.json` | Last 100 missions (FIFO array) |
-| `~/.articulate/lexicon.json` | Mastered words with usage counts and mastery tiers |
-| `~/.articulate/contexts/` | Cached project summaries for context-aware missions |
+| `user.json` | Name, languages, coaching preference |
+| `state.json` | XP, level, rank, streak, badges, weaknesses, session counts |
+| `history.json` | Last 100 sessions (FIFO) |
+| `lexicon.json` | Words learned with mastery tiers |
+| `contexts/` | Cached project summaries |
 
 ### Schemas
 
-**user.json** — Fields: `name` (string), `languages` (array, e.g. `["English"]`), `focusAreas` (array, e.g. `["prompt_engineering", "business_communication"]`), `dailyMinutes` (int), `selfAssessment` (1-5), `assessmentMethod` ("conversation_scan" | "dynamic"), `assessmentNotes` (string or null), `contextAware` (bool), `createdAt` (ISO8601), `lastUpdated` (ISO8601)
+**user.json** — `name` (string), `languages` (array), `coachingEnabled` (bool), `createdAt` (ISO8601), `lastUpdated` (ISO8601)
 
-**state.json** — Fields: `xp`, `level`, `rank`, `badge`, `streak`, `bestStreak`, `streakShields`, `lastPlayedDate` (ISO8601 or null), `todayMissionCount`, `totalCompleted`, `prestigeStars`, `missionCounts` (object with keys: rewrite, fill, prompt, scenario, boss, review), `perfectCount`, `highScoreCount`, `earnedBadges` (array), `weaknesses` (object: utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words — all ints), `weaknessHistory` (object), `currentSeason`, `lastBossDate`, `dailyWord`, `dailyWordDate`
+**state.json** — `xp`, `level`, `rank`, `badge`, `streak`, `bestStreak`, `streakShields`, `lastPlayedDate` (ISO8601|null), `todaySessionCount`, `totalCompleted`, `prestigeStars`, `sessionCounts` ({archaeology: 0, roast: 0}), `perfectCount`, `highScoreCount`, `earnedBadges` (array), `weaknesses` ({utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words} — all ints), `weaknessHistory` (object)
 
-**history.json** — Array of entries (FIFO, max 100). Entry fields: `id` (uuid-v4), `date` (ISO8601), `type` (mission type), `language`, `projectContext` (string or null), `score` (0-100), `xpEarned`, `criticalHit` (bool), `weaknessesFound` (array of category strings), `challenge`, `userResponse`, `goldStandard`, `feedback`
+**history.json** — Array (FIFO, max 100). Entry: `id` (uuid), `date` (ISO8601), `type` ("archaeology"|"roast"), `language`, `projectContext` (string|null), `score` (0-100), `xpEarned`, `weaknessesFound` (array), `challenge`, `userResponse`, `feedback`, `topic` (archaeology only), `originalPassage` + `improvementDelta` (roast only)
 
-**lexicon.json** — Object keyed by word. Each value: `mastery` ("seen"|"used"|"consistent"|"mastered"), `timesUsed` (int), `firstSeen` (ISO8601), `lastUsed` (ISO8601), `etymology` (string), `contexts` (array of strings)
+**lexicon.json** — Object keyed by word. Each: `mastery` ("seen"|"used"|"consistent"|"mastered"), `timesUsed` (int), `firstSeen` (ISO8601), `lastUsed` (ISO8601), `etymology` (string), `contexts` (array)
 
 ### First-Run Detection
 
-Check if `~/.articulate/user.json` exists. If missing, this is a first run.
-
-### Read / Write
-
-Read state files at session start. Write updated JSON after every mission. Use Bash `mkdir -p` for directory creation and Read/Write tools for JSON files.
+Check if `~/.articulate/user.json` exists. If missing → first run.
 
 ---
 
@@ -53,44 +51,24 @@ Read state files at session start. Write updated JSON after every mission. Use B
 
 Route based on `$ARGUMENTS` passed after `/articulate`.
 
-| Argument | Action | Gate |
-|----------|--------|------|
-| *(empty)* or `go` | Default flow: dashboard, daily word, mission | None |
-| `rewrite` | REWRITE mission | L1+ |
-| `fill` | FILL_PRECISION mission | L1+ |
-| `prompt` | PROMPT_CRAFT mission | L2+ (100 XP) |
-| `review` | REVIEW mission | L2+ (100 XP) |
-| `scenario` | SCENARIO mission | L3+ (300 XP) |
-| `boss` | BOSS mission | L4+ (600 XP) |
-| `quick` | Skip dashboard, random mission | None |
-| `menu` | Show available missions with unlock status | None |
-| `stats` | Full statistics dashboard | None |
-| `badges` | Badge collection display | None |
-| `lexicon` | Mastered words collection | None |
-| `radar` | Weakness radar visualization | None |
-| `help` | Commands and tips | None |
-| `reset` | Reset progress (require confirmation) | None |
-| `config` | Update user preferences | None |
+| Argument | Action |
+|----------|--------|
+| *(empty)* | Word Archaeology session |
+| `roast` | Roast: scan past conversations |
+| `roast here` | Roast: current conversation only |
+| `coach on` | Enable ambient coaching |
+| `coach off` | Disable ambient coaching |
+| `stats` | Stats dashboard |
+| `streak` | Quick streak status |
+| `lexicon` | Words learned |
+| `help` | Available commands |
+| `reset` | Reset progress (confirm first) |
 
-### Unlock Gates
-
-Check `state.json` level before dispatching locked missions. If locked, show the requirement and current progress.
-
-| Level | Rank | XP | Unlocks |
-|-------|------|-----|---------|
-| 1 | RECRUIT | 0 | rewrite, fill |
-| 2 | INITIATE | 100 | + prompt, review |
-| 3 | OPERATIVE | 300 | + scenario |
-| 4 | SPECIALIST | 600 | + boss |
-| 5 | COMMANDER | 1000 | + user-generated challenges |
-| 6 | ARCHITECT | 1800 | + teach mode |
-| 7 | MASTERMIND | 3000 | + prestige |
-
-For full level details, badges, prestige rules, and streak shields, read `references/progression/levels.md`.
+**No unlock gates.** All modes available from level 1. Levels are motivational milestones only.
 
 ### Language Override
 
-Append `--{lang}` (first 2-3 letters of the language name) to any mission command to force a language. Example: `/articulate rewrite --bg` for Bulgarian, `/articulate rewrite --es` for Spanish.
+Append `--{lang}` to force a language. Example: `/articulate --bg` for Bulgarian, `/articulate roast --es` for Spanish.
 
 ---
 
@@ -99,15 +77,35 @@ Append `--{lang}` (first 2-3 letters of the language name) to any mission comman
 If `~/.articulate/user.json` does not exist:
 
 1. Read `references/onboarding.md`.
-2. Follow that file's onboarding sequence (welcome banner, setup questions, file creation).
-3. After onboarding completes, run an easy REWRITE mission immediately.
+2. Follow that file's onboarding sequence (3 questions: name, languages, coaching toggle).
+3. After onboarding completes → immediately run a Word Archaeology session.
 4. Do NOT make the user invoke `/articulate` again.
+
+---
+
+## Migration (v1 to v2)
+
+If `user.json` exists but has a `focusAreas` field, this is a v1 user. Migrate:
+
+**user.json:**
+- Add `coachingEnabled: false`
+- Remove: `focusAreas`, `dailyMinutes`, `selfAssessment`, `assessmentMethod`, `assessmentNotes`, `contextAware`
+
+**state.json:**
+- Rename `missionCounts` to `sessionCounts`: map `rewrite` + `fill` counts to `archaeology`, map `scenario` + `prompt` + `boss` counts to `roast`
+- Rename `todayMissionCount` to `todaySessionCount`
+- Remove: `currentSeason`, `lastBossDate`, `dailyWord`, `dailyWordDate`
+
+**Preserve:** all XP, streaks, badges, history.
+
+Show update message:
+> **Articulate v2** — I've evolved! Now with word archaeology, roast mode, and ambient coaching. Type `/articulate help` to see what's new.
 
 ---
 
 ## Session Start
 
-Run this for every non-first-run invocation (unless argument is `quick`).
+Run for every non-first-run invocation.
 
 ### 1. Read State
 
@@ -115,167 +113,119 @@ Read `~/.articulate/state.json` and `~/.articulate/user.json`.
 
 ### 2. Calculate Streak
 
-Parse `lastPlayedDate` from state. Compare to today (`YYYY-MM-DD`):
+Parse `lastPlayedDate`. Compare to today (`YYYY-MM-DD`):
 
-- **Same day:** streak unchanged, increment `todayMissionCount`.
-- **Yesterday:** `streak += 1`, reset `todayMissionCount` to 0.
-- **Older:** if `streakShields > 0` and missed exactly 1 day, consume a shield and keep streak; otherwise reset `streak` to 1, `todayMissionCount` to 0.
-- **Null (first session):** set `streak` to 1, `todayMissionCount` to 0.
+- **Same day:** streak unchanged, increment `todaySessionCount`
+- **Yesterday:** `streak += 1`, reset `todaySessionCount` to 0
+- **Older:** if `streakShields > 0` and missed exactly 1 day, consume shield and keep streak; otherwise reset `streak` to 1, `todaySessionCount` to 0
+- **Null (first session):** set `streak` to 1, `todaySessionCount` to 0
 
-Update `lastPlayedDate` to today. Update `bestStreak` if current streak exceeds it.
+Update `lastPlayedDate` to today. Update `bestStreak` if current exceeds it.
 
-**Rank decay:** if 7+ days inactive, drop level by 1 (min 1, XP preserved). Show warning; 3 missions restore original rank.
+### 3. Rank Decay
 
-### 3. Display Dashboard
-
-Read `references/style.md` for formatting. Show rank badge + name + prestige stars, XP progress bar, streak with flame emoji, today's mission count, and any new badge or level-up celebrations.
+If 7+ days inactive: drop level by 1 (min 1, XP preserved). Show warning.
 
 ### 4. Save Updated State
 
-Write recalculated streak, todayMissionCount, and lastPlayedDate to `~/.articulate/state.json`.
+Write recalculated streak and dates to `state.json`.
+
+### 5. Route
+
+- **Default flow (archaeology):** skip dashboard, go straight to the experience.
+- **`stats`:** show full dashboard (read `references/style.md` for format).
+- **Other arguments:** dispatch per routing table.
 
 ---
 
-## Conversation Context Detection
+## Dispatch
 
-When `/articulate` is invoked, check whether there is existing conversation context (prior messages before the skill invocation).
+### Word Archaeology
+Read `references/word-archaeology.md`. Follow that guide completely.
 
-- If the conversation has prior messages, scan the last 5-10 messages for: technical topics, problems being solved, domain terms, communication challenges.
-- If a clear topic is detected, offer a one-line suggestion: "I noticed you were working on **{topic}**. Want a mission based on that? (yes/skip)"
-- If the user says yes: generate a mission themed around the detected topic, passing it to the appropriate mission type's generation rules.
-- If the user says skip, or no clear topic is detected: proceed silently with standard flow.
-- Do NOT re-read the entire conversation — scan only recent messages for topic signals.
+### Roast Mode
+Read `references/roast.md`. Follow that guide completely.
 
----
+### Coach Toggle
+Read `user.json`, flip `coachingEnabled`, write back. Confirm to user:
+- On: "💡 **Ambient coaching enabled.** I'll drop vocabulary tips as you work."
+- Off: "💡 **Ambient coaching disabled.** Tips paused."
 
-## Daily Word Ritual
-
-Run after dashboard, before first mission of the session.
-
-1. Check `state.json` fields `dailyWord` and `dailyWordDate`.
-2. If `dailyWordDate` is not today: select a new daily word.
-   - Prefer words not yet in `lexicon.json`, or words at "seen" mastery.
-   - For word lists by level, read `references/languages/{lang}.md`.
-3. Present the word: name, pronunciation hint, brief etymology, precise definition, example in context.
-4. Challenge: "Use this word in today's mission for +5 bonus XP."
-5. Save `dailyWord` and `dailyWordDate` to state.
-
-After mission evaluation, check if the user's response contains the daily word. If yes, award the bonus.
+### Context-Aware
+Always on. If project context is available:
+1. Read `references/context-aware.md` for scanning rules.
+2. Check cache at `~/.articulate/contexts/`. Use fresh cache (<7 days) or rescan.
+3. Pass project context to session generation.
 
 ---
 
-## Mission Dispatch
+## Post-Session Flow
 
-### Direct Request
-
-If `$ARGUMENTS` specifies a mission type, dispatch to that type after checking the unlock gate.
-
-### Dynamic Difficulty Recalibration
-
-If `assessmentMethod` is `"dynamic"`, re-evaluate effective difficulty every 5 missions: average last 5 scores from `history.json`. If avg > 80, increase difficulty within level. If avg < 50, decrease.
-
-### Default Flow (empty or "go")
-
-1. If `totalCompleted % 5 == 4` (every 5th mission) AND level >= 2 AND `history.json` has eligible entries older than 14 days: dispatch REVIEW.
-2. Otherwise: weighted random selection from unlocked types.
-   - Weight toward mission types that target the user's worst weaknesses (read `references/progression/weaknesses.md` for the six categories).
-   - If context-aware is enabled and project context is available, pass it to mission generation.
-
-### Dispatch
-
-For each mission type, read the corresponding reference file. That file contains full generation, presentation, and evaluation rules.
-
-| Type | Reference File |
-|------|---------------|
-| REWRITE | `references/missions/rewrite.md` |
-| FILL_PRECISION | `references/missions/fill.md` |
-| PROMPT_CRAFT | `references/missions/prompt.md` |
-| SCENARIO | `references/missions/scenario.md` |
-| BOSS | `references/missions/boss.md` |
-| REVIEW | `references/missions/review.md` |
-
-For template banks (curated challenges), read `templates/{type}-bank.md`.
-
-### Pre-Mission Briefing
-
-Before presenting ANY mission challenge, deliver a brief pre-mission briefing (3-5 lines max):
-- Introduce a relevant concept, technique, or precision word
-- Show a quick example: a weak phrase → a strong alternative
-- Connect it to what the user is about to practice
-- Keep it punchy — 10 seconds to read, not a lecture
-
-Example: "💡 **Quick intel:** The verb 'help' is one of English's weakest. It says something happened but not HOW. Watch: _'helps teams work faster'_ → _'accelerates team output'_. One verb, twice the impact. Now let's put that into practice."
-
----
-
-## Post-Mission Flow
-
-Run after EVERY completed mission.
+Run after every scored session (archaeology or roast).
 
 ### A. Score
 
-Each mission type has its own rubric. Read `references/progression/scoring.md` for all rubrics.
-Score range: 0-100.
+Read `references/progression/scoring.md` for the rubric. Score range: 0-100.
 
 ### B. Calculate XP
 
-XP = base(10) + score_bonus(floor(score/10)) + streak_bonus(min(streak*2, 20)) + daily_word(+5 if used). Boss missions: multiply by 3. Critical hit (15% chance, score>=80): multiply by 3. For full formula details, read `references/progression/scoring.md`. Show the full XP breakdown to the user.
+```
+XP = base(10) + score_bonus(floor(score / 10)) + streak_bonus(min(streak * 2, 20))
+```
+
+Show the full breakdown to the user:
+```
+⚡ XP Breakdown
+  Base:    +10
+  Score:   +{floor(score/10)}  (scored {score}/100)
+  Streak:  +{min(streak*2, 20)}  ({streak}-day streak)
+  Total:   +{sum}
+```
 
 ### C. Level-Up Check
 
 XP thresholds: 0, 100, 300, 600, 1000, 1800, 3000.
 
-If `xp` crosses the next threshold: increment level, update rank and badge, show celebration banner (read `references/style.md`), announce newly unlocked mission types.
+If `xp` crosses the next threshold: increment level, update rank, celebrate (read `references/style.md` for banner format), show new rank.
 
 ### D. Badge Check
 
-Read `references/progression/levels.md` for all 14 badge conditions. Check every condition against current state. If a new badge is earned, add it to `earnedBadges` and show the badge celebration.
+Read `references/progression/levels.md` for all badge conditions. Check every condition against current state. If new badge earned: add to `earnedBadges`, show celebration.
 
 ### E. Weakness Update
 
-From the mission evaluation, identify which weakness categories the user kept or introduced. Increment relevant counters in `state.json` `weaknesses`. Append to `weaknessHistory` for trend tracking.
+From session evaluation, identify which weakness categories appeared (utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words). Increment relevant counters in `state.json`. Append to `weaknessHistory`.
 
-Read `references/progression/weaknesses.md` for the six categories and detection rules.
+Read `references/progression/weaknesses.md` for detection rules.
 
 ### F. Lexicon Update
 
 Identify precision words the user successfully used.
 
-- Word not in `lexicon.json`: add with mastery `"seen"`, `timesUsed: 1`.
-- Word exists: increment `timesUsed`, update mastery tier:
-  - 1 use: `seen`
-  - 2 uses: `used`
-  - 3 uses: `consistent`
-  - 5+ uses across 2+ weeks: `mastered`
+- **New word:** add to `lexicon.json` with mastery `"seen"`, `timesUsed: 1`
+- **Existing word:** increment `timesUsed`, update mastery tier:
+  - 1 use → `seen`
+  - 2 uses → `used`
+  - 3 uses → `consistent`
+  - 5+ uses across 2+ weeks → `mastered`
 
-Save `lexicon.json`.
+### G. Save State
 
-### G. Loot Drop
-
-5-10% random chance after any mission. Drop a "precision gem": a powerful word with etymology, usage notes, and register info. Add to lexicon as `"seen"`. Display with special formatting (read `references/style.md`).
-
-Read `references/progression/engagement.md` for full variable reward mechanics.
-
-### H. Save State
-
-Update all fields in `~/.articulate/state.json`:
-- `xp`, `level`, `rank`, `badge`
-- `streak`, `bestStreak`, `todayMissionCount`, `totalCompleted`
-- `missionCounts` for the completed type
+Update all fields in `state.json`:
+- `xp`, `level`, `rank`, `badge`, `totalCompleted`
+- `streak`, `bestStreak`, `todaySessionCount`
+- `sessionCounts` for the completed type
 - `highScoreCount` (if score >= 90), `perfectCount` (if score == 100)
 - `earnedBadges`, `weaknesses`, `weaknessHistory`
-- `lastBossDate` (if boss mission)
 
-Append mission entry to `~/.articulate/history.json`. Keep last 100 entries (FIFO — remove oldest if over 100).
+Append entry to `history.json` (FIFO, max 100). Save `lexicon.json`.
 
-Save `~/.articulate/lexicon.json`.
+### H. Continue
 
-### I. Continue Prompt
+> 🔍 Another dig? 🔥 Roast something? Or back to work.
 
-Show: "Deploy another mission? Or save and return to base."
-
-- User continues: skip dashboard, go straight to Mission Dispatch.
-- User stops: show brief session summary (missions completed this session, XP earned, streak status).
+- User continues → skip dashboard, dispatch next session.
+- User stops → brief summary (sessions today, XP earned, streak).
 
 ---
 
@@ -283,44 +233,39 @@ Show: "Deploy another mission? Or save and return to base."
 
 Triggered by `/articulate stats`. Read `references/style.md` for formatting.
 
-Display: overall stats (missions, XP, rank, prestige), per-type breakdown (count, avg/best score from `history.json`), streak info, weakness radar (6 categories — see `references/progression/weaknesses.md`), lexicon summary (words per mastery tier), and last 10 missions.
-
-Sub-commands: `/articulate badges` (all 14, earned highlighted, unearned with conditions), `/articulate lexicon` (words by mastery tier), `/articulate radar` (full weakness visualization).
+Show:
+- Rank + XP progress bar + prestige stars
+- Streak (current + best)
+- Sessions by type (archaeology, roast)
+- Weakness radar (read `references/progression/weaknesses.md` for 6 categories)
+- Lexicon summary (words per mastery tier)
+- Last 5 sessions from history
 
 ---
 
 ## Help
 
-Triggered by `/articulate help`. Show:
+Triggered by `/articulate help`.
 
-1. Available commands from the Argument Routing table.
-2. Mark which commands are unlocked at the user's current level.
-3. Mark locked commands with the level required.
-4. Tips:
-   - "Start with `/articulate` for a full session."
-   - "Use `/articulate quick` to skip the dashboard."
-   - "Add `--{lang}` to force a language (e.g., `--es` for Spanish)."
+| Command | What it does |
+|---------|-------------|
+| `/articulate` | Start a Word Archaeology session |
+| `/articulate roast` | Roast your past writing |
+| `/articulate roast here` | Roast this conversation |
+| `/articulate coach on/off` | Toggle ambient vocabulary tips |
+| `/articulate stats` | Full stats dashboard |
+| `/articulate streak` | Quick streak check |
+| `/articulate lexicon` | Words you've learned |
+| `/articulate reset` | Reset all progress |
+| `/articulate --{lang}` | Force a language |
 
 ---
 
 ## Language Handling
 
-Read `~/.articulate/user.json` for configured languages. Any language is supported.
+Any language is supported. Read `user.json` for configured languages.
 
-- Single language: use it for all missions.
-- Multiple languages: alternate between them across sessions, or respect `--{lang}` flags.
-- For languages with a dedicated reference file in `references/languages/`, read it for curated word lists, weakness patterns, and language-specific rules. Shipped examples: `english.md`, `bulgarian.md`.
-- For languages WITHOUT a reference file: generate appropriate precision vocabulary, weakness patterns, and exercise content dynamically. Use the same mission structure and scoring rubrics. The English and Bulgarian files serve as format examples.
-
----
-
-## Context-Aware Missions
-
-Read `~/.articulate/user.json`. If `contextAware` is false, skip this section entirely.
-
-If enabled:
-
-1. Read `references/context-aware.md` for full context-gathering rules.
-2. Check if `~/.articulate/contexts/{project-name}.json` exists and is fresh (< 7 days).
-3. If missing or stale: scan project signals (README, package.json, Cargo.toml, etc.), extract summary, cache it.
-4. Pass project context to mission generation so challenges reference the user's actual work.
+- Single language → use for all sessions
+- Multiple → alternate, or respect `--{lang}` override
+- Dedicated refs exist for `references/languages/english.md` and `references/languages/bulgarian.md`
+- Other languages → generate dynamically using the same structure and rubrics
