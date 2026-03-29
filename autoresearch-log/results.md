@@ -84,3 +84,72 @@
 | Continuity | None | Callbacks to previous sessions |
 | Scoring | After learning only | Before AND after (improvement delta is the feedback) |
 | Science basis | None cited | 8 research-backed methods cited |
+
+---
+
+## Phase 3 Config (iterations 31-40) — MISSION SYSTEM
+- Goal: Make /articulate short, surprising, personalized, and genuinely fun
+- Problem: Phase 2 was too long and wordy. Archaeology sessions were 50-80 lines. Boring walls of text.
+- Approach: Drop archaeology. Replace with 6 short mission types. Max 8 lines per challenge. Personalized from user's real writing.
+- Scope: skills/articulate/**/*
+- Metric: Brevity (0-25) + Surprise (0-25) + Teaching (0-25) + Fun (0-25) = 0-100
+- Direction: Higher is better
+- Guard: SKILL.md < 400 lines
+- Iterations: 10
+
+### The Six Missions
+- **🎯 Swap** — Replace one bold weak word. One word answer.
+- **✂️ Trim** — Cut a bloated sentence in half.
+- **💪 Punch** — Make a flat sentence hit harder.
+- **🔍 Snipe** — Fix N problems in your own real writing.
+- **🔄 Flip** — Rewrite in opposite tone (casual↔formal).
+- **🧩 Fill** — One blank, one perfect word.
+
+## Phase 3 Results
+
+| # | Change | Brevity | Surprise | Teaching | Fun | Total | Verdict |
+|---|--------|---------|----------|----------|-----|-------|---------|
+| 30 | Baseline (Phase 2 archaeology) | 12 | 10 | 15 | 10 | 47 | — |
+| 31 | Radical rewrite to mission system | 22 | 19 | 20 | 20 | 81 | ✓ Keep |
+| 32 | Opening hooks + surprise teaching | 21 | 22 | 23 | 22 | 88 | ✓ Keep |
+| 33 | Back-and-forth + Quick Tap | 22 | 22 | 24 | 23 | 91 | ✓ Keep |
+| 34 | Simplify roast, honest bad feedback | 23 | 22 | 23 | 24 | 92 | ✓ Keep |
+| 35 | Opener variety + surprise twists | 22 | 25 | 24 | 25 | 96 | ✓ Keep |
+| 36 | Simplify jargon (register→tone) | 24 | 20 | 21 | 22 | 87 | ✓ Keep (first-run) |
+| 37 | Callbacks + milestones | 20 | 24 | 25 | 24 | 93 | ✓ Keep |
+| 38 | Context-aware integration | 23 | 23 | 24 | 24 | 94 | ✓ Keep |
+| 39 | Consistency pass (stale refs) | — | — | — | — | — | Cleanup |
+| **40** | **Final integration test** | **22** | **25** | **25** | **25** | **97** | **🏆 Best** |
+
+### Key Insights
+
+1. **Brevity was the #1 improvement.** Phase 2 sessions ran 50-80 lines. Phase 3 sessions run 15-25. Shorter = more fun, more likely to be used again.
+
+2. **6 mission types > 3 formats.** More variety means the user never knows what's coming. The "I'm Feeling Lucky" factor keeps sessions fresh.
+
+3. **Surprise twists prevent habituation.** Blind Punch, Reverse Swap, Speed Trim — showing up ~10% of the time, these curveballs keep even veteran users engaged.
+
+4. **Quick Tap creates the back-and-forth.** A 5-second follow-up after the main mission makes it feel like a conversation, not a quiz. Builds on the same principle for reinforcement.
+
+5. **Honest bad feedback is more engaging than gentle bad feedback.** "That landed flat." creates motivation to try again. Sugar-coating creates indifference.
+
+6. **Opening hooks > headings.** "Your words, under the microscope:" is more engaging than "## 🔍 Snipe". The hook creates curiosity before the challenge.
+
+7. **"Tone" > "register".** Simpler words for linguistic concepts make the skill accessible to non-linguists. The teaching stays deep; the labels stay simple.
+
+8. **One teaching point > etymology lecture.** A single "wait, really?" moment sticks better than a paragraph of origins. "'Decide' literally means 'to cut off'" > a 200-word etymology story.
+
+### What Changed From Phase 2
+
+| Aspect | Phase 2 (old) | Phase 3 (new) |
+|--------|--------------|---------------|
+| Core experience | Word Archaeology (3 formats) | 6 Mission types + surprise twists |
+| Session length | 50-80 lines | 15-25 lines |
+| Challenge length | 15-20 lines | 3-8 lines |
+| Teaching | Etymology stories (4-8 lines) | One-line "wait really?" moments |
+| Back-and-forth | Teach-back + rewrite | Quick Tap (5-sec follow-up) |
+| Personalization | Generic scenarios | From user's real writing + project context |
+| Bad feedback | Constructive but gentle | Direct and honest |
+| Variety | 3 rotating formats | 6 missions + surprise twists |
+| Jargon | "Register", "contrastive analysis" | "Tone", plain language |
+| Science citations | Inline "(Kapur, 2008)" | None visible (science informs design, not UI) |

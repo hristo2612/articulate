@@ -35,23 +35,23 @@ these exact words — evaluate semantically.
 ## Detection Rules
 
 After every mission evaluation, analyze BOTH the original challenge text and
-the operator's response to identify weaknesses.
+the user's response to identify weaknesses.
 
 ### What to Count
 
-**Only count weaknesses the operator KEPT or INTRODUCED — never count
+**Only count weaknesses the user KEPT or INTRODUCED — never count
 weaknesses they successfully fixed.**
 
 For each weakness category:
 1. **SCAN** the original challenge text. Record which categories were PRESENTED.
-2. **SCAN** the operator's response. Record which categories APPEAR.
+2. **SCAN** the user's response. Record which categories APPEAR.
 3. **CLASSIFY:**
-   - PRESENTED + FIXED = operator eliminated it → NOT counted
-   - PRESENTED + KEPT = operator failed to fix it → COUNTED
-   - NOT PRESENTED + INTRODUCED = operator added it → COUNTED
+   - PRESENTED + FIXED = user eliminated it → NOT counted
+   - PRESENTED + KEPT = user failed to fix it → COUNTED
+   - NOT PRESENTED + INTRODUCED = user added it → COUNTED
    - NOT PRESENTED + ABSENT = clean on this axis → NOT counted
-4. For **FILL** missions: scan the operator's word choice only (no original to compare).
-5. For **PROMPT_CRAFT**: scan the operator's prompt (the challenge is a scenario description, not text to rewrite).
+4. For **FILL** missions: scan the user's word choice only (no original to compare).
+5. For **PUNCH**: scan the user's prompt (the challenge is a scenario description, not text to rewrite).
 
 ### Per-Mission Recording
 
@@ -60,7 +60,7 @@ mission:
 
 ```json
 {
-  "missionId": "R-15",
+  "sessionId": "R-15",
   "type": "REWRITE",
   "score": 78,
   "weaknesses": {
@@ -78,7 +78,7 @@ The `kept` and `introduced` arrays are what feed the radar calculations.
 
 ## Percentage Calculation
 
-The radar shows how often the operator retains or introduces each weakness
+The radar shows how often the user retains or introduces each weakness
 type, measured over the last 20 missions.
 
 ### Formula
@@ -109,7 +109,7 @@ For each category C:
 **Edge cases:**
 - If fewer than 20 missions exist, use all available missions.
 - If a category has never been encountered, show `---%` instead of `0%`.
-- New operators (< 5 missions) see a simplified radar with a note:
+- New users (< 5 missions) see a simplified radar with a note:
   `"Radar calibrating — complete 5+ missions for full tracking."`
 
 ---
@@ -174,7 +174,7 @@ When space is limited, show a one-line summary:
 
 ### No-Data State
 
-For new operators or categories without data:
+For new users or categories without data:
 
 ```
  ⚠ Radar calibrating — complete 5+ missions for full tracking.
@@ -265,7 +265,7 @@ If fewer than 4 points exist, show `→ calibrating` instead of a trend.
 
 ## Improvement Badge Trigger
 
-The **Improver** badge is awarded when the operator demonstrates
+The **Improver** badge is awarded when the user demonstrates
 measurable improvement in any weakness category.
 
 ### Trigger Condition
@@ -302,7 +302,7 @@ After every weakness measurement update (every 5 missions):
 ## Integration with Mission Feedback
 
 After every mission, the weakness detection feeds into the debrief. Show
-which weaknesses were present and how the operator handled them.
+which weaknesses were present and how the user handled them.
 
 ### Post-Mission Weakness Summary
 
