@@ -14,3 +14,4 @@
 | # | Change | Fascination | Teaching | Visual | Total | Verdict |
 |---|--------|-------------|----------|--------|-------|---------|
 | 0 | Baseline | 21 | 19 | 19 | 59 | — |
+| 1 | Storytelling quality bar + onboarding personality | 22 | 20 | 20 | 62 | ✓ Keep |

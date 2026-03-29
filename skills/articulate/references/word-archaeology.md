@@ -54,9 +54,13 @@ The exercise MUST flow from the story. It should feel like a natural next step, 
 ## Topic Selection
 
 1. Check `~/.articulate/history.json` — avoid any word used in the last 20 sessions
-2. If user is multilingual (check `user.json` languages), alternate between their languages
-3. Tie to project context when possible — if user works in finance, prefer finance-adjacent etymologies
-4. Prefer words the user is likely to encounter in professional writing
+2. **Rotate categories** — never pick the same story category twice in a row. If last session was "etymology deep dive", pick "semantic drift" or "hidden metaphors" next.
+3. If user is multilingual (check `user.json` languages), alternate between their languages
+4. Tie to project context when possible — if user works in finance, prefer finance-adjacent etymologies
+5. Prefer words the user is likely to encounter in professional writing
+6. **First session suggestions** (universally fascinating): salary, trivial, disaster, panic, candidate, nice, muscle, sarcasm — pick one at random
+
+**Avoid:** Overused etymology trivia (OK origins, SOS meaning, etc.). Pick words that professionals USE daily but whose origins they don't know.
 
 ## Example Session
 

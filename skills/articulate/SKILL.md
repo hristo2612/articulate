@@ -78,8 +78,9 @@ If `~/.articulate/user.json` does not exist:
 
 1. Read `references/onboarding.md`.
 2. Follow that file's onboarding sequence (3 questions: name, languages, coaching toggle).
-3. After onboarding completes → immediately run a Word Archaeology session.
+3. After onboarding completes → immediately run a Word Archaeology session. Use an enthusiastic transition: "Setup complete! Let me show you what I do — here's your first word story, **{name}**."
 4. Do NOT make the user invoke `/articulate` again.
+5. For the FIRST session, pick a word that is universally fascinating (avoid niche or domain-specific topics). Good first-session words: salary, trivial, disaster, panic, candidate, nice, muscle, sarcasm. These have vivid, surprising origins.
 
 ---
 
