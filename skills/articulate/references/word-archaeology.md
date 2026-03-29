@@ -1,151 +1,176 @@
-# Word Archaeology
+# Word Archaeology — Productive Failure Method
 
-The default `/articulate` experience. A 60-second fascinating language discovery.
+The default `/articulate` experience. Uses **productive failure** (Kapur, 2008): the user writes FIRST with no instruction, struggles, THEN learns why their instincts were right or wrong. Struggle-first produces 2x retention vs instruction-first.
 
-## Session Structure
+## Session Structure — THE FLIP
 
-Every Word Archaeology session follows this exact format:
+Traditional: teach → practice. Articulate: **practice → struggle → discover → practice again.**
 
-1. `## 🔍 Word Archaeology: *{word}*` — heading with the word in italics
-2. **The story** (4-8 lines) — genuinely interesting etymology, surprising origins, how meaning shifted over time
-3. `💡 **The principle:**` — one transferable insight about language (bold, 1-2 lines)
-4. `### ✏️ Your turn` — one exercise that flows directly FROM the story
-5. `>` blockquote — space for user response
+Every session follows this exact sequence:
 
-## Story Categories
+### Phase 1: The Challenge (no teaching yet)
 
-Rotate through these to keep sessions varied. Track in history.json to avoid clustering.
+1. `## 🔍 Word Archaeology: The Challenge` — heading
+2. **The scenario** — a specific, real-world writing task (1-2 lines)
+3. **The constraint** — what makes it hard (word limit, register requirement, audience)
+4. `### ✏️ Your first attempt` — user writes BEFORE learning anything
+5. `>` blockquote — space for response
+
+**Critical:** Do NOT teach anything yet. No etymology, no principles, no hints. The user must struggle with their own instincts first. This is the "productive failure" — the struggle creates the neural hooks that make the subsequent teaching stick.
+
+### Phase 2: The Reveal (after user responds)
+
+1. **React honestly** — what worked, what didn't, be specific
+2. `## 🔍 The Dig` — NOW reveal the fascinating language story
+   - Show the etymology/principle that would have helped them
+   - Connect it to THEIR specific word choices: "You wrote '{X}' — here's why that felt off..."
+   - 4-8 lines, same quality bar as before (surprise, cited origin, narrative arc, modern connection)
+3. `💡 **The principle:**` — one transferable insight (bold, 1-2 lines)
+4. **Show the gap** — their version vs. a gold standard, with WHY the gold standard works
+
+### Phase 3: The Retry
+
+1. `### ✏️ Now rewrite it` — same challenge, armed with the principle
+2. The user rewrites knowing what they now know
+3. Score BOTH attempts — show the improvement delta
+
+## Scenario Design
+
+Scenarios must feel like REAL tasks the user encounters in daily work. Never artificial.
+
+**Scenario types (rotate):**
+
+| Type | Example |
+|------|---------|
+| Email precision | "Decline a meeting without being passive-aggressive. One sentence." |
+| PR description | "Summarize what this change does in under 15 words." |
+| Slack update | "Tell your team the deploy failed without causing panic. Two sentences." |
+| Feedback | "Give constructive criticism on someone's proposal. One sentence, no hedges." |
+| Persuasion | "Convince your manager to approve a tool purchase. Two sentences." |
+| Explanation | "Explain a technical concept to a non-technical stakeholder. Three sentences max." |
+
+**The constraint is what makes it hard:** word limits, banned words, required register, specific audience. Constraints force word choice — which is exactly what we're training.
+
+## The Dig — Story Categories
+
+After the user's first attempt, reveal the relevant language story. Rotate through these:
 
 | Category | What it covers |
 |----------|---------------|
 | Etymology deep dive | Full origin chain: Latin → Old French → Middle English → modern |
-| Semantic drift | Words that meant something wildly different (e.g., "nice" = foolish in 1300) |
-| Cross-language connections | Same root surfacing in 3+ languages, false friends, calques |
-| Hidden metaphors | Everyday words with buried figurative origins (e.g., "salary" from salt) |
-| Register archaeology | How a word moved between social registers over centuries |
-| Eponyms | Words born from people (boycott, algorithm, nicotine) |
-| Back-formations | Words created by mistakenly removing affixes (edit ← editor) |
+| Semantic drift | Words that meant something wildly different centuries ago |
+| Cross-language connections | Same root surfacing in 3+ languages |
+| Hidden metaphors | Everyday words with buried figurative origins |
+| Register archaeology | How words moved between social classes over centuries |
+| Connotation layers | Why "request" ≠ "ask" ≠ "demand" — and the history behind it |
+| Word families | How one root spawned 10 words across different registers |
 
 ## Quality Bar
 
-Every story MUST meet all six criteria:
+The story MUST meet all six criteria:
 
-1. **Genuine surprise** — contains a fact that makes the reader stop and think. Test: would someone say "wait, really?" If not, find a better angle.
-2. **Cited origin** — names the actual language of origin (Latin, Old Norse, Proto-Germanic, etc.)
-3. **Narrative arc** — reads as a story, not a dictionary entry. Has movement, tension, or irony. Use time markers ("In 1300...", "By the 1920s..."), sensory details, and concrete scenes.
-4. **Modern connection** — explains how the etymology shapes the word's current usage or connotation
-5. **Sensory anchoring** — include at least one vivid image: a line in the dirt, a printing press, a Roman road junction. Abstract facts don't stick; scenes do.
-6. **Emotional hook** — open with the most surprising detail, not chronological background. Lead with irony, paradox, or the "wait, what?" moment. Don't bury the lede.
+1. **Genuine surprise** — "wait, really?" moment
+2. **Cited origin** — names the actual language of origin
+3. **Narrative arc** — reads as a story, not a dictionary entry
+4. **Modern connection** — explains how etymology shapes current usage
+5. **Connected to the user's attempt** — references their actual word choices
+6. **Actionable** — the principle directly improves their rewrite
 
-## Exercise Design
+## Scoring — Double Score
 
-The exercise MUST flow from the story. It should feel like a natural next step, not a disconnected drill.
+Score BOTH attempts and show the improvement:
 
-**Exercise types (rotate — never do the same type twice in a row):**
+**First attempt (before learning):**
+```
+**Attempt 1: {score}/100**
+├─ Precision:   {n}/25
+├─ Concision:   {n}/25
+├─ Register:    {n}/25
+└─ Impact:      {n}/25
+```
 
-- **Rewrite with principle** — give a weak sentence, ask them to apply the principle. Classic format.
-- **Two-version challenge** — "Write this idea twice: once using [X] origin words, once using [Y] origin words." Forces register awareness.
-- **Precision swap** — "Replace the single weakest word in this sentence." Focuses attention on one word.
-- **Constraint writing** — "Describe [concept] in exactly 10 words using a word from the [root] family."
-- **Spot the buried metaphor** — "Which 3 words in this paragraph have physical/violent/spatial origins?" Then rewrite using them consciously.
-- **Professional application** — "Write a one-sentence [email opening / PR description / Slack update] using today's word precisely."
+**Second attempt (after learning):**
+```
+**Attempt 2: {score}/100**
+├─ Precision:   {n}/25  {↑n}
+├─ Concision:   {n}/25  {↑n}
+├─ Register:    {n}/25  {↑n}
+└─ Impact:      {n}/25  {↑n}
 
-**Constraints:** ONE exercise per session. Keep instructions to 2-3 lines. Set a word limit when appropriate.
+📈 **Improvement: +{delta} points** — {reaction}
+```
 
-**Exercise formatting:**
-- Use `### ✏️ Your turn` heading
-- Put the weak/target sentence in a `>` blockquote with weak words in **bold**
-- State the constraint clearly (word limit, technique to apply)
-- End with an empty `>` for the user's response
+**Scoring axes:**
+| Axis | What to evaluate |
+|------|-----------------|
+| Precision | Right word for the right job — not vague, not thesaurus-hunting |
+| Concision | Said it in as few words as possible without losing meaning |
+| Register | Appropriate formality for the scenario's audience |
+| Impact | Would this actually work? Would the reader respond well? |
 
-**Bonus round (optional, after scoring):** If the user scored 70+, offer a 💎 **Bonus nugget** — one additional fascinating fact related to the session's word that they can take away. Example: "💎 *Fun fact: the word 'nice' went through 7 distinct meanings in 700 years — foolish → wanton → lazy → delicate → precise → agreeable → pleasant. No other English word has drifted this far.*"
+**Improvement reactions:**
+- +0-5: "Hmm. The principle didn't land yet. Read the dig again."
+- +6-15: "Getting there. You're thinking about it differently."
+- +16-25: "Now you're cooking. That's what awareness does."
+- +26+: "Night and day. That's productive failure working."
 
 ## Topic Selection
 
-1. Check `~/.articulate/history.json` — avoid any word used in the last 20 sessions
-2. **Rotate categories** — never pick the same story category twice in a row. If last session was "etymology deep dive", pick "semantic drift" or "hidden metaphors" next.
+1. Check `~/.articulate/history.json` — avoid any scenario used in the last 20 sessions
+2. **Rotate scenario types** — never pick the same type twice in a row
 3. If user is multilingual (check `user.json` languages), alternate between their languages
-4. Tie to project context when possible — if user works in finance, prefer finance-adjacent etymologies
-5. Prefer words the user is likely to encounter in professional writing
-6. **First session suggestions** (universally fascinating): salary, trivial, disaster, panic, candidate, nice, muscle — pick one at random
-7. **Never repeat the same word across sessions** even if the user deletes history. Vary aggressively.
-
-**Avoid:** Overused etymology trivia (OK origins, SOS meaning, etc.). Also avoid picking the same word repeatedly across fresh starts — if a word comes to mind easily, that's a sign it's overused. Deliberately reach for LESS obvious choices.
-
-**Great lesser-known words:** boycott (from Captain Boycott), algorithm (from al-Khwarizmi), quarantine (40 days), salary (salt), muscle (little mouse), candidate (white-robed), panic (the god Pan), tragedy (goat-song), barbarian (bar-bar sounds), companion (bread-sharer)
+4. Tie to project context when possible
+5. Prefer scenarios the user encounters in professional work
+6. **First session:** Use "Decline a meeting without being passive-aggressive. One sentence." — universal, immediately practical
+7. **Never repeat the same scenario** across sessions
 
 ## Example Session
 
 ```markdown
-## 🔍 Word Archaeology: *trivial*
+## 🔍 Word Archaeology: The Challenge
 
-In ancient Rome, the *trivium* was where three roads met — literally "three ways" (Latin *tri-* + *via*). These crossroads became gathering spots where ordinary people chatted about ordinary things.
+**Scenario:** Your deploy just broke production at 5pm on a Friday. Write a Slack message to your team. Two sentences max.
 
-The word drifted through centuries carrying that association: trivium → trivialis → "commonplace" → "unimportant." A word born from the geometry of roads became our way of dismissing things that don't matter.
+**Constraints:** No hedging ("I think", "maybe"). No panic words ("urgent", "critical", "ASAP"). Just clarity.
 
-Here's the twist: the medieval *trivium* was also the name for the foundational university curriculum (grammar, logic, rhetoric). The "trivial" arts were considered essential — the opposite of how we use the word today.
-
-💡 **The principle:** Words that describe importance often started as words about physical space. "Fundamental" = foundation. "Underlying" = beneath. "Trivial" = crossroads. When you need to convey significance, spatial metaphors hit harder than abstract ones.
-
-### ✏️ Your turn
-
-Rewrite this sentence using a spatial metaphor instead of the abstract language:
-
-> "This issue is very important to the project's success and shouldn't be ignored."
-
-Max 20 words.
+### ✏️ Your first attempt
 
 >
 ```
 
-## Example 2 (Two-Version Challenge)
+*[User writes: "The latest deploy has some issues and we need to look into it. I'll be investigating tonight."]*
 
 ```markdown
-## 🔍 Word Archaeology: *muscle*
+Interesting. "Has some issues" — you're hedging without hedge words. "Look into it" — vague. Let's dig.
 
-Flex your arm. Look at the bicep moving under the skin. Ancient Romans looked at that same movement and saw something else: a little mouse running back and forth. *Musculus* — literally "little mouse" (diminutive of *mus*, mouse).
+## 🔍 The Dig: *triage*
 
-The same root gave French *moule* (mussel — the shellfish also looked like a little mouse to someone). English got both: *muscle* from the body metaphor, *mussel* from the seafood metaphor. Same Latin mouse, two completely different dinner options.
+When medieval French doctors faced battlefield casualties, they couldn't save everyone. They sorted patients into three groups — *trier*, "to sort" (Old French, from Latin *tritare*, to grind/separate). The word entered English as **triage**: the art of deciding what matters RIGHT NOW.
 
-💡 **The principle:** The most vivid naming comes from analogy — seeing one thing as another. "Muscle" stuck for 2,000 years because the image is unforgettable. When naming or describing, reach for analogies over abstractions.
+That's what your Slack message needed. Not "issues" (vague) or "investigating" (passive). Your team needs to know: what broke, what's the blast radius, what's the next action. Triage language is active and specific.
 
-### ✏️ Your turn
+💡 **The principle:** Crisis communication borrows from battlefield medicine — sort, prioritize, act. Vague words ("issues", "look into") waste the one thing you don't have in a crisis: time.
 
-Describe the same concept two ways — once using a body/physical analogy, once using a mechanical analogy:
+**Your version vs. gold standard:**
 
-**Concept:** "The server is processing too many requests at once."
+> ❌ "The latest deploy has some issues and we need to look into it."
+> ✅ "Deploy rolled back — checkout page was returning 500s. I'm triaging the migration script now."
 
-Max 15 words each version.
+The gold standard has: what happened (rolled back), what broke (checkout 500s), what's next (triaging migration). Zero wasted words.
+
+### ✏️ Now rewrite it
+
+Same scenario, same constraints. Armed with the principle.
 
 >
 ```
-
-## Scoring & Feedback
-
-After the user responds, give feedback in this order:
-
-1. **React first** — one genuine sentence about what worked or didn't. Be specific: "That verb swap was surgical" or "Close, but 'impacted' is just a dressed-up version of 'affected'."
-2. **Show the score** with axis bars:
-   ```
-   **Score: 72/100**
-   ├─ ✓ Precision:   20/25
-   ├─ ✓ Creativity:  18/25
-   ├─ ✗ Principle:   16/25  ← didn't use a body-rooted verb
-   └─ ✓ Naturalness: 18/25
-   ```
-3. **Gold standard** — show one ideal version in a `>` blockquote. Explain in 1-2 bullets WHY it works, connecting back to the session's principle.
-4. **💎 Bonus nugget** (if score ≥ 70) — one additional fascinating fact about the word.
-
-**Scoring axes:**
-| Axis | 0-25 | What to evaluate |
-|------|------|-----------------|
-| Precision | Word accuracy and specificity — did they replace vague with precise? |
-| Creativity | Unexpected but effective choices — did they surprise you? |
-| Principle Application | Did they apply THIS session's specific principle? |
-| Naturalness | Reads like a human, not a thesaurus — would someone actually write this? |
 
 ## Post-Session Flow
 
-After scoring: save to history.json, update XP, then:
+After scoring the rewrite: save to history.json, update XP, then:
 
-> "🔍 Another dig? 🔥 Roast my writing? Or back to work."
+> **What's next?**
+> 🔍 Another challenge — `go`
+> 🔥 Roast my writing — `roast`
+> 📊 My stats — `stats`
+> ✌️ Back to work

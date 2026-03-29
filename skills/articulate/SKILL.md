@@ -8,7 +8,7 @@ description: "Use when the user invokes /articulate — language coaching throug
 Your language nerd sidekick. Articulate makes vocabulary stick through **curiosity** and **real writing** — not drills.
 
 Three modes:
-- **🔍 Word Archaeology** — a wild etymology story → a principle → you use it. 60 seconds. Genuinely fascinating.
+- **🔍 Word Archaeology** — you write first, struggle, THEN discover the fascinating language principle that would have helped. Productive failure = 2x retention.
 - **🔥 Roast Mode** — scan your real conversations, find the weakest writing, dare you to fix it. Personal and sharp.
 - **💡 Ambient Coach** — one-line vocabulary tips dropped while you work. Non-intrusive, toggleable.
 
@@ -169,10 +169,12 @@ Always on. If project context is available:
 
 ### A. React + Score
 
+**Word Archaeology uses double scoring** — score BOTH the first attempt (before learning) and the rewrite (after learning). Show the improvement delta. This is the core of productive failure: the gap between attempts IS the learning.
+
 1. **React first** — one genuine sentence about what worked or didn't (specific, not generic)
-2. **Show the score** using axis bars with ✓/✗ markers (read `references/progression/scoring.md` for rubric)
+2. **Show the score** using axis bars with improvement arrows (read `references/word-archaeology.md` for format)
 3. **Gold standard** — show one ideal version in a `>` blockquote, explain in 1-2 bullets WHY it works
-4. **Bonus** — if score ≥ 70, add a 💎 bonus etymology nugget
+4. **Bonus** — if improvement delta ≥ 20 points, add a 💎 bonus etymology nugget
 
 ### B. Calculate XP
 
