@@ -20,6 +20,22 @@ Use this to PERSONALIZE:
 
 ---
 
+## Opening Hooks (CRITICAL)
+
+Don't just show the mission type. HOOK the user with WHERE the challenge came from. Rotate these openers:
+
+- "Found this in your writing:" (for Snipe — real source)
+- "Your Slack message, under the microscope:" (for context-aware)
+- "One word is dragging this sentence down:" (for Swap)
+- "This sentence is carrying dead weight:" (for Trim)
+- "This sentence has zero pulse:" (for Punch)
+- "Wrong room, wrong voice:" (for Flip)
+- "The blank is doing all the work:" (for Fill)
+
+The opener should make the user CURIOUS before they even read the sentence.
+
+---
+
 ## The Six Missions
 
 ### 🎯 Swap — Replace one word
@@ -29,6 +45,8 @@ Present a sentence with ONE weak word bolded. User replaces it with one word.
 **Format:**
 ```
 ## 🎯 Swap
+
+One word is holding this sentence back:
 
 > "We need to **address** the performance issues before launch."
 
@@ -50,11 +68,13 @@ Replace **address**. One word.
 
 ### ✂️ Trim — Cut it in half
 
-Present a bloated sentence or phrase. User rewrites it in half (or fewer) words.
+Present a bloated sentence or phrase. User rewrites in half (or fewer) words.
 
 **Format:**
 ```
 ## ✂️ Trim
+
+This sentence is carrying dead weight:
 
 > "In order to facilitate the process of onboarding new team members..."
 
@@ -87,9 +107,11 @@ Present a flat, lifeless sentence. User rewrites to make it powerful.
 ```
 ## 💪 Punch
 
+This sentence has zero pulse:
+
 > "The meeting went well and we discussed several important topics."
 
-Make this sentence hit. Same meaning, more impact.
+Make it hit. Same meaning, more impact.
 >
 ```
 
@@ -116,7 +138,7 @@ Pull a REAL weak passage from the user's recent conversations. Challenge them to
 ```
 ## 🔍 Snipe
 
-Found this in your recent writing:
+Your words, under the microscope:
 
 > "I think we should maybe try to basically refactor the thing that handles auth"
 
@@ -158,9 +180,11 @@ Present a sentence and ask user to rewrite in the OPPOSITE register (formal→ca
 ```
 ## 🔄 Flip
 
+Wrong voice for the room:
+
 > "Hey so the deploy kinda broke stuff lol"
 
-Flip to formal. Same information, boardroom register.
+Flip to formal. Same info, boardroom register.
 >
 ```
 
@@ -186,6 +210,8 @@ Present a sentence with a blank. User fills it with the best possible word.
 **Format:**
 ```
 ## 🧩 Fill
+
+The blank is doing all the work:
 
 > "The bug report was so _____ that the dev fixed it in 10 minutes."
 
@@ -285,6 +311,16 @@ The `💡` teaching point is the SOUL of each mission. Rules:
 
 1. **One sentence, max two.** If it's longer, you're lecturing.
 2. **Connect to etymology OR connotation.** Not both. Pick the more interesting one.
-3. **Make it SURPRISING.** "Use specific words" is boring. "'Precise' literally means 'cut short' — a precise bug report cuts away what the dev doesn't need" is interesting.
+3. **Make it a "wait, really?" moment.** "Use specific words" is boring. "'Precise' literally means 'cut short' — a precise bug report cuts away what the dev doesn't need" makes them stop and think.
 4. **Connect to THEIR attempt.** Reference the specific word they chose or missed.
 5. **No academic language.** "Latin praecīdere" is fine. "According to Kapur (2008)" is not.
+
+**Great teaching points sound like:**
+- "💡 *'Debug' literally meant removing real moths from relay computers. When you say 'debug' instead of 'look into,' you're already diagnosing.*"
+- "💡 *'Deadline' was a line in Andersonville prison — cross it, you die. When you set a deadline, you're drawing a kill line.*"
+- "💡 *'Fine' comes from Latin fīnis — 'finished, settled.' It decayed into the blandest word in English.*"
+
+**Bad teaching points sound like:**
+- "💡 *Use more specific words for clarity.*" (boring, generic)
+- "💡 *According to research, precise language improves communication.*" (academic)
+- "💡 *The word 'address' comes from Latin directiāre meaning to direct or straighten, which later evolved through Old French adrecier...*" (too long, a lecture)
