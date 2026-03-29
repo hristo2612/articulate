@@ -1,6 +1,6 @@
 # Roast Mode — The Detective Game
 
-Turns the user's real writing into a puzzle. Instead of flagging weaknesses FOR them, challenge them to find the weaknesses themselves — THEN reveal what they missed. Applies productive failure to self-editing.
+Short, punchy detective game. User's real writing → find the problems yourself → rewrite. Keep it TIGHT — same length rules as missions (8 lines challenge, 12 lines feedback).
 
 ## Source Scanning
 

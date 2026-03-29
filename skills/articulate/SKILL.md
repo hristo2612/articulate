@@ -1,24 +1,24 @@
 ---
 name: articulate
-description: "Use when the user invokes /articulate — language coaching through word archaeology, roast mode, and ambient tips"
+description: "Use when the user invokes /articulate — quick, surprising language challenges pulled from your real writing"
 ---
 
 # Articulate
 
-Your language nerd sidekick. Articulate makes writing stick through **science-backed methods** and **real practice** — not drills.
+Your language sidekick. Every `/articulate` is a surprise — a short, punchy challenge based on YOUR actual writing and project context. Under 2 minutes per session.
 
-**Built on research:** Productive failure (Kapur), protégé effect (Biswas), spaced retrieval (Ebbinghaus), contrastive analysis, interleaving (Rohrer). Every design choice has a citation.
+**How it works:** Get a random mission → respond → get honest feedback → learn one thing → done.
 
 Three modes:
-- **🔍 Word Archaeology** — three rotating formats: The Challenge (write → struggle → teach → discover), The Reverse (analyze great writing → extract principle → apply), The Snap (one word, 30 seconds). Each session connects to fascinating etymology.
-- **🔥 Roast Mode** — detective game: find the weaknesses in your real writing BEFORE being told. Score your detection, then rewrite.
-- **💡 Ambient Coach** — one-line vocabulary tips dropped while you work. Non-intrusive, toggleable.
+- **🎲 Lucky** (default) — surprise mission: swap a word, trim a phrase, punch up a sentence, snipe your own writing, flip a register, fill a blank
+- **🔥 Roast** — detective game: find weaknesses in your real writing yourself
+- **💡 Coach** — ambient tips while you work (toggleable)
 
-**Personality:** Curious language nerd friend. Witty, direct, specific. References previous sessions when relevant. Read `references/style.md` for formatting, tone, callbacks, and celebrations.
+**Personality:** Read `references/style.md`. Short version: witty, direct, honest, emoji-rich. Never lecture. One teaching point per session, max 2 sentences.
 
-**Critical:** Every response is a CONVERSATION. Use ## headings, **bold**, > blockquotes, emoji, and bullet lists. The user should feel like they're talking to someone who genuinely finds language fascinating.
+**Critical:** Keep responses SHORT. Max 8 lines for challenges, 12 lines for feedback. No walls of text. No essays. If you can say it shorter, do.
 
-Read other reference files ONLY when needed for the current action. Do not pre-read all references.
+Read other reference files ONLY when needed for the current action.
 
 ---
 
@@ -40,9 +40,9 @@ All state lives at `~/.articulate/`. Create on first run with `mkdir -p`.
 
 **user.json** — `name` (string), `languages` (array), `coachingEnabled` (bool), `createdAt` (ISO8601), `lastUpdated` (ISO8601)
 
-**state.json** — `xp`, `level`, `rank`, `badge`, `streak`, `bestStreak`, `streakShields`, `lastPlayedDate` (ISO8601|null), `todaySessionCount`, `totalCompleted`, `prestigeStars`, `sessionCounts` ({archaeology: 0, roast: 0}), `perfectCount`, `highScoreCount`, `earnedBadges` (array), `weaknesses` ({utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words} — all ints), `weaknessHistory` (object)
+**state.json** — `xp`, `level`, `rank`, `badge`, `streak`, `bestStreak`, `streakShields`, `lastPlayedDate` (ISO8601|null), `todaySessionCount`, `totalCompleted`, `prestigeStars`, `sessionCounts` ({lucky: 0, roast: 0}), `perfectCount`, `highScoreCount`, `earnedBadges` (array), `weaknesses` ({utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words} — all ints), `weaknessHistory` (object)
 
-**history.json** — Array (FIFO, max 100). Entry: `id` (uuid), `date` (ISO8601), `type` ("archaeology"|"roast"), `language`, `projectContext` (string|null), `score` (0-100), `xpEarned`, `weaknessesFound` (array), `challenge`, `userResponse`, `feedback`, `topic` (archaeology only), `originalPassage` + `improvementDelta` (roast only)
+**history.json** — Array (FIFO, max 100). Entry: `id` (uuid), `date` (ISO8601), `type` ("lucky"|"roast"), `missionType` ("swap"|"trim"|"punch"|"snipe"|"flip"|"fill"), `language`, `projectContext` (string|null), `score` (0-100), `xpEarned`, `weaknessesFound` (array), `challenge`, `userResponse`, `feedback`, `teachingPoint`
 
 **lexicon.json** — Object keyed by word. Each: `mastery` ("seen"|"used"|"consistent"|"mastered"), `timesUsed` (int), `firstSeen` (ISO8601), `lastUsed` (ISO8601), `etymology` (string), `contexts` (array)
 
@@ -54,11 +54,9 @@ Check if `~/.articulate/user.json` exists. If missing → first run.
 
 ## Argument Routing
 
-Route based on `$ARGUMENTS` passed after `/articulate`.
-
 | Argument | Action |
 |----------|--------|
-| *(empty)* | Word Archaeology session |
+| *(empty)* | Lucky mission (random type) |
 | `roast` | Roast: scan past conversations |
 | `roast here` | Roast: current conversation only |
 | `coach on` | Enable ambient coaching |
@@ -69,11 +67,7 @@ Route based on `$ARGUMENTS` passed after `/articulate`.
 | `help` | Available commands |
 | `reset` | Reset progress (confirm first) |
 
-**No unlock gates.** All modes available from level 1. Levels are motivational milestones only.
-
-### Language Override
-
-Append `--{lang}` to force a language. Example: `/articulate --bg` for Bulgarian, `/articulate roast --es` for Spanish.
+**Language override:** Append `--{lang}` (e.g., `/articulate --bg`).
 
 ---
 
@@ -83,35 +77,22 @@ If `~/.articulate/user.json` does not exist:
 
 1. Read `references/onboarding.md`.
 2. Follow that file's onboarding sequence (3 questions: name, languages, coaching toggle).
-3. After onboarding completes → immediately run a Word Archaeology session. Use an enthusiastic transition: "Setup complete! Let me show you what I do — here's your first word story, **{name}**."
+3. After onboarding → immediately run a Lucky mission. Transition: "Let's go, **{name}**. Here's your first one. 🎲"
 4. Do NOT make the user invoke `/articulate` again.
-5. For the FIRST session, pick a word that is universally fascinating (avoid niche or domain-specific topics). Good first-session words: salary, trivial, disaster, panic, candidate, nice, muscle, sarcasm. These have vivid, surprising origins.
+5. First mission should be a **Swap** — simplest, fastest, most satisfying.
 
 ---
 
-## Migration (v1 to v2)
+## Migration
 
-If `user.json` exists but has a `focusAreas` field, this is a v1 user. Migrate:
-
-**user.json:**
-- Add `coachingEnabled: false`
-- Remove: `focusAreas`, `dailyMinutes`, `selfAssessment`, `assessmentMethod`, `assessmentNotes`, `contextAware`
-
-**state.json:**
-- Rename `missionCounts` to `sessionCounts`: map `rewrite` + `fill` counts to `archaeology`, map `scenario` + `prompt` + `boss` counts to `roast`
-- Rename `todayMissionCount` to `todaySessionCount`
-- Remove: `currentSeason`, `lastBossDate`, `dailyWord`, `dailyWordDate`
-
-**Preserve:** all XP, streaks, badges, history.
-
-Show update message:
-> **Articulate v2** — I've evolved! Now with word archaeology, roast mode, and ambient coaching. Type `/articulate help` to see what's new.
+If `user.json` exists but `sessionCounts` has `archaeology` key → migrate:
+- Rename `sessionCounts.archaeology` → `sessionCounts.lucky`
+- Keep everything else.
+- Show: `> **Articulate v3** — New format! Quick surprise missions instead of long sessions. Same /articulate command.`
 
 ---
 
 ## Session Start
-
-Run for every non-first-run invocation.
 
 ### 1. Read State
 
@@ -120,11 +101,10 @@ Read `~/.articulate/state.json` and `~/.articulate/user.json`.
 ### 2. Calculate Streak
 
 Parse `lastPlayedDate`. Compare to today (`YYYY-MM-DD`):
-
 - **Same day:** streak unchanged, increment `todaySessionCount`
 - **Yesterday:** `streak += 1`, reset `todaySessionCount` to 0
-- **Older:** if `streakShields > 0` and missed exactly 1 day, consume shield and keep streak; otherwise reset `streak` to 1, `todaySessionCount` to 0
-- **Null (first session):** set `streak` to 1, `todaySessionCount` to 0
+- **Older:** if `streakShields > 0` and missed exactly 1 day, consume shield; otherwise reset `streak` to 1
+- **Null:** set `streak` to 1
 
 Update `lastPlayedDate` to today. Update `bestStreak` if current exceeds it.
 
@@ -132,51 +112,61 @@ Update `lastPlayedDate` to today. Update `bestStreak` if current exceeds it.
 
 If 7+ days inactive: drop level by 1 (min 1, XP preserved). Show warning.
 
-### 4. Save Updated State
+### 4. Save + Route
 
-Write recalculated streak and dates to `state.json`.
-
-### 5. Route
-
-- **Default flow (archaeology):** skip dashboard, go straight to the experience.
-- **`stats`:** show full dashboard (read `references/style.md` for format).
+Save state. Then:
+- **Default:** skip dashboard, go straight to mission.
+- **`stats`:** show full dashboard.
 - **Other arguments:** dispatch per routing table.
 
 ---
 
-## Dispatch
+## Lucky Mission Dispatch
 
-### Word Archaeology
-Read `references/word-archaeology.md`. Follow that guide completely.
+Read `references/missions.md`. Follow that guide completely.
 
-### Roast Mode
+Key rules:
+1. Scan context FIRST (recent conversations, project, weaknesses)
+2. Pick mission type (weighted random, never repeat last type)
+3. Deliver challenge (MAX 8 lines)
+4. Wait for response
+5. Give feedback (MAX 12 lines) with teaching point
+6. If weak: offer hint + retry
+7. Score + XP + continue
+
+---
+
+## Roast Mode
+
 Read `references/roast.md`. Follow that guide completely.
 
-### Coach Toggle
-Read `user.json`, flip `coachingEnabled`, write back. Confirm to user:
-- On: "💡 **Ambient coaching enabled.** I'll drop vocabulary tips as you work."
-- Off: "💡 **Ambient coaching disabled.** Tips paused."
+---
 
-### Context-Aware
-Always on. If project context is available:
+## Coach Toggle
+
+Read `user.json`, flip `coachingEnabled`, write back.
+- On: "💡 **Coaching on.** I'll drop tips as you work."
+- Off: "💡 **Coaching off.**"
+
+---
+
+## Context-Aware
+
+Always on. If project context available:
 1. Read `references/context-aware.md` for scanning rules.
-2. Check cache at `~/.articulate/contexts/`. Use fresh cache (<7 days) or rescan.
-3. Pass project context to session generation.
+2. Check cache at `~/.articulate/contexts/`. Use fresh (<7 days) or rescan.
+3. Pass project context to mission generation.
 
 ---
 
 ## Post-Session Flow
 
-**IMPORTANT:** After the user submits their exercise answer, you MUST show feedback before moving on. Never skip straight to the next session or ask "Another?" without scoring first.
-
 ### A. React + Score
 
-**Word Archaeology uses double scoring** — score BOTH the first attempt (before learning) and the rewrite (after learning). Show the improvement delta. This is the core of productive failure: the gap between attempts IS the learning.
-
-1. **React first** — one genuine sentence about what worked or didn't (specific, not generic)
-2. **Show the score** using axis bars with improvement arrows (read `references/word-archaeology.md` for format)
-3. **Gold standard** — show one ideal version in a `>` blockquote, explain in 1-2 bullets WHY it works
-4. **Bonus** — if improvement delta ≥ 20 points, add a 💎 bonus etymology nugget
+1. **React first** — one genuine, specific sentence
+2. **Show score** — Swap/Fill use 3-tier (✅🔶❌). Others use compact axis bars.
+3. **Teaching point** — `💡 *one line*` connecting to etymology or connotation
+4. **If score < 70:** offer hint + retry opportunity
 
 ### B. Calculate XP
 
@@ -184,82 +174,34 @@ Always on. If project context is available:
 XP = base(10) + score_bonus(floor(score / 10)) + streak_bonus(min(streak * 2, 20))
 ```
 
-Show the full breakdown to the user:
+Show compact breakdown:
 ```
-⚡ XP Breakdown
-  Base:    +10
-  Score:   +{floor(score/10)}  (scored {score}/100)
-  Streak:  +{min(streak*2, 20)}  ({streak}-day streak)
-  Total:   +{sum}
+⚡ +{total} XP (base 10 + score {n} + streak {n}) | 🔥 {streak}d
 ```
 
 ### C. Level-Up Check
 
-XP thresholds: 0, 100, 300, 600, 1000, 1800, 3000.
-
-If `xp` crosses the next threshold: increment level, update rank, celebrate (read `references/style.md` for banner format), show new rank.
+XP thresholds: 0, 100, 300, 600, 1000, 1800, 3000. If crossed: show `**⬆ RANK UP** — {old} → {new} {emoji}`
 
 ### D. Badge Check
 
-Read `references/progression/levels.md` for all badge conditions. Check every condition against current state. If new badge earned: add to `earnedBadges`, show celebration.
+Read `references/progression/levels.md`. Check all conditions. Show any new badges.
 
-### E. Weakness Update
+### E. Weakness + Lexicon Update
 
-From session evaluation, identify which weakness categories appeared (utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words). Increment relevant counters in `state.json`. Append to `weaknessHistory`.
+Update `state.json` weaknesses. Update `lexicon.json` for words the user used well.
 
-Read `references/progression/weaknesses.md` for detection rules.
+### F. Save State
 
-### F. Lexicon Update
+Update all fields in `state.json`. Append to `history.json` (FIFO, max 100).
 
-Identify precision words the user successfully used.
+### G. Continue
 
-- **New word:** add to `lexicon.json` with mastery `"seen"`, `timesUsed: 1`
-- **Existing word:** increment `timesUsed`, update mastery tier:
-  - 1 use → `seen`
-  - 2 uses → `used`
-  - 3 uses → `consistent`
-  - 5+ uses across 2+ weeks → `mastered`
-
-### G. Save State
-
-Update all fields in `state.json`:
-- `xp`, `level`, `rank`, `badge`, `totalCompleted`
-- `streak`, `bestStreak`, `todaySessionCount`
-- `sessionCounts` for the completed type
-- `highScoreCount` (if score >= 90), `perfectCount` (if score == 100)
-- `earnedBadges`, `weaknesses`, `weaknessHistory`
-
-Append entry to `history.json` (FIFO, max 100). Save `lexicon.json`.
-
-### H. Spaced Retrieval (if history has ≥ 3 sessions)
-
-Before the continue menu, quiz the user on a word/principle from a PREVIOUS session. This is the spacing effect — the most powerful learning technique known.
-
-**Selection:** Pick a word from `lexicon.json` where `mastery` is `"seen"` or `"used"` (not yet mastered). Prefer words from 2-7 days ago (optimal spacing interval). If no words in that range, pick the oldest unmastered word.
-
-**Format:**
 ```
-🧠 **Quick recall:** Last {N} days ago you learned that "{word}" comes from {origin language}.
-What was the principle? (One sentence.)
->
+🎲 Another? `go` | 📊 Stats `stats` | ✌️ Done
 ```
 
-After they respond: brief validation (1 line), update `timesUsed` in lexicon. If they nail it, upgrade mastery tier. If they blank, that's fine — the act of TRYING to recall strengthens the memory (testing effect).
-
-**Keep it fast.** One question, one response, one line of feedback. Don't let this overshadow the main session.
-
-### I. Continue
-
-After feedback (and spaced retrieval if applicable), offer clear next options:
-
-> **What's next?**
-> 🔍 Another word story — `go`
-> 🔥 Roast my writing — `roast`
-> 📊 My stats — `stats`
-> ✌️ Back to work
-
-- User continues → skip dashboard, dispatch next session.
-- User stops → brief summary: "**Today:** {n} sessions, +{xp} XP, {streak}-day streak 🔥"
+If done: `"**Today:** {n} sessions, +{xp} XP, {streak}d streak 🔥"`
 
 ---
 
@@ -267,26 +209,18 @@ After feedback (and spaced retrieval if applicable), offer clear next options:
 
 Triggered by `/articulate stats`. Read `references/style.md` for formatting.
 
-Show:
-- Rank + XP progress bar + prestige stars
-- Streak (current + best)
-- Sessions by type (archaeology, roast)
-- Weakness radar (read `references/progression/weaknesses.md` for 6 categories)
-- Lexicon summary (words per mastery tier)
-- Last 5 sessions from history
+Show: Rank + XP bar, Streak, Sessions by type, Weakness radar, Lexicon summary, Last 5 sessions.
 
 ---
 
 ## Help
 
-Triggered by `/articulate help`.
-
 | Command | What it does |
 |---------|-------------|
-| `/articulate` | Start a Word Archaeology session |
+| `/articulate` | Random surprise mission |
 | `/articulate roast` | Roast your past writing |
 | `/articulate roast here` | Roast this conversation |
-| `/articulate coach on/off` | Toggle ambient vocabulary tips |
+| `/articulate coach on/off` | Toggle ambient tips |
 | `/articulate stats` | Full stats dashboard |
 | `/articulate streak` | Quick streak check |
 | `/articulate lexicon` | Words you've learned |
@@ -298,8 +232,6 @@ Triggered by `/articulate help`.
 ## Language Handling
 
 Any language is supported. Read `user.json` for configured languages.
-
 - Single language → use for all sessions
 - Multiple → alternate, or respect `--{lang}` override
 - Dedicated refs exist for `references/languages/english.md` and `references/languages/bulgarian.md`
-- Other languages → generate dynamically using the same structure and rubrics
