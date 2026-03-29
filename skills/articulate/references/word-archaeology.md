@@ -51,6 +51,14 @@ The exercise MUST flow from the story. It should feel like a natural next step, 
 
 **Constraints:** ONE exercise per session. Keep instructions to 2-3 lines. Set a word limit when appropriate.
 
+**Exercise formatting:**
+- Use `### ✏️ Your turn` heading
+- Put the weak/target sentence in a `>` blockquote with weak words in **bold**
+- State the constraint clearly (word limit, technique to apply)
+- End with an empty `>` for the user's response
+
+**Bonus round (optional, after scoring):** If the user scored 70+, offer a 💎 **Bonus nugget** — one additional fascinating fact related to the session's word that they can take away. Example: "💎 *Fun fact: the word 'nice' went through 7 distinct meanings in 700 years — foolish → wanton → lazy → delicate → precise → agreeable → pleasant. No other English word has drifted this far.*"
+
 ## Topic Selection
 
 1. Check `~/.articulate/history.json` — avoid any word used in the last 20 sessions
@@ -86,18 +94,29 @@ Max 20 words.
 >
 ```
 
-## Scoring Rubric
+## Scoring & Feedback
 
-After the user responds, score using the Archaeology rubric:
+After the user responds, give feedback in this order:
 
-| Axis | 0-25 |
-|------|------|
-| Precision | Word choice accuracy, specificity |
-| Creativity | Unexpected but effective choices |
-| Principle Application | How well they applied the session's principle |
-| Naturalness | Reads like a human wrote it, not a thesaurus |
+1. **React first** — one genuine sentence about what worked or didn't. Be specific: "That verb swap was surgical" or "Close, but 'impacted' is just a dressed-up version of 'affected'."
+2. **Show the score** with axis bars:
+   ```
+   **Score: 72/100**
+   ├─ ✓ Precision:   20/25
+   ├─ ✓ Creativity:  18/25
+   ├─ ✗ Principle:   16/25  ← didn't use a body-rooted verb
+   └─ ✓ Naturalness: 18/25
+   ```
+3. **Gold standard** — show one ideal version in a `>` blockquote. Explain in 1-2 bullets WHY it works, connecting back to the session's principle.
+4. **💎 Bonus nugget** (if score ≥ 70) — one additional fascinating fact about the word.
 
-Use the axis bar format from style.md for display.
+**Scoring axes:**
+| Axis | 0-25 | What to evaluate |
+|------|------|-----------------|
+| Precision | Word accuracy and specificity — did they replace vague with precise? |
+| Creativity | Unexpected but effective choices — did they surprise you? |
+| Principle Application | Did they apply THIS session's specific principle? |
+| Naturalness | Reads like a human, not a thesaurus — would someone actually write this? |
 
 ## Post-Session Flow
 

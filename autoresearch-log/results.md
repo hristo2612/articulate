@@ -15,3 +15,4 @@
 |---|--------|-------------|----------|--------|-------|---------|
 | 0 | Baseline | 21 | 19 | 19 | 59 | — |
 | 1 | Storytelling quality bar + onboarding personality | 22 | 20 | 20 | 62 | ✓ Keep |
+| 2 | Topic diversity + first-session guidance | 24 | 21 | 21 | 66 | ✓ Keep |
