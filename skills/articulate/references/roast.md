@@ -85,6 +85,8 @@ Say what you actually mean. Max 8 words.
 
 **Gold standard answer:** "Refactor the auth handler." (4 words)
 
+**Optional 🔍 etymology hook after roast:** If the roast reveals a pattern (e.g., overusing "thing"), drop a 1-line etymology nugget to make the learning stick. Example: "🔍 *Fun fact: 'thing' originally meant a public assembly in Old Norse. You're accidentally calling every object a Viking parliament.*" This bridges roast mode with word archaeology — learning wrapped in humor.
+
 ## Scoring
 
 **Feedback format (after user rewrites):**

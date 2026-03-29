@@ -66,9 +66,12 @@ The exercise MUST flow from the story. It should feel like a natural next step, 
 3. If user is multilingual (check `user.json` languages), alternate between their languages
 4. Tie to project context when possible — if user works in finance, prefer finance-adjacent etymologies
 5. Prefer words the user is likely to encounter in professional writing
-6. **First session suggestions** (universally fascinating): salary, trivial, disaster, panic, candidate, nice, muscle, sarcasm — pick one at random
+6. **First session suggestions** (universally fascinating): salary, trivial, disaster, panic, candidate, nice, muscle — pick one at random
+7. **Never repeat the same word across sessions** even if the user deletes history. Vary aggressively.
 
-**Avoid:** Overused etymology trivia (OK origins, SOS meaning, etc.). Pick words that professionals USE daily but whose origins they don't know.
+**Avoid:** Overused etymology trivia (OK origins, SOS meaning, etc.). Also avoid picking the same word repeatedly across fresh starts — if a word comes to mind easily, that's a sign it's overused. Deliberately reach for LESS obvious choices.
+
+**Great lesser-known words:** boycott (from Captain Boycott), algorithm (from al-Khwarizmi), quarantine (40 days), salary (salt), muscle (little mouse), candidate (white-robed), panic (the god Pan), tragedy (goat-song), barbarian (bar-bar sounds), companion (bread-sharer)
 
 ## Example Session
 

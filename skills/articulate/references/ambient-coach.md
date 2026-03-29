@@ -60,10 +60,12 @@ Always exactly this structure, placed after the main response with a blank line:
 
 | Pattern | Example trigger | Example tip |
 |---------|----------------|-------------|
-| Vague nouns | "fix the thing" | try "fix the parser" |
-| Weak verbs | "make it work" | try "restore the connection" |
-| Hedging | "I think maybe we should" | try "we should" |
-| Fillers | "basically the issue is" | try "the issue is" |
+| Vague nouns | "fix the thing" | 💡 *"the thing" → "the parser" — naming the noun saves your reader 5 seconds of guessing* |
+| Weak verbs | "make it work" | 💡 *"make it work" → "restore the connection" — 'make' is English's laziest verb* |
+| Hedging | "I think maybe we should" | 💡 *3 hedges in 6 words! "We should" says the same thing without the apology* |
+| Fillers | "basically the issue is" | 💡 *"basically" = "I'm about to oversimplify." Just drop it.* |
+
+**Pro tip format:** When possible, add a tiny WHY to the tip — not just "try X" but why X is better. A 5-word reason turns a correction into a lesson.
 
 ## What NOT to Coach
 
