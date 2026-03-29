@@ -1,6 +1,6 @@
-# Roast Mode
+# Roast Mode — The Detective Game
 
-Scans the user's real writing, finds weak spots, and challenges them to do better.
+Turns the user's real writing into a puzzle. Instead of flagging weaknesses FOR them, challenge them to find the weaknesses themselves — THEN reveal what they missed. Applies productive failure to self-editing.
 
 ## Source Scanning
 
@@ -23,9 +23,61 @@ Use messages from the current conversation preceding the `/articulate roast here
 - **Keep:** natural language instructions, explanations, descriptions, requests
 - Sort by weakness density (most problems first)
 
-## What to Find
+## The Detective Flow
 
-Rank passages by weakness density. Target these patterns:
+### Phase 1: The Crime Scene
+
+1. `## 🔥 Roast: The Crime Scene` — heading
+2. Present the user's ACTUAL passage, quoted exactly
+3. **The challenge:** "This message has **{N} problems.** Find as many as you can. Mark each with what's wrong."
+4. Don't reveal what the problems are. Don't hint. Let them hunt.
+5. `### 🔍 Your analysis` — space for user's detective work
+6. `>` blockquote
+
+**This is the key innovation:** Traditional roast mode SHOWS you the weaknesses. Detective mode makes you FIND them. Finding = deeper processing than reading a list.
+
+### Phase 2: The Verdict (after user responds)
+
+1. **Score their detection:** How many of the {N} problems did they catch?
+   ```
+   **Detection: {caught}/{total}**
+   🔍🔍🔍🔍🔍  (filled per caught, empty per missed)
+   ```
+2. **What they caught** — acknowledge with ✓, validate their reasoning
+3. **What they missed** — reveal with ✗, each one explained:
+   - Quote the specific words
+   - Name the weakness type (emoji coded)
+   - Explain WHY it's a problem (1 line)
+   - Show the fix (1 line)
+4. **The teaching moment** — 2-3 lines explaining the PATTERN behind the missed weaknesses. Connect to etymology or language principle when possible.
+
+### Phase 3: The Rewrite Challenge
+
+1. `### ✏️ Rewrite challenge` — same as before
+2. Now they know ALL the problems. Rewrite to fix them.
+3. Word limit = essential content words (strip all waste)
+4. `>` blockquote
+
+### Phase 4: Scoring
+
+1. **React** — genuine reaction to their rewrite
+2. **Before/After comparison:**
+   ```
+   **Before:** ~{N} words, {M} weaknesses
+   **After:**  ~{N} words, {M} weaknesses
+   📉 **{X}% compression** — {reaction}
+   ```
+3. **Score with axis bars:**
+   ```
+   **Score: {n}/100**
+   ├─ Detection:    {n}/25  (how many problems you spotted in Phase 1)
+   ├─ Compression:  {n}/25  (waste cut)
+   ├─ Precision:    {n}/25  (vague → specific)
+   └─ Naturalness:  {n}/25  (reads like a human)
+   ```
+4. **Gold standard** in blockquote, with WHY bullets
+
+## Weakness Patterns to Find
 
 | # | Pattern | Emoji | Example |
 |---|---------|-------|---------|
@@ -33,128 +85,93 @@ Rank passages by weakness density. Target these patterns:
 | 2 | Vague noun avalanches | 🔴 | "the thing with the stuff in the something" |
 | 3 | Filler word bloat | 🟡 | "basically", "literally", "just", "really", "actually" |
 | 4 | Weak verb chains | 🔴 | "make it do the thing" instead of a precise verb |
-| 5 | Register confusion | 🟠 | Mixing casual slang into formal requests or vice versa |
+| 5 | Register confusion | 🟠 | Mixing casual slang into formal requests |
+| 6 | Buried action | 🟠 | The actual request is in sentence 3 of 5 |
+| 7 | Passive deflection | 🟡 | "It was decided" instead of "We decided" |
 
-**After the weakness list, add a 1-2 line teaching moment** explaining WHY the dominant weakness matters. Examples:
-- For hedge stacking: "Every hedge is an apology for having an opinion. Three in one sentence and you're asking permission to exist."
-- For vague nouns: "'Thing' is a vocabulary void — your brain had a concept but your words gave up halfway."
-- For filler bloat: "Fillers are verbal throat-clearing. They signal 'I'm about to say something' instead of just saying it."
-- For weak verbs: "'Make' and 'do' are English's laziest verbs. They work anywhere, which means they mean nothing."
-- For register confusion: "Mixing 'gonna' with 'pursuant to' makes you sound like two different people arguing in one email."
+**Teaching moments (use after revealing missed weaknesses):**
+- Hedge stacking: "Every hedge is an apology for having an opinion. Three in one sentence and you're asking permission to exist."
+- Vague nouns: "'Thing' is a vocabulary void — your brain had a concept but your words gave up halfway."
+- Filler bloat: "Fillers are verbal throat-clearing. They signal 'I'm about to say something' instead of just saying it."
+- Weak verbs: "'Make' and 'do' are English's laziest verbs. They work anywhere, which means they mean nothing."
+- Register confusion: "Mixing 'gonna' with 'pursuant to' makes you sound like two different people arguing in one email."
+- Buried action: "If your reader has to excavate your request from paragraph 3, you're not communicating — you're hiding."
+- Passive deflection: "'It was decided' is the grammatical equivalent of leaving the room before anyone can ask who decided."
 
-## Presentation Format
+**Optional 🔍 etymology hook:** If the roast reveals a pattern, drop a 1-line etymology nugget. Example: "🔍 *Fun fact: 'thing' originally meant a public assembly in Old Norse. You're accidentally calling every object a Viking parliament.*"
 
-```markdown
-## 🔥 Roast: Your Writing, {timeframe}
-
-I found this:
-
-> "{the offending passage, quoted exactly}"
-
-That's **{N} words** for a **{M}-word message**. Let me count:
-- 🟡 "{hedge}" — hedge
-- 🔴 "{vague phrase}" — vague
-- 🟡 "{filler}" — filler
-...
-
-**Severity:** {🔥 repeated 1-5 times} out of 5 — {witty label}
-
-Severity scale:
-- 🔥 (1) — "a gentle nudge"
-- 🔥🔥 (2) — "room for improvement"
-- 🔥🔥🔥 (3) — "that's a habit"
-- 🔥🔥🔥🔥 (4) — "verbal spaghetti"
-- 🔥🔥🔥🔥🔥 (5) — "code red"
-
-### ✏️ Rewrite challenge
-Say what you actually mean. Max {N} words.
-
->
-```
-
-Where `{N}` in the word limit = the essential content words (strip all waste, that's the target).
-
-## Full Example
+## Example Session
 
 ```markdown
-## 🔥 Roast: Your Writing, last 7 days
+## 🔥 Roast: The Crime Scene
 
-I found this:
+I found this in your recent writing:
 
 > "I think we should maybe try to basically refactor the thing that handles the stuff for the user authentication part of the system."
 
-That's **23 words** for a **6-word job**. Let me count:
-- 🟡 "I think" — hedge
-- 🟡 "maybe" — hedge
-- 🟡 "try to" — hedge
-- 🟡 "basically" — filler
-- 🔴 "the thing that handles the stuff" — vague noun avalanche
-- 🟠 "part of the system" — padding
+This message has **6 problems.** Find as many as you can. For each one, quote the words and name what's wrong.
 
-**6 weaknesses** in one sentence. That's impressive (not the good kind).
-
-**Severity:** 🔥🔥🔥🔥🔥 out of 5 — code red
-
-### ✏️ Rewrite challenge
-Say what you actually mean. Max 8 words.
+### 🔍 Your analysis
 
 >
 ```
 
-**Gold standard answer:** "Refactor the auth handler." (4 words)
+*[User identifies 4 of 6]*
 
-**Optional 🔍 etymology hook after roast:** If the roast reveals a pattern (e.g., overusing "thing"), drop a 1-line etymology nugget to make the learning stick. Example: "🔍 *Fun fact: 'thing' originally meant a public assembly in Old Norse. You're accidentally calling every object a Viking parliament.*" This bridges roast mode with word archaeology — learning wrapped in humor.
+```markdown
+**Detection: 4/6**
+🔍🔍🔍🔍⬜⬜
 
-## Scoring
+**What you caught:**
+✓ "I think" — hedge (correct!)
+✓ "maybe" — hedge (correct!)
+✓ "basically" — filler (correct!)
+✓ "the thing that handles the stuff" — vague noun avalanche (spot on)
 
-**Feedback format (after user rewrites):**
+**What you missed:**
+✗ 🟡 **"try to"** — hedge. "Try to refactor" = "maybe refactor, maybe not." If you're going to do it, say "refactor." If you're proposing it, say "I propose we refactor."
+✗ 🟠 **"part of the system"** — padding. Everything is a part of a system. This adds zero information.
 
-1. **React first** — genuine reaction: "Now THAT has a spine." or "Better, but you're still hedging."
-2. **Before/After comparison:**
-   ```
-   **Before:** ~90 words, 10 weaknesses
-   **After:**  ~12 words, 0 weaknesses
-   📉 **87% compression** — that's a gut renovation.
-   ```
-3. **Score with axis bars:**
-   ```
-   **Score: 85/100**
-   ├─ ✓ Compression:   23/25
-   ├─ ✓ Weaknesses:    25/25  ← all 10 eliminated
-   ├─ ✓ Precision:     20/25
-   └─ ✓ Naturalness:   17/25  ← reads a bit robotic
-   ```
-4. **Gold standard** — show the ideal version, explain in 1-2 bullets why it works
-5. **What you nailed / What to watch** — specific, not generic
+**The pattern:** 3 of your 6 problems are hedges. That's not cautious communication — that's a confidence leak. Every hedge gives your reader permission to ignore you.
 
-| Axis | What it measures |
-|------|-----------------|
-| Compression | How much waste was cut. Higher ratio = higher score |
-| Weakness Elimination | How many flagged weaknesses were removed |
-| Precision Gain | Did vague words become specific? Did hedges become assertions? |
-| Naturalness | Does it still read like something a human would say? |
+💡 *Fun fact: "hedge" comes from Old English "hecg" — a fence of bushes. When you hedge in writing, you're literally planting bushes between you and your point so no one can see it clearly.*
+
+### ✏️ Rewrite challenge
+
+Say what you actually mean. Max 6 words.
+
+>
+```
 
 ## Multi-Round Flow
 
 1. Find **3** weak passages from the source material
-2. Present the **worst** one first
-3. After scoring the rewrite, offer: "Want the other 2?"
+2. Present the **worst** one first (as the crime scene)
+3. After scoring the rewrite, offer: "🔥 Want crime scene #2?"
 4. If yes, present the second, then third
 
 ## Privacy Rules
 
-These are non-negotiable. NEVER surface:
-
+Non-negotiable. NEVER surface:
 - **Credentials** — API keys, tokens, passwords, secrets
 - **Personal info** — names, emails, phone numbers, addresses
-- **Emotional/venting content** — frustration, personal struggles, complaints about people
+- **Emotional/venting content** — frustration, personal struggles
 - **Code** — only roast natural language, never code snippets
-- **Private conversations** — anything that looks like it wasn't meant for an AI coach
+- **Private conversations** — anything not meant for an AI coach
 
-When in doubt, skip the passage and pick the next one.
+When in doubt, skip the passage.
+
+## Scoring Axes
+
+| Axis | What it measures |
+|------|-----------------|
+| Detection | How many problems the user found in Phase 1 (the detective skill) |
+| Compression | How much waste was cut in the rewrite |
+| Precision | Did vague words become specific? Did hedges become assertions? |
+| Naturalness | Does the rewrite read like something a human would say? |
 
 ## Post-Session
 
 After scoring: save to history.json, update XP, then:
 
-> "Want the other 2? Or back to work."
+> "🔥 Want crime scene #2? Or back to work."
