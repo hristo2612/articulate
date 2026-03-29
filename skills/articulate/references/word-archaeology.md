@@ -1,6 +1,6 @@
 # Word Archaeology — The Science-Backed Method
 
-The default `/articulate` experience. **Two session formats that rotate** to prevent habituation (interleaving at the session level). Both are tight 2-response sessions.
+The default `/articulate` experience. **Three session formats that rotate** to prevent habituation (interleaving at the session level).
 
 ### Science behind it
 1. **Productive failure** (Kapur, 2008): write FIRST, struggle, THEN discover. 2x retention.
@@ -8,13 +8,15 @@ The default `/articulate` experience. **Two session formats that rotate** to pre
 3. **Protégé effect** (Biswas, 2005): teaching someone else is the strongest form of learning.
 4. **Reverse engineering**: analyzing expert work builds pattern recognition (Chi et al., 1989).
 5. **Interleaving** (Rohrer & Taylor, 2007): mixing formats > repeating one format.
+6. **Testing effect** (Roediger & Karpicke, 2006): retrieval practice > re-studying.
 
 ## Format Selection
 
-**Alternate between two formats.** Check `history.json` — if last session was Format A, do Format B, and vice versa. First session is always Format A.
+**Rotate through three formats: A → B → C → A → B → C...** Check `history.json` for last format used.
 
-- **Format A: The Challenge** — productive failure + protégé effect (write → teach → discover → retry)
-- **Format B: The Reverse** — reverse engineering + generation (analyze great writing → extract principle → apply it)
+- **Format A: The Challenge** — 2 responses. Productive failure + protégé effect. (write → teach → discover → retry)
+- **Format B: The Reverse** — 2 responses. Reverse engineering + generation. (analyze great writing → extract → apply)
+- **Format C: The Snap** — 1 response. Ultra-fast micro-session. (one sentence → one word swap → WHY → done). For busy days or warm-ups.
 
 ---
 
@@ -303,7 +305,67 @@ Max 20 words.
 
 ---
 
-## Post-Session Flow (both formats)
+## Format C: The Snap
+
+ONE user response. Ultra-fast. Under 30 seconds. Perfect for busy days, warm-ups, or streak maintenance.
+
+**Flow: sentence → swap → WHY → done.**
+
+### The Entire Session
+
+1. `## 🔍 Snap: One Word` — heading
+2. Present ONE weak sentence (real-world, professional context)
+3. **Bold** the weakest word
+4. Ask: "Replace the bold word. One word only."
+5. `>` blockquote — space for ONE word
+
+After they respond:
+
+6. **React** — did they nail it?
+7. **The word** — show the ideal replacement, with a 2-line WHY (etymology or connotation)
+8. **Score** — simple pass/fail with flair:
+   - ✅ **Nailed it** — exact or equivalent replacement. +15 XP.
+   - 🔶 **Close** — right direction, wrong word. +10 XP. Show the better option.
+   - ❌ **Missed** — wrong direction. +5 XP. Show WHY the right word works.
+
+**No axis bars, no improvement delta.** This is a snap — fast in, fast out, one insight.
+
+### Example Format C Session
+
+```markdown
+## 🔍 Snap: One Word
+
+> "We need to **address** the performance issues before launch."
+
+Replace **address**. One word only.
+
+>
+```
+
+*[User writes: "fix"]*
+
+```markdown
+🔶 **Close.** "Fix" is better than "address" — it's direct. But the ideal swap:
+
+> "We need to **diagnose** the performance issues before launch."
+
+**WHY:** "Address" (Latin *directiāre*, to straighten) means "turn toward" — vague, bureaucratic. "Fix" (Latin *fixus*, fastened) means "make permanent" — but you don't know what's wrong yet. "Diagnose" (Greek *diagnōsis*, to distinguish) means "identify the specific problem." Before launch, you need to KNOW what's wrong, not fix blindly. The word choice signals your thinking stage.
+
+⚡ +10 XP — right instinct, sharper word available.
+
+> 🔍 Another snap? `go` | 🔥 Roast? `roast` | ✌️ Back to work
+```
+
+### Snap Topic Selection
+
+1. Use words from the user's ACTUAL weakness areas (check `state.json` weaknesses)
+2. Target the weakness they hit most: vague nouns, weak verbs, hedges, fillers
+3. If no weakness data, use common weak verbs: address, handle, deal with, look into, work on, process
+4. Rotate between: **vague verbs**, **hedge words**, **filler phrases**, **register mismatches**
+
+---
+
+## Post-Session Flow (all formats)
 
 After scoring: save to history.json, update XP, then:
 
