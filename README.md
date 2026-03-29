@@ -6,13 +6,15 @@
 ██   ██ ██   ██    ██    ██  ██████  █████  ███████ ██   ██    ██    ███████
 ```
 
-**Your language nerd sidekick for the terminal.**
+**Quick language challenges pulled from your real writing.**
 
 ---
 
 ## What It Is
 
-Articulate is a Claude Code plugin that turns your terminal into a language discovery engine. It has three modes: **Word Archaeology** (dig up fascinating etymologies, then apply what you learned), **Roast Mode** (scans your real writing and challenges you to cut the fluff), and **Ambient Coach** (drops one-line vocabulary tips while you work). Sessions take 60 seconds. You earn XP, level up, and build a personal lexicon of words you've actually used.
+Articulate is a Claude Code skill that gives you a surprise language challenge every time you invoke it. Swap a word, trim a phrase, punch up a sentence, snipe your own weak writing. Each session takes under 2 minutes — short, honest feedback with a one-line etymology nugget that makes you think differently about words.
+
+Three modes: **Lucky** (random missions from your writing), **Roast** (find your own weaknesses), **Ambient Coach** (tips while you work).
 
 Works with Claude Code, Codex, Cursor, OpenCode, and Gemini CLI.
 
@@ -20,64 +22,130 @@ Works with Claude Code, Codex, Cursor, OpenCode, and Gemini CLI.
 
 ## Demo
 
-### Word Archaeology
+### 🎯 Swap — Replace one word
 
-> The default experience. You get a story, a principle, and one exercise.
+```
+## 🎯 Swap
 
-## 🔍 Word Archaeology: *trivial*
+One word is holding this sentence back:
 
-In ancient Rome, the *trivium* was where three roads met — literally "three ways" (Latin *tri-* + *via*). These crossroads became gathering spots where ordinary people chatted about ordinary things.
+> "We need to **handle** the migration before the sprint ends."
 
-The word drifted through centuries carrying that association: trivium → trivialis → "commonplace" → "unimportant." A word born from the geometry of roads became our way of dismissing things that don't matter.
+Replace **handle**. One word.
+>
+```
 
-Here's the twist: the medieval *trivium* was also the name for the foundational university curriculum (grammar, logic, rhetoric). The "trivial" arts were considered **essential** — the opposite of how we use the word today.
+You type: `execute`
 
-💡 **The principle:** Words that describe importance often started as words about physical space. "Fundamental" = foundation. "Underlying" = beneath. "Trivial" = crossroads. When you need to convey significance, spatial metaphors hit harder than abstract ones.
+```
+✅ Nailed it. "Handle" is vague — you handle luggage, complaints, exceptions.
+"Execute" (Latin exsequī — follow to the end) means carry out a plan with precision.
 
-### ✏️ Your turn
+💡 *"Execute" entered English through legal death warrants. When you execute a
+migration, you're following every step to completion. No ambiguity.*
 
-Rewrite this sentence using a spatial metaphor instead of the abstract language:
+⚡ +28 XP (base 10 + score 9 + streak 9) | 🔥 5d
 
-> "This issue is very important to the project's success and shouldn't be ignored."
+🎲 Another? go | 💾 Save save | ✌️ Done
+```
 
-Max 20 words.
+### 🔍 Snipe — Fix your own writing
 
----
+```
+## 🔍 Snipe
 
-### Roast Mode
+Your words, under the microscope:
 
-> Scans your actual writing. Finds the worst sentence. Makes you fix it.
+> "I think we should maybe try to basically refactor the thing that handles auth"
 
-## 🔥 Roast: Your Writing, last 7 days
+4 problems. Find and fix them all. Rewrite it.
+>
+```
 
-I found this:
+You type: `Refactor the auth middleware.`
 
-> "I think we should maybe try to basically refactor the thing that handles the stuff for the user authentication part of the system."
+```
+🔍 4/4 caught. Clean sweep. 🔥
 
-That's **23 words** for a **6-word job**. Let me count:
-- 🟡 "I think" — hedge
-- 🟡 "maybe" — hedge
-- 🟡 "try to" — hedge
-- 🟡 "basically" — filler
-- 🔴 "the thing that handles the stuff" — vague noun avalanche
-- 🟠 "part of the system" — padding
+✓ "I think" — hedge gone
+✓ "maybe" + "basically" — filler gone
+✓ "the thing that handles" → "the auth middleware" — named it
 
-**6 weaknesses** in one sentence. That's impressive (not the good kind).
+📉 14 → 4 words. That's a sentence now.
 
-### ✏️ Rewrite challenge
-Say what you actually mean. Max 8 words.
+💡 *"Thing" (Old Norse þing) originally meant a public assembly. You were
+accidentally calling every object a Viking parliament.*
 
----
+⚡ +24 XP | 🔥 3d
+```
 
-### Ambient Coach
+### 💪 Punch — Make it hit
 
-> Drops inline tips while you work. One line, never in your way.
+```
+## 💪 Punch
 
-You: *"Can you basically just make the button do the thing when someone clicks it?"*
+This sentence has zero pulse:
+
+> "The meeting went well and we discussed several important topics."
+
+Make it hit. Same meaning, more impact.
+>
+```
+
+You type: `We cracked three blockers in 40 minutes. No follow-up needed.`
+
+```
+💪 That landed. Numbers + specifics > adjectives.
+
+💡 *"Several important topics" tells nothing. "Three blockers" tells everything.
+Numbers are the most precise words in any language — they leave zero room for
+interpretation.*
+
+Score: 92/100
+```
+
+### 🔥 Roast — Detective game
+
+```
+## 🔥 Roast
+
+Your words. My microscope.
+
+> "I basically think we should probably try to implement some kind of
+> solution for the thing that keeps breaking"
+
+6 problems. Find them all. Rewrite it.
+>
+```
+
+### 💡 Ambient Coach
+
+Drops inline tips while you work:
+
+You: *"Can you basically just make the button do the thing?"*
 
 Claude responds normally, then:
 
 > 💡 *You wrote "make the button do the thing" — try "trigger validation on click" for clarity.*
+
+---
+
+## The Six Missions
+
+Every `/articulate` picks a random mission type. You never know what's coming.
+
+| Mission | What you do | Time |
+|---------|-------------|------|
+| 🎯 **Swap** | Replace one weak word | 15 sec |
+| ✂️ **Trim** | Cut a sentence in half | 30 sec |
+| 💪 **Punch** | Make a flat sentence hit | 30 sec |
+| 🔍 **Snipe** | Fix your own real writing | 1 min |
+| 🔄 **Flip** | Rewrite in opposite tone | 30 sec |
+| 🧩 **Fill** | One blank, one perfect word | 15 sec |
+
+Plus **surprise twists** (~10% of sessions): Blind Punch, Reverse Swap, Speed Trim.
+
+Missions are personalized from your recent conversations and project context. When you miss a word, you can **practice it** immediately in the next mission.
 
 ---
 
@@ -130,52 +198,35 @@ See [`.opencode/INSTALL.md`](.opencode/INSTALL.md) for details.
 gemini extensions install https://github.com/hristo2612/articulate.git
 ```
 
-Gemini reads `gemini-extension.json` and `GEMINI.md` from the repo root automatically.
-
 ---
 
 ## Usage
 
-All commands start with `/articulate`. First run triggers onboarding.
+All commands start with `/articulate`. First run triggers onboarding (name, language, coaching toggle).
 
 | Command | What it does |
 |---------|-------------|
-| `/articulate` | Word Archaeology session |
+| `/articulate` | Random surprise mission |
 | `/articulate roast` | Roast your past writing |
 | `/articulate roast here` | Roast current conversation |
 | `/articulate coach on/off` | Toggle ambient coaching |
 | `/articulate stats` | Your progress |
 | `/articulate streak` | Streak status |
-| `/articulate lexicon` | Words you've mastered |
+| `/articulate lexicon` | Words you've learned |
+| `/articulate save` | Save progress to disk |
 | `/articulate help` | All commands |
 
-Append `--en` or `--bg` to any command to force a language:
+Append `--en` or `--bg` to force a language: `/articulate --bg`
 
-```
-/articulate --bg
-```
+### Save System
 
----
-
-## The Three Modes
-
-### 🔍 Word Archaeology
-
-The default mode. Every session picks a word with a genuinely surprising origin story — semantic drift, hidden metaphors, eponyms, cross-language connections — and tells it like a story, not a dictionary entry. Then you get one exercise that flows directly from the etymology. Takes about 60 seconds. You walk away knowing something interesting and having written something precise.
-
-### 🔥 Roast Mode
-
-Scans your real writing — past Claude/Codex conversations or the current chat — and finds the weakest sentence. Hedge stacking, vague noun avalanches, filler word bloat. It quotes the offending passage, tags every weakness, and challenges you to rewrite it in half the words. Finds 3 passages per session, worst first.
-
-### 💡 Ambient Coach
-
-A background mode. When enabled, Articulate watches your messages and occasionally drops a one-line vocabulary tip after Claude's regular response. "You wrote X — try Y for precision." Max once every 3-4 messages. Stays out of your way when you're debugging or in a hurry. Toggle with `/articulate coach on/off`.
+Progress is kept in memory during your session. Type `save` or `/articulate save` when you're ready to persist. No file I/O slowing you down between missions.
 
 ---
 
 ## Progression
 
-Seven ranks from newcomer to language architect. All three modes are available from Level 1 — levels are milestones, not gates.
+Seven ranks. All modes available from Level 1 — levels are milestones, not gates.
 
 | Level | Rank | XP | Badge |
 |-------|------|-----|-------|
@@ -187,46 +238,39 @@ Seven ranks from newcomer to language architect. All three modes are available f
 | 6 | ARCHITECT | 1800 | 💎 |
 | 7 | MASTERMIND | 3000 | 👑 |
 
-**Badges:** 14 badges earned through streaks, score milestones, session counts, and multilingual training. Badges are permanent — they survive prestige resets.
+**Badges:** 14 badges for streaks, scores, session counts, and multilingual training. Permanent — survive prestige resets.
 
-**Streaks:** Daily sessions build streaks. Streaks add bonus XP (up to +20 per session). Miss a day and the streak resets — unless you have a streak shield. Shields are earned at 30, 60, and 100-day milestones.
+**Streaks:** Daily sessions build streaks. Bonus XP up to +20/session. Streak shields at 30, 60, and 100 days.
 
-**Prestige:** At MASTERMIND, optionally reset to RECRUIT with a ★ star marker. Badges and lexicon carry over. Stars accumulate indefinitely.
+**Prestige:** At MASTERMIND, optionally reset to RECRUIT with a ★ star. Badges and lexicon carry over.
 
 ---
 
 ## Languages
 
-Articulate works with **any language** — the AI generates etymology stories and exercises on the fly. English and Bulgarian have curated reference files with word lists, weakness patterns, and coaching templates for richer sessions.
-
-Want to add your language? See [Contributing](#contributing).
+Works with **any language**. English and Bulgarian have curated reference files for richer sessions. Want to add yours? See [Contributing](#contributing).
 
 ---
 
 ## Data
 
-All state lives at `~/.articulate/`. Nothing is stored in the repo.
+All state at `~/.articulate/`. Nothing in the repo.
 
 | File | What's in it |
 |------|-------------|
-| `user.json` | Name, languages, preferences, coaching toggle |
+| `user.json` | Name, languages, coaching toggle |
 | `state.json` | XP, level, rank, streak, badges, weaknesses |
-| `history.json` | Last 100 completed sessions (FIFO) |
-| `lexicon.json` | Words you've mastered with usage counts |
-
-**Backup:**
+| `history.json` | Last 100 sessions (FIFO) |
+| `lexicon.json` | Words learned with usage counts |
+| `contexts/` | Cached project summaries |
 
 ```bash
+# Backup
 cp -r ~/.articulate ~/.articulate-backup
-```
 
-**Reset:**
-
-```
+# Reset (requires confirmation)
 /articulate reset
 ```
-
-Requires confirmation. Wipes all progress.
 
 ---
 
@@ -234,13 +278,9 @@ Requires confirmation. Wipes all progress.
 
 ### Add a Language Pack
 
-Language packs live at `skills/articulate/references/languages/`. To add a new language:
-
-1. Create `references/languages/{lang}.md` with word lists organized by level, weakness patterns, and detection rules.
-2. Use `english.md` and `bulgarian.md` as reference implementations.
-3. Update SKILL.md language handling section to include the new language code.
-
-PRs welcome.
+1. Create `skills/articulate/references/languages/{lang}.md`
+2. Use `english.md` and `bulgarian.md` as reference
+3. PR welcome
 
 ---
 
