@@ -68,7 +68,7 @@ Offer up to 3 crime scenes. Worst first.
 | 2 | Vague nouns | 🔴 | "'Thing' — your brain had a concept but your words quit halfway." |
 | 3 | Filler bloat | 🟡 | "Fillers are verbal throat-clearing." |
 | 4 | Weak verbs | 🔴 | "'Make' and 'do' work anywhere, which means they mean nothing." |
-| 5 | Register confusion | 🟠 | "Mixing 'gonna' with 'pursuant to' = two people arguing in one email." |
+| 5 | Tone confusion | 🟠 | "Mixing 'gonna' with 'pursuant to' = two people arguing in one email." |
 | 6 | Buried action | 🟠 | "If your reader excavates your request from paragraph 3, you're hiding." |
 | 7 | Passive deflection | 🟡 | "'It was decided' = leaving the room before anyone asks who decided." |
 

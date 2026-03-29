@@ -43,10 +43,10 @@ Four axes, 25 points each, 100 total.
 **Flip:**
 | Axis | What it measures |
 |------|-----------------|
-| Register | Actually changed register, not just swapped words |
-| Naturalness | Sounds natural in target register |
+| Tone | Actually changed tone, not just swapped words |
+| Naturalness | Sounds natural in target tone |
 | Information | Core info preserved through the flip |
-| Style | Has personality in the new register |
+| Style | Has personality in the new tone |
 
 ### Display Format
 

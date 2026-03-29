@@ -50,7 +50,7 @@ Don't just show the mission type. HOOK the user with WHERE the challenge came fr
 
 **🔄 Flip openers:**
 - "Wrong voice for the room:"
-- "This register doesn't match the audience:"
+- "This tone doesn't match the audience:"
 - "Gear shift needed:"
 - "This sounds like a {casual/formal} talk in a {formal/casual} room:"
 
@@ -205,9 +205,9 @@ Your words, under the microscope:
 
 ---
 
-### 🔄 Flip — Change the register
+### 🔄 Flip — Change the tone
 
-Present a sentence and ask user to rewrite in the OPPOSITE register (formal→casual or casual→formal).
+Present a sentence and ask user to rewrite in the OPPOSITE tone (formal→casual or casual→formal).
 
 **Format:**
 ```
@@ -217,7 +217,7 @@ Wrong voice for the room:
 
 > "Hey so the deploy kinda broke stuff lol"
 
-Flip to formal. Same info, boardroom register.
+Flip to formal. Same info, boardroom tone.
 >
 ```
 
@@ -227,11 +227,11 @@ Flip to formal. Same info, boardroom register.
 - Show gold standard.
 
 ```
-🔄 **Clean flip.** "Kinda broke stuff" → "disrupted checkout" is the right gear shift.
+🔄 **Clean flip.** "Kinda broke stuff" → "disrupted checkout" — right gear shift.
 
 > Gold: "The 14:30 deploy introduced a regression in the checkout flow. Rolled back at 14:45."
 
-💡 *Register = social gear. "Broke stuff" is first gear. "Introduced a regression" is fifth. Both describe the same crash — the audience decides which gear.*
+💡 *Tone = social gear. "Broke stuff" is first gear. "Introduced a regression" is fifth. Same crash — your audience picks the gear.*
 ```
 
 ---
@@ -263,6 +263,17 @@ Other strong options: *detailed, thorough, clear*
 ```
 
 ---
+
+## Clarity Rules (CRITICAL)
+
+Make it OBVIOUS what the user should type:
+- **Swap/Fill:** "One word." — they type one word
+- **Trim:** "Say it in {N} words or fewer." — they type a short sentence
+- **Punch:** "Make it hit." — they rewrite the sentence
+- **Snipe:** "Find and fix. Rewrite it." — they rewrite
+- **Flip:** "Flip to {formal/casual}." — they rewrite in new tone
+
+Always end with `>` on its own line — that's where they type. No ambiguity about what's expected.
 
 ## Response Length Rules (CRITICAL)
 
@@ -382,7 +393,7 @@ These show up randomly (~10% of sessions). Don't announce them as special — ju
 | Trim | Compression | Meaning Preserved | Naturalness | Impact |
 | Punch | Power | Specificity | Naturalness | Brevity |
 | Snipe | Detection | Precision | Compression | Naturalness |
-| Flip | Register Accuracy | Naturalness | Information Preserved | Style |
+| Flip | Tone Accuracy | Naturalness | Information Preserved | Style |
 
 ## Teaching Point Guidelines
 
