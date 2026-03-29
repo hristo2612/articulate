@@ -136,6 +136,18 @@ Write recalculated streak, todayMissionCount, and lastPlayedDate to `~/.articula
 
 ---
 
+## Conversation Context Detection
+
+When `/articulate` is invoked, check whether there is existing conversation context (prior messages before the skill invocation).
+
+- If the conversation has prior messages, scan the last 5-10 messages for: technical topics, problems being solved, domain terms, communication challenges.
+- If a clear topic is detected, offer a one-line suggestion: "I noticed you were working on **{topic}**. Want a mission based on that? (yes/skip)"
+- If the user says yes: generate a mission themed around the detected topic, passing it to the appropriate mission type's generation rules.
+- If the user says skip, or no clear topic is detected: proceed silently with standard flow.
+- Do NOT re-read the entire conversation — scan only recent messages for topic signals.
+
+---
+
 ## Daily Word Ritual
 
 Run after dashboard, before first mission of the session.
