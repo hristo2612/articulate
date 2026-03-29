@@ -87,7 +87,25 @@ Say what you actually mean. Max 8 words.
 
 ## Scoring
 
-Score the user's rewrite on four axes (0-25 each, 100 total):
+**Feedback format (after user rewrites):**
+
+1. **React first** — genuine reaction: "Now THAT has a spine." or "Better, but you're still hedging."
+2. **Before/After comparison:**
+   ```
+   **Before:** ~90 words, 10 weaknesses
+   **After:**  ~12 words, 0 weaknesses
+   📉 **87% compression** — that's a gut renovation.
+   ```
+3. **Score with axis bars:**
+   ```
+   **Score: 85/100**
+   ├─ ✓ Compression:   23/25
+   ├─ ✓ Weaknesses:    25/25  ← all 10 eliminated
+   ├─ ✓ Precision:     20/25
+   └─ ✓ Naturalness:   17/25  ← reads a bit robotic
+   ```
+4. **Gold standard** — show the ideal version, explain in 1-2 bullets why it works
+5. **What you nailed / What to watch** — specific, not generic
 
 | Axis | What it measures |
 |------|-----------------|
@@ -95,8 +113,6 @@ Score the user's rewrite on four axes (0-25 each, 100 total):
 | Weakness Elimination | How many flagged weaknesses were removed |
 | Precision Gain | Did vague words become specific? Did hedges become assertions? |
 | Naturalness | Does it still read like something a human would say? |
-
-Use axis bar format from style.md.
 
 ## Multi-Round Flow
 

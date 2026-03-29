@@ -18,3 +18,4 @@
 | 2 | Topic diversity + first-session guidance | 24 | 21 | 21 | 66 | ✓ Keep |
 | 3 | Scoring feedback + bonus nuggets | 24 | 22 | 21 | 67 | ✓ Keep |
 | 4-test | Roast mode (no file changes, just testing) | 25 | 23 | 23 | 71 | ✓ Best! |
+| 4 | Response flow arc + personality energy | 25 | 23 | 22 | 70 | ✓ Keep |

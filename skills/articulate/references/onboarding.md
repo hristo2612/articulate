@@ -122,7 +122,7 @@ mkdir -p ~/.articulate/contexts
 
 After file creation, do NOT ask the user to invoke `/articulate` again. Immediately proceed:
 
-1. Display a brief confirmation: `"Profile saved. Let's kick things off with a word story, {name}."`
+1. Display an enthusiastic transition: `"Setup complete! Time for your first word story, **{name}** — I think you're going to like this one. 🔍"`
 2. Run a **Word Archaeology** session
 3. Read `references/word-archaeology.md` for session rules
 4. Follow the full session flow: present story, exercise, wait for response, evaluate, score, show feedback
