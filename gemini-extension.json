@@ -1,0 +1,6 @@
+{
+  "name": "articulate",
+  "version": "1.0.0",
+  "description": "Precision language training skill",
+  "context_file": "GEMINI.md"
+}

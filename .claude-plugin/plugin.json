@@ -1,0 +1,18 @@
+{
+  "name": "articulate",
+  "description": "Precision language training skill — gamified vocabulary coaching in your terminal",
+  "version": "1.0.0",
+  "author": {
+    "name": "Hristo"
+  },
+  "homepage": "https://github.com/hristo2612/articulate",
+  "repository": "https://github.com/hristo2612/articulate",
+  "license": "MIT",
+  "keywords": [
+    "vocabulary",
+    "language",
+    "training",
+    "writing",
+    "skill"
+  ]
+}

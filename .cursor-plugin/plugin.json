@@ -1,0 +1,6 @@
+{
+  "name": "articulate",
+  "description": "Precision language training skill — gamified vocabulary coaching in your terminal",
+  "version": "1.0.0",
+  "hooks": "hooks/hooks-cursor.json"
+}
