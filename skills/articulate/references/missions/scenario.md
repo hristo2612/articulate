@@ -115,18 +115,14 @@ WORD LIMIT: 60 words
 
 ## Presentation Format
 
-Full briefing. All five elements visible. Box-drawing characters.
-
 ```
-━━━ MISSION: SCENARIO 🎭 ━━━━━━━━━━━━━━━━━━━━
+**MISSION: SCENARIO 🎭**
 
 SITUATION: A potential customer emailed asking if your API supports
-           batch processing. They're evaluating you against two
-           competitors.
+           batch processing. They're evaluating you against two competitors.
 ROLE: Founder / sole developer
 AUDIENCE: Technical PM at a mid-size SaaS company
-GOAL: Confirm the feature exists, differentiate from competitors,
-      and close toward a trial signup.
+GOAL: Confirm, differentiate, close toward trial signup.
 WORD LIMIT: 80 words
 
 Your response:
@@ -135,17 +131,14 @@ Your response:
 For L5+ with additional constraints:
 
 ```
-━━━ MISSION: SCENARIO 🎭 ━━━━━━━━━━━━━━━━━━━━
+**MISSION: SCENARIO 🎭**
 
-SITUATION: Your SaaS product had a 4-hour outage affecting ~200
-           customers. Root cause was a database migration that
-           wasn't tested against production data volumes.
+SITUATION: Your SaaS product had a 4-hour outage affecting ~200 customers.
+           Root cause: database migration untested against production volumes.
 ROLE: CEO / co-founder
 AUDIENCE: All affected customers (email blast)
-GOAL: Take accountability, explain what happened (briefly), and
-      rebuild trust. Do NOT over-promise on timelines.
-WORD LIMIT: 60 words
-REGISTER: Transparent, humble, professional. No corporate speak.
+GOAL: Take accountability, explain briefly, rebuild trust. No over-promising.
+WORD LIMIT: 60 words | REGISTER: Transparent, humble, professional.
 
 Your response:
 ```
@@ -231,60 +224,41 @@ Does the response move the audience toward the desired action? Is it compelling?
 ## Feedback Format
 
 ```
-━━━ DEBRIEF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**DEBRIEF**
 
-SCORE: 76/100
-├─ Word Choice:     16/20  ████████████████░░░░
-├─ Register:        18/20  ██████████████████░░
+**Score:** 76/100
+├─ Word Choice:      16/20  ████████████████░░░░
+├─ Register:         18/20  ██████████████████░░
 ├─ Goal Achievement: 14/20  ██████████████░░░░░░
-├─ Conciseness:     16/20  ████████████████░░░░
-└─ Persuasiveness:  12/20  ████████████░░░░░░░░
+├─ Conciseness:      16/20  ████████████████░░░░
+└─ Persuasiveness:   12/20  ████████████░░░░░░░░
 
 WORD COUNT: 74/80 -- within limit
 
-GOLD STANDARD:
+**Gold standard:**
 > "Hi [Name] -- yes, our batch endpoint processes up to 10k records
 >  per call with sub-second latency. Unlike [Competitor A]'s queue
 >  model, ours returns results synchronously -- no polling. I've
 >  attached a code sample in Python. Want to test it? I can set up
 >  a sandbox with 50k free API calls this week."
 
-WHY IT WORKS:
-- "batch endpoint" --> names the feature precisely (not "batch processing capability")
-- "10k records per call with sub-second latency" --> specific metric, not "fast"
-- "synchronously -- no polling" --> differentiator in one precise phrase
-- "sandbox with 50k free API calls this week" --> concrete CTA with specifics
+**Why:** "batch endpoint" names the feature precisely; "10k records per call with sub-second latency" replaces "fast" with a metric; "synchronously -- no polling" differentiates in one phrase; "sandbox with 50k free API calls this week" makes the CTA concrete.
 
-YOUR WINS:
-- [Specific word choices the operator got right]
-
-COULD BE SHARPER:
-- [Specific improvements with alternatives and explanations]
+**Wins:** [specific strong word choices and WHY they work]
+**Sharper:** [specific improvements with alternatives]
 
 WEAKNESSES DETECTED: utility_words, weak_verbs
 ```
 
 ### Gold Standard
 
-ALWAYS provide a gold standard response. It must:
+ALWAYS provide a gold standard response. It must hit every element of the goal, stay within the word limit, use precise high-information language, match the register, and serve as a model.
 
-- Hit every element of the goal
-- Stay within the word limit
-- Use precise, high-information language throughout
-- Match the register perfectly
-- Serve as a model the operator can learn from
+### Why / Wins / Sharper
 
-### WHY IT WORKS Section
+**Why:** Analyze 3-5 specific word choices from the gold standard -- name the word, explain what it accomplishes, contrast with a weaker version.
 
-Analyze 3-5 specific word choices from the gold standard:
-
-1. Name the precise word/phrase
-2. Explain what it accomplishes (specificity, persuasion, register fit)
-3. Contrast with what a weaker version would look like
-
-### YOUR WINS / COULD BE SHARPER
-
-Same format as REWRITE missions. Acknowledge strong choices, then suggest specific improvements.
+**Wins / Sharper:** Same format as REWRITE missions. Acknowledge strong choices, then suggest specific improvements.
 
 ---
 

@@ -79,12 +79,8 @@ Target words: perspicacious, parsimonious, verisimilitude, ameliorate, obfuscate
 
 ## Presentation Format
 
-Clean, terminal-native. One sentence, one blank, no clutter.
-
 ```
-━━━ MISSION: FILL PRECISION 🎯 ━━━━━━━━━━━━━━
-
-Fill the blank with the most precise word:
+**MISSION: FILL PRECISION 🎯**
 
 > "The API's response time was [___], often exceeding 3 seconds
 >  even for simple queries."
@@ -95,9 +91,7 @@ Your word:
 For L3+, optionally include a register hint:
 
 ```
-━━━ MISSION: FILL PRECISION 🎯 ━━━━━━━━━━━━━━
-
-Fill the blank with the most precise word:
+**MISSION: FILL PRECISION 🎯**
 
 > "The committee's feedback was [___] at best -- they acknowledged
 >  the proposal but offered no substantive critique."
@@ -136,77 +130,49 @@ FILL_PRECISION uses a tier-based scoring system, not a rubric. One word, one sco
 The debrief for FILL_PRECISION focuses on etymology, register, and the precision gap between the operator's word and the target.
 
 ```
-━━━ DEBRIEF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**DEBRIEF**
 
-YOUR WORD: "slow"
-TARGET: "sluggish"
-MATCH: Acceptable (60/100)
+YOUR WORD: "slow" | TARGET: "sluggish" | MATCH: Acceptable (60/100)
 
-WHY "sluggish" > "slow":
-- "slow" is a utility adjective -- it states the fact but carries no texture
-- "sluggish" implies reluctance and heaviness -- it suggests the system
-  is laboring, not just taking time. It paints a picture.
-- Etymology: from Scandinavian "slugg" (slow-moving person/creature)
+**Why "sluggish" > "slow":**
+- "slow" states the fact but carries no texture
+- "sluggish" implies reluctance and heaviness -- a system laboring
+- Etymology: Scandinavian "slugg" (slow-moving creature)
 - Register: technical writing, performance reports, code reviews
 
-ALSO STRONG: "abysmal" (80) -- stronger judgment, implies unacceptable
-             "glacial" (80) -- vivid metaphor, strong in informal technical writing
+ALSO STRONG: "abysmal" (80) -- implies unacceptable; "glacial" (80) -- vivid metaphor
 ```
 
 ### Debrief Structure (required elements)
 
-1. **YOUR WORD:** -- what the operator submitted
-2. **TARGET:** -- the intended precision word
-3. **MATCH:** -- tier name and score
-4. **WHY [target] > [their word]:** -- the precision gap explanation. Include:
-   - What the operator's word lacks (texture, specificity, register fit)
-   - What the target word adds (connotation, imagery, precision)
-   - **Etymology** -- brief origin of the target word (1 line). This deepens retention.
-   - **Register** -- where this word lives (technical docs, investor emails, casual Slack, etc.)
-5. **ALSO STRONG:** -- 1-2 alternative words that would have scored 80 (strong synonym). Each with a brief note on what it brings. This expands the operator's active vocabulary even further.
+1. **YOUR WORD / TARGET / MATCH** -- on one line
+2. **Why [target] > [their word]:** -- precision gap explanation including: what the operator's word lacks, what the target adds, **etymology** (1 line), **register** (where the word lives)
+3. **ALSO STRONG:** -- 1-2 alternative 80-scoring synonyms with brief notes
 
 ### When the Operator Nails It (100/100)
 
 ```
-━━━ DEBRIEF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**DEBRIEF**
 
-YOUR WORD: "sluggish"
-TARGET: "sluggish"
-MATCH: Exact (100/100)
+YOUR WORD: "sluggish" | TARGET: "sluggish" | MATCH: Exact (100/100)
 
 TARGET ACQUIRED. Direct hit.
 
-WORD INTEL:
-- Etymology: Scandinavian "slugg" (slow-moving creature)
-- Register: technical writing, performance analysis, code reviews
-- Connotation: implies heaviness, reluctance -- the system is laboring
+**Word intel:** Etymology: Scandinavian "slugg" (slow-moving creature). Register: technical writing, performance analysis. Connotation: heaviness, reluctance.
 
-ALSO STRONG: "abysmal" -- harsher judgment, effective in escalation emails
-             "glacial" -- vivid, informal technical tone
+ALSO STRONG: "abysmal" -- harsher judgment; "glacial" -- vivid, informal technical tone
 ```
-
-Keep it tight. Celebrate the hit, deliver the intel, move on.
 
 ### When the Operator Misses Completely (0/100)
 
 ```
-━━━ DEBRIEF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**DEBRIEF**
 
-YOUR WORD: "interesting"
-TARGET: "sluggish"
-MATCH: Wrong (0/100)
+YOUR WORD: "interesting" | TARGET: "sluggish" | MATCH: Wrong (0/100)
 
-MISS ANALYSIS:
-- "interesting" is a utility word with almost zero information content
-- The sentence describes poor performance -- the blank needs a word
-  that conveys slowness with texture, not a vague positive judgment
-- Re-read the context clues: "exceeding 3 seconds", "even for simple queries"
-  -- these point to something heavy, laboring, unacceptable
+**Miss analysis:** "interesting" is a utility word with zero information content. The sentence describes poor performance -- context clues ("exceeding 3 seconds", "even for simple queries") point to something heavy and laboring.
 
-TARGET WORD:
-- "sluggish" -- implies reluctance, heaviness, a system dragging its feet
-- Etymology: Scandinavian "slugg" (slow-moving creature)
-- Register: technical writing, performance reports
+**Target word:** "sluggish" -- reluctance, heaviness, a system dragging its feet. Etymology: Scandinavian "slugg". Register: technical writing, performance reports.
 
 ALSO STRONG: "abysmal" (80), "glacial" (80)
 ```

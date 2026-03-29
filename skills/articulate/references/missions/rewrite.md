@@ -127,45 +127,33 @@ makes stuff easier and people seem to like it a lot."
 
 ## Presentation Format
 
-Use box-drawing characters. Terminal aesthetic. No decorative elements.
-
 ```
-━━━ MISSION: REWRITE ✏️ ━━━━━━━━━━━━━━━━━━━━
-
-Rewrite this sentence with precision:
+**MISSION: REWRITE ✏️**
 
 > "The **thing** we built is **really good** and **helps** people **do stuff** faster."
 
-Target: Replace the highlighted weak words.
 Your rewrite:
 ```
 
 For L3+, include audience context:
 
 ```
-━━━ MISSION: REWRITE ✏️ ━━━━━━━━━━━━━━━━━━━━
+**MISSION: REWRITE ✏️**
 
 AUDIENCE: Technical PM evaluating your API
 REGISTER: Professional, precise, confident
 
-Rewrite this sentence with precision:
-
 > "Our **thing** is **basically** a **really good** way to **help** developers **do stuff** with payments."
 
-Target: Replace the highlighted weak words.
 Your rewrite:
 ```
 
 For L5+, paragraph-level:
 
 ```
-━━━ MISSION: REWRITE ✏️ ━━━━━━━━━━━━━━━━━━━━
+**MISSION: REWRITE ✏️**
 
-AUDIENCE: Investor update email
-REGISTER: Confident, data-driven, concise
-CONSTRAINT: 2 sentences max
-
-Rewrite this paragraph with precision:
+AUDIENCE: Investor update email | REGISTER: Confident, data-driven, concise | CONSTRAINT: 2 sentences max
 
 > "Things have been **going really well** lately. We **got** a **lot** of
 >  new users and our **stuff** is **basically** working **great**. **I think**
@@ -236,30 +224,24 @@ Does it sound like a real person wrote it? Not thesaurus-stuffed or overwrought?
 
 ## Feedback Format
 
-After evaluation, present the debrief using this exact structure:
+After evaluation, present the debrief using this structure:
 
 ```
-━━━ DEBRIEF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**DEBRIEF**
 
-SCORE: 78/100
+**Score:** 78/100
 ├─ Precision:   22/25  ████████████████████░░░░░
 ├─ Conciseness: 18/25  ██████████████░░░░░░░░░░░
 ├─ Impact:      20/25  ████████████████░░░░░░░░░
 └─ Naturalness: 18/25  ██████████████░░░░░░░░░░░
 
-GOLD STANDARD:
+**Gold standard:**
 > "The onboarding flow we shipped reduces task completion time by 40%."
 
-WHY IT WORKS:
-- "onboarding flow" --> specific noun replacing "thing"
-- "shipped" --> decisive verb replacing "built" (implies completion + delivery)
-- "reduces task completion time by 40%" --> measurable impact replacing "helps people do stuff faster"
+**Why:** "onboarding flow" replaces "thing" with a specific noun; "shipped" implies completion + delivery; "reduces task completion time by 40%" adds measurable impact.
 
-YOUR WINS:
-- [List specific word choices the operator got right and WHY they work]
-
-COULD BE SHARPER:
-- [List specific word choices that could improve and suggest alternatives with WHY]
+**Wins:** [specific strong word choices and WHY they work]
+**Sharper:** [specific improvements with alternatives and WHY]
 
 WEAKNESSES DETECTED: utility_words, vague_nouns
 ```
@@ -277,38 +259,17 @@ Each axis gets a 25-character bar. Fill proportionally:
 
 ### Gold Standard
 
-ALWAYS provide a gold standard rewrite. This is the "ideal" version -- the sentence as a precision language expert would write it. The gold standard:
-
-- Replaces every weak word with the strongest contextually-appropriate alternative
-- Is tight -- no unnecessary words
-- Sounds natural -- not overwrought or thesaurus-stuffed
-- Matches the specified register and audience (if given)
+ALWAYS provide a gold standard rewrite. The gold standard replaces every weak word with the strongest contextually-appropriate alternative, is tight with no unnecessary words, sounds natural, and matches the specified register and audience.
 
 ### WHY Explanations
 
-For EVERY word replacement in the gold standard, explain:
+For EVERY word replacement in the gold standard, explain the specific swap (old --> new), why the new word is better, and what the old word lacked. These explanations are the core learning mechanism. Never skip them.
 
-1. **What changed:** The specific word swap (old --> new)
-2. **Why the new word is better:** What information, texture, or precision it adds
-3. **What the old word lacked:** Why the original was weak in this context
+### Wins / Sharper
 
-These explanations are the core learning mechanism. Never skip them.
+**Wins:** Always acknowledge strong word choices. Name exact words, explain why they work (register fit, precision, connotation).
 
-### YOUR WINS Section
-
-Always acknowledge what the operator did well. Be specific:
-
-- Name the exact word choices that were strong
-- Explain why they work (register fit, precision, connotation)
-- This reinforces correct behavior and builds confidence
-
-### COULD BE SHARPER Section
-
-Only include if the operator missed opportunities. Be constructive:
-
-- Name the specific weak word that survived or was replaced with a still-weak alternative
-- Suggest 1-2 stronger alternatives with brief explanations
-- Frame as opportunity, not failure: "could be sharper" not "you failed"
+**Sharper:** Only if the operator missed opportunities. Name the weak word that survived, suggest 1-2 stronger alternatives. Frame as opportunity, not failure.
 
 ---
 

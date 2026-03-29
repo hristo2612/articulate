@@ -100,8 +100,7 @@ Present all parts at once so the operator can plan their approach, but mark them
 ### 2-Part Boss
 
 ```
-━━━ BOSS MISSION 💀 ━━━━━━━━━━━━━━━━━━━━━━━━
-              3x XP MULTIPLIER ACTIVE
+**BOSS MISSION 💀** -- 3x XP MULTIPLIER ACTIVE
 
 THE ELEVATOR
 
@@ -114,16 +113,13 @@ Use that value proposition in the opening paragraph of a cold email
 to a VP of Engineering at a Series B fintech startup.
 Constraint: 60 words max. Professional, direct, end with a clear CTA.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 Submit Part 1 first, then Part 2.
 ```
 
 ### 3-Part Boss
 
 ```
-━━━ BOSS MISSION 💀 ━━━━━━━━━━━━━━━━━━━━━━━━
-              3x XP MULTIPLIER ACTIVE
+**BOSS MISSION 💀** -- 3x XP MULTIPLIER ACTIVE
 
 THE PIVOT
 
@@ -138,8 +134,6 @@ Constraint: 40 words max. Focus on market opportunity and traction.
 PART 3 of 3:
 Compress the core message into a 280-character tweet.
 Constraint: Must be engaging enough to earn clicks. No hashtag spam.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Submit each part in order.
 ```
@@ -195,65 +189,37 @@ The 3x multiplier makes BOSS missions the highest-XP opportunity in the game. A 
 Debrief EACH PART individually, then give an overall assessment.
 
 ```
-━━━ BOSS DEBRIEF 💀 ━━━━━━━━━━━━━━━━━━━━━━━━
+**BOSS DEBRIEF 💀**
 
-PART 1: Value Proposition
-SCORE: 82/100
+PART 1: Value Proposition -- 82/100
 ├─ Precision:   22/25  ████████████████████░░░░░
 ├─ Conciseness: 20/25  ████████████████████░░░░░
 ├─ Impact:      22/25  ████████████████████░░░░░
 └─ Naturalness: 18/25  ██████████████░░░░░░░░░░░
 
-YOUR VERSION:
-> "Ship API monitoring that catches failures before your customers do."
+**Gold standard:** "Detect API failures 30 seconds before your customers notice them."
+**Why:** "Detect" is more precise than "Ship" for monitoring; "30 seconds" adds a concrete metric; "detect... before" adds temporal specificity. Strong overall -- tight, active, clear benefit.
 
-GOLD STANDARD:
-> "Detect API failures 30 seconds before your customers notice them."
-
-ANALYSIS:
-- "Ship" is strong but "Detect" is more precise for a monitoring product
-- "catches" is good; "detect... before" adds temporal specificity
-- "30 seconds" adds a concrete metric that "catches" lacks
-- Strong overall -- tight, active, clear benefit
-
-─────────────────────────────────────────────
-
-PART 2: Cold Email
-SCORE: 71/100
+PART 2: Cold Email -- 71/100
 ├─ Word Choice:      16/20  ████████████████░░░░
 ├─ Register:         18/20  ██████████████████░░
 ├─ Goal Achievement: 14/20  ██████████████░░░░░░
 ├─ Conciseness:      12/20  ████████████░░░░░░░░
 └─ Persuasiveness:   11/20  ███████████░░░░░░░░░
 
-[... part 2 details ...]
+[... part 2 gold standard + why ...]
 
-─────────────────────────────────────────────
+OVERALL: 77/100 (avg of 82, 71)
+XP EARNED: (10 + 7 + streak_bonus) * 3 = {calculated} XP -- 💀 3x BOSS MULTIPLIER
 
-OVERALL
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TOTAL SCORE: 77/100  (avg of 82, 71)
-XP EARNED: (10 + 7 + streak_bonus) * 3 = {calculated} XP
-         💀 3x BOSS MULTIPLIER APPLIED
-
-CONNECTED PRECISION:
-- [How well the parts built on each other]
-- [Whether the core message stayed consistent across transformations]
-- [Register shifts that worked / didn't work]
+**Connected precision:** [2-4 sentences on how well parts built on each other, whether the core message stayed consistent, and which register shifts worked]
 
 WEAKNESSES DETECTED: filler_words, hedging
 ```
 
 ### CONNECTED PRECISION Section
 
-Unique to BOSS debriefs. Evaluate how well the parts connect:
-
-- Did the core idea/value proposition carry through all parts?
-- Did the operator successfully shift register between audiences?
-- Did constraints (word limits) get tighter gracefully, or did the message collapse?
-- Did the operator make each part self-contained while maintaining the thread?
-
-This section is 2-4 sentences, specific and actionable.
+Unique to BOSS debriefs. Evaluate: Did the core idea carry through all parts? Did the operator shift register successfully? Did constraints tighten gracefully or did the message collapse? 2-4 sentences, specific and actionable.
 
 ---
 

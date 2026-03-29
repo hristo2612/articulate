@@ -3,6 +3,8 @@ name: articulate
 description: "Use when the user invokes /articulate — precision language training skill for building active vocabulary through guided writing missions"
 ---
 
+Read reference files ONLY when needed for the current action. Do not pre-read all references.
+
 # Articulate
 
 Precision language training through writing missions. Production over recognition — you write, get scored, level up.
@@ -27,64 +29,15 @@ All state lives at `~/.articulate/`. Create this directory on first run.
 | `~/.articulate/lexicon.json` | Mastered words with usage counts and mastery tiers |
 | `~/.articulate/contexts/` | Cached project summaries for context-aware missions |
 
-### user.json Schema
+### Schemas
 
-```json
-{
-  "name": "string",
-  "languages": ["English"],
-  "focusAreas": ["prompt_engineering", "business_communication"],
-  "dailyMinutes": 5,
-  "selfAssessment": 3,
-  "contextAware": true,
-  "createdAt": "ISO8601",
-  "lastUpdated": "ISO8601"
-}
-```
+**user.json** — Fields: `name` (string), `languages` (array, e.g. `["English"]`), `focusAreas` (array, e.g. `["prompt_engineering", "business_communication"]`), `dailyMinutes` (int), `selfAssessment` (1-5), `contextAware` (bool), `createdAt` (ISO8601), `lastUpdated` (ISO8601)
 
-### state.json Schema
+**state.json** — Fields: `xp`, `level`, `rank`, `badge`, `streak`, `bestStreak`, `streakShields`, `lastPlayedDate` (ISO8601 or null), `todayMissionCount`, `totalCompleted`, `prestigeStars`, `missionCounts` (object with keys: rewrite, fill, prompt, scenario, boss, review), `perfectCount`, `highScoreCount`, `earnedBadges` (array), `weaknesses` (object: utility_words, hedging, flat_structure, vague_nouns, weak_verbs, filler_words — all ints), `weaknessHistory` (object), `currentSeason`, `lastBossDate`, `dailyWord`, `dailyWordDate`
 
-```json
-{
-  "xp": 0, "level": 1, "rank": "RECRUIT", "badge": "⬜",
-  "streak": 0, "bestStreak": 0, "streakShields": 0,
-  "lastPlayedDate": null, "todayMissionCount": 0, "totalCompleted": 0,
-  "prestigeStars": 0,
-  "missionCounts": { "rewrite": 0, "fill": 0, "prompt": 0, "scenario": 0, "boss": 0, "review": 0 },
-  "perfectCount": 0, "highScoreCount": 0, "earnedBadges": [],
-  "weaknesses": {
-    "utility_words": 0, "hedging": 0, "flat_structure": 0,
-    "vague_nouns": 0, "weak_verbs": 0, "filler_words": 0
-  },
-  "weaknessHistory": {},
-  "currentSeason": null, "lastBossDate": null,
-  "dailyWord": null, "dailyWordDate": null
-}
-```
+**history.json** — Array of entries (FIFO, max 100). Entry fields: `id` (uuid-v4), `date` (ISO8601), `type` (mission type), `language`, `projectContext` (string or null), `score` (0-100), `xpEarned`, `criticalHit` (bool), `weaknessesFound` (array of category strings), `challenge`, `userResponse`, `goldStandard`, `feedback`
 
-### history.json Entry Schema
-
-```json
-{
-  "id": "uuid-v4", "date": "ISO8601", "type": "rewrite",
-  "language": "English", "projectContext": null,
-  "score": 75, "xpEarned": 18, "criticalHit": false,
-  "weaknessesFound": ["utility_words"],
-  "challenge": "...", "userResponse": "...", "goldStandard": "...", "feedback": "..."
-}
-```
-
-### lexicon.json Entry Schema
-
-```json
-{
-  "word": {
-    "mastery": "seen|used|consistent|mastered",
-    "timesUsed": 1, "firstSeen": "ISO8601", "lastUsed": "ISO8601",
-    "etymology": "...", "contexts": ["business email"]
-  }
-}
-```
+**lexicon.json** — Object keyed by word. Each value: `mastery` ("seen"|"used"|"consistent"|"mastered"), `timesUsed` (int), `firstSeen` (ISO8601), `lastUsed` (ISO8601), `etymology` (string), `contexts` (array of strings)
 
 ### First-Run Detection
 
@@ -162,35 +115,24 @@ Read `~/.articulate/state.json` and `~/.articulate/user.json`.
 
 ### 2. Calculate Streak
 
-Parse `lastPlayedDate` from state. Get today's date as `YYYY-MM-DD`.
+Parse `lastPlayedDate` from state. Compare to today (`YYYY-MM-DD`):
 
-- **lastPlayedDate is today:** Streak unchanged. Increment `todayMissionCount`.
-- **lastPlayedDate is yesterday:** Streak continues. Set `streak += 1`. Reset `todayMissionCount` to 0.
-- **lastPlayedDate is older than yesterday:**
-  - If `streakShields > 0` and missed exactly 1 day: consume one shield (`streakShields -= 1`), keep streak, reset `todayMissionCount`.
-  - Otherwise: apply decay. Reset `streak` to 1. Reset `todayMissionCount` to 0.
-- **lastPlayedDate is null:** First session ever. Set `streak` to 1, `todayMissionCount` to 0.
+- **Same day:** streak unchanged, increment `todayMissionCount`.
+- **Yesterday:** `streak += 1`, reset `todayMissionCount` to 0.
+- **Older:** if `streakShields > 0` and missed exactly 1 day, consume a shield and keep streak; otherwise reset `streak` to 1, `todayMissionCount` to 0.
+- **Null (first session):** set `streak` to 1, `todayMissionCount` to 0.
 
-Update `lastPlayedDate` to today. Update `bestStreak` if `streak > bestStreak`.
+Update `lastPlayedDate` to today. Update `bestStreak` if current streak exceeds it.
 
-### 3. Check Rank Decay
+**Rank decay:** if 7+ days inactive, drop level by 1 (min 1, XP preserved). Show warning; 3 missions restore original rank.
 
-If `lastPlayedDate` was 7+ days ago: drop level by 1 (minimum level 1). XP is preserved. Show warning. 3 missions restore original rank.
+### 3. Display Dashboard
 
-### 4. Display Dashboard
+Read `references/style.md` for formatting. Show rank badge + name + prestige stars, XP progress bar, streak with flame emoji, today's mission count, and any new badge or level-up celebrations.
 
-Read `references/style.md` for formatting templates. Show:
+### 4. Save Updated State
 
-- Rank badge + rank name + prestige stars (if any)
-- XP bar: `current / next threshold` with progress bar
-- Streak: `N days` with flame emoji (scale with streak length)
-- Today's missions completed count
-- If new badge earned since last session: celebrate
-- If level-up happened: show level-up banner
-
-### 5. Save Updated State
-
-Write the recalculated streak, todayMissionCount, and lastPlayedDate to `~/.articulate/state.json`.
+Write recalculated streak, todayMissionCount, and lastPlayedDate to `~/.articulate/state.json`.
 
 ---
 
@@ -251,21 +193,7 @@ Score range: 0-100.
 
 ### B. Calculate XP
 
-```
-base            = 10
-score_bonus     = floor(score / 10)
-streak_bonus    = min(streak * 2, 20)
-daily_word_bonus = 5 if user used daily word, else 0
-subtotal        = base + score_bonus + streak_bonus + daily_word_bonus
-
-if boss mission:   subtotal = subtotal * 3
-if critical hit:   subtotal = subtotal * 3
-  (critical hit = 15% random chance AND score >= 80)
-
-total_xp = subtotal
-```
-
-Show the full XP breakdown to the user.
+XP = base(10) + score_bonus(floor(score/10)) + streak_bonus(min(streak*2, 20)) + daily_word(+5 if used). Boss missions: multiply by 3. Critical hit (15% chance, score>=80): multiply by 3. For full formula details, read `references/progression/scoring.md`. Show the full XP breakdown to the user.
 
 ### C. Level-Up Check
 
@@ -329,20 +257,9 @@ Show: "Deploy another mission? Or save and return to base."
 
 Triggered by `/articulate stats`. Read `references/style.md` for formatting.
 
-Display:
+Display: overall stats (missions, XP, rank, prestige), per-type breakdown (count, avg/best score from `history.json`), streak info, weakness radar (6 categories — see `references/progression/weaknesses.md`), lexicon summary (words per mastery tier), and last 10 missions.
 
-- **Overall:** total missions, total XP, rank, prestige stars
-- **Per mission type:** count, average score, best score (calculate from `history.json`)
-- **Streak:** current, best ever, shields held
-- **Weakness radar:** all 6 categories with bars and trends (read `references/progression/weaknesses.md` for visualization format)
-- **Lexicon summary:** total words, count per mastery tier (seen/used/consistent/mastered)
-- **Recent performance:** last 10 missions with type, score, date
-
-For `/articulate badges`: show all 14 badges, earned ones highlighted, unearned ones with unlock conditions.
-
-For `/articulate lexicon`: show all words grouped by mastery tier with usage counts.
-
-For `/articulate radar`: show the full weakness radar visualization.
+Sub-commands: `/articulate badges` (all 14, earned highlighted, unearned with conditions), `/articulate lexicon` (words by mastery tier), `/articulate radar` (full weakness visualization).
 
 ---
 

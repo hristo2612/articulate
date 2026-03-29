@@ -93,9 +93,7 @@ auto-approve code with security implications.
 ## Presentation Format
 
 ```
-━━━ MISSION: PROMPT CRAFT 🧠 ━━━━━━━━━━━━━━━━
-
-Write a prompt that accomplishes this goal:
+**MISSION: PROMPT CRAFT 🧠**
 
 GOAL: Get an LLM to draft a cold outreach email to a potential
       API integration partner.
@@ -111,9 +109,7 @@ Your prompt:
 For L4+, include additional context:
 
 ```
-━━━ MISSION: PROMPT CRAFT 🧠 ━━━━━━━━━━━━━━━━
-
-Write a prompt that accomplishes this goal:
+**MISSION: PROMPT CRAFT 🧠**
 
 GOAL: Design a system prompt for an LLM acting as a technical
       interviewer for backend engineering candidates.
@@ -209,21 +205,16 @@ Is the vocabulary appropriate for prompt engineering? Does it use the right cont
 Show the operator's prompt, then an improved version, then explain key differences.
 
 ```
-━━━ DEBRIEF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**DEBRIEF**
 
-SCORE: 72/100
+**Score:** 72/100
 ├─ Specificity: 16/20  ████████████████░░░░
 ├─ Constraints: 14/20  ██████████████░░░░░░
 ├─ Structure:   12/20  ████████████░░░░░░░░
 ├─ Clarity:     16/20  ████████████████░░░░
 └─ Register:    14/20  ██████████████░░░░░░
 
-YOUR PROMPT:
-> "Write a cold email to a partner. It should be short and professional.
->  Mention what our API does and why they should integrate. End with
->  asking for a meeting."
-
-IMPROVED VERSION:
+**Gold standard:**
 > "Draft a 80-word cold outreach email to a VP of Engineering at a
 >  mid-size SaaS company. Structure: 1) one-sentence hook referencing
 >  their product, 2) specific integration value prop with one metric,
@@ -231,13 +222,12 @@ IMPROVED VERSION:
 >  professional, direct, zero fluff. Do not use 'synergy', 'leverage',
 >  or 'circle back'. Output as plain text."
 
-KEY DIFFERENCES:
+**Why:**
 - "short" --> "80-word" -- quantified constraint replaces vague adjective
 - "a partner" --> "VP of Engineering at a mid-size SaaS" -- specific audience
 - "Mention what our API does" --> "specific integration value prop with one metric" -- precise deliverable
 - "asking for a meeting" --> "requesting a 15-minute demo call" -- concrete CTA with time commitment
-- Added structure (numbered sections), anti-patterns (excluded cliche words), and format spec
-- The improved version uses prompt-native vocabulary: "structure", "register", "output as"
+- Added structure, anti-patterns, and format spec using prompt-native vocabulary
 
 WEAKNESSES DETECTED: vague_nouns, hedging
 ```
@@ -255,23 +245,11 @@ Each axis gets a 20-character bar:
 
 ### Improved Version
 
-ALWAYS provide an improved version of the operator's prompt. This is the gold standard. It must:
+ALWAYS provide an improved version (the gold standard). It must address every constraint, use precise prompt vocabulary (enumerate, constrain, specify, exclude, structure as), be tightly structured (context --> task --> constraints --> output format), eliminate all vague/soft language, and be realistically usable.
 
-- Address every constraint from the goal
-- Use precise prompt vocabulary (enumerate, constrain, specify, exclude, structure as)
-- Be tightly structured (context --> task --> constraints --> output format)
-- Eliminate all vague/soft language
-- Be realistically usable -- not an academic exercise
+### Why Section
 
-### KEY DIFFERENCES Section
-
-For each major improvement, explain:
-
-1. **What changed:** The specific word or phrase swap
-2. **Why the change matters:** What precision or control it adds to the prompt
-3. **What the original lacked:** Why the vague version would produce weaker LLM output
-
-Focus on VOCABULARY CHOICES. This is a language training tool, not a prompt engineering course. The feedback should make the operator reach for more precise words next time.
+For each major improvement, explain the specific swap, why it matters for precision/control, and what the original lacked. Focus on VOCABULARY CHOICES -- this is a language training tool, not a prompt engineering course.
 
 ---
 

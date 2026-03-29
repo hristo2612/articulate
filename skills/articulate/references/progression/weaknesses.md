@@ -1,8 +1,8 @@
 # Progression — Weakness Tracking & Radar
 
-> Self-contained reference. An AI agent reading only this file has everything
-> needed to detect weaknesses, calculate percentages, render the radar
-> visualization, track trends, and trigger the Improver badge.
+> Self-contained reference for detecting weaknesses, calculating percentages,
+> rendering the radar visualization, tracking trends, and triggering the
+> Improver badge.
 
 ---
 
@@ -12,70 +12,23 @@ Every piece of writing can exhibit weaknesses in these six categories.
 Each category includes canonical examples, but detection is not limited to
 these exact words — evaluate semantically.
 
-```
-━━━ WEAKNESS CATEGORIES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
- Category         Examples
- ───────────────  ────────────────────────────────────────────────────
- utility_words    "good", "nice", "bad", "great", "big", "small",
-                  "important", "interesting", "amazing", "awesome",
-                  "excellent", "terrible", "wonderful", "significant"
-
- hedging          "I think", "maybe", "sort of", "kind of", "I guess",
-                  "or whatever", "perhaps", "it seems", "arguably",
-                  "to be honest", "in my opinion" (when used to soften
-                  rather than qualify), "I feel like"
-
- flat_structure   Monotone sentences — no rhythm, no contrast, no
-                  emphasis. All sentences same length and pattern.
-                  No subordination, no parallelism, no variation.
-                  Subject-verb-object on repeat.
-
- vague_nouns      "thing", "stuff", "something", "everything",
-                  "aspect", "area", "situation", "matter", "issue",
-                  "factor", "element", "part" (when a precise noun
-                  exists)
-
- weak_verbs       "do", "make", "get", "have", "be", "go", "put",
-                  "take", "give", "use" — ONLY when a more precise
-                  verb exists in context. "The door is red" is fine.
-                  "The report is good" is weak ("is" + utility word).
-
- filler_words     "basically", "literally", "actually", "like", "just",
-                  "really", "very", "quite", "pretty" (as intensifier),
-                  "absolutely", "totally", "honestly", "definitely",
-                  "certainly", "simply", "clearly"
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+| Category | Examples |
+|----------|----------|
+| utility_words | "good", "nice", "bad", "great", "big", "small", "important", "interesting", "amazing", "awesome", "excellent", "terrible", "wonderful", "significant" |
+| hedging | "I think", "maybe", "sort of", "kind of", "I guess", "or whatever", "perhaps", "it seems", "arguably", "to be honest", "in my opinion" (when softening, not qualifying), "I feel like" |
+| flat_structure | Monotone sentences — no rhythm, contrast, or emphasis. All sentences same length/pattern. No subordination, parallelism, or variation. |
+| vague_nouns | "thing", "stuff", "something", "everything", "aspect", "area", "situation", "matter", "issue", "factor", "element", "part" (when a precise noun exists) |
+| weak_verbs | "do", "make", "get", "have", "be", "go", "put", "take", "give", "use" — ONLY when a more precise verb exists in context. "The door is red" is fine. "The report is good" is weak. |
+| filler_words | "basically", "literally", "actually", "like", "just", "really", "very", "quite", "pretty" (as intensifier), "absolutely", "totally", "honestly", "definitely", "certainly", "simply", "clearly" |
 
 ### Category Notes
 
-**utility_words:** These are not always wrong. "Good morning" is idiomatic.
-Flag them only when a more precise word would improve the writing. Context
-matters — "big" in "big picture" is fixed; "big" in "a big problem" is weak.
-
-**hedging:** Distinguish strategic hedging (appropriate in uncertain contexts)
-from habitual hedging (used to avoid commitment). "Perhaps the data suggests"
-is weak. "The preliminary data suggests" is precise.
-
-**flat_structure:** This is the hardest to detect. Look for:
-- All sentences between 8-15 words with no variation
-- No sentences with subordinate clauses
-- No use of em-dashes, colons, or semicolons for rhythm
-- No short punchy sentences mixed with longer ones
-- No parallelism or rhetorical structure
-
-**vague_nouns:** "Thing" is the canary. If the operator writes "thing" where
-a specific noun exists, they likely have other vague nouns too.
-
-**weak_verbs:** The key qualifier is "when a precise alternative exists."
-Not every use of "get" is weak. "Get the package" could be "retrieve the
-package" — that is weak. "Get started" is idiomatic — not weak.
-
-**filler_words:** "Just" is the most common offender. "I just wanted to
-check" → "I wanted to check" → "Checking in on..." Each removal tightens
-the prose. "Very" is almost always deletable — "very important" → "critical."
+- **utility_words:** Flag only when a more precise word would improve the writing. "Good morning" is idiomatic and fine; "a big problem" is weak.
+- **hedging:** Distinguish strategic hedging (appropriate uncertainty) from habitual hedging (avoiding commitment). "Perhaps the data suggests" is weak; "The preliminary data suggests" is precise.
+- **flat_structure:** Look for: all sentences 8-15 words with no variation, no subordinate clauses, no em-dashes/colons/semicolons for rhythm, no short punchy sentences mixed with longer ones.
+- **vague_nouns:** "Thing" is the canary — if it appears where a specific noun exists, other vague nouns are likely present too.
+- **weak_verbs:** Key qualifier: "when a precise alternative exists." "Get the package" is weak ("retrieve"); "Get started" is idiomatic.
+- **filler_words:** "Just" is the most common offender. "Very" is almost always deletable — "very important" becomes "critical."
 
 ---
 
@@ -89,33 +42,16 @@ the operator's response to identify weaknesses.
 **Only count weaknesses the operator KEPT or INTRODUCED — never count
 weaknesses they successfully fixed.**
 
-The logic works like this:
-
-```
-━━━ DETECTION LOGIC ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
- For each weakness category:
-
- 1. SCAN the original challenge text.
-    → Record which categories were PRESENTED (had examples in original).
-
- 2. SCAN the operator's response.
-    → Record which categories APPEAR in their response.
-
- 3. CLASSIFY:
-    a. PRESENTED + FIXED    = operator eliminated it     → NOT counted
-    b. PRESENTED + KEPT     = operator failed to fix it  → COUNTED
-    c. NOT PRESENTED + INTRODUCED = operator added it    → COUNTED
-    d. NOT PRESENTED + ABSENT     = clean on this axis   → NOT counted
-
- 4. For FILL missions: scan the operator's word choice only.
-    No "original" text to compare against — just evaluate the answer.
-
- 5. For PROMPT_CRAFT: scan the operator's prompt.
-    The "challenge" is the scenario description, not text to rewrite.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+For each weakness category:
+1. **SCAN** the original challenge text. Record which categories were PRESENTED.
+2. **SCAN** the operator's response. Record which categories APPEAR.
+3. **CLASSIFY:**
+   - PRESENTED + FIXED = operator eliminated it → NOT counted
+   - PRESENTED + KEPT = operator failed to fix it → COUNTED
+   - NOT PRESENTED + INTRODUCED = operator added it → COUNTED
+   - NOT PRESENTED + ABSENT = clean on this axis → NOT counted
+4. For **FILL** missions: scan the operator's word choice only (no original to compare).
+5. For **PROMPT_CRAFT**: scan the operator's prompt (the challenge is a scenario description, not text to rewrite).
 
 ### Per-Mission Recording
 
@@ -185,7 +121,7 @@ The primary visual output of the weakness tracking system.
 ### Full Radar Display
 
 ```
-━━━ WEAKNESS RADAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**WEAKNESS RADAR**
 
  utility_words  ████████░░░░░░░░  52%  ▇▅▃▂ ↓ improving
  hedging        ██████████████░░  87%  ▂▃▅▇ ↑ worsening
@@ -193,8 +129,6 @@ The primary visual output of the weakness tracking system.
  vague_nouns    ████████████░░░░  75%  ▇▇▅▃ ↓ improving
  weak_verbs     ██████████░░░░░░  63%  ▃▃▅▅ → stable
  filler_words   ████░░░░░░░░░░░░  25%  ▅▃▂▁ ↓ improving
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ### Rendering Rules
@@ -243,8 +177,6 @@ When space is limited, show a one-line summary:
 For new operators or categories without data:
 
 ```
-━━━ WEAKNESS RADAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
  ⚠ Radar calibrating — complete 5+ missions for full tracking.
 
  utility_words  ░░░░░░░░░░░░░░░░  ---
@@ -253,8 +185,6 @@ For new operators or categories without data:
  vague_nouns    ░░░░░░░░░░░░░░░░  ---
  weak_verbs     ░░░░░░░░░░░░░░░░  ---
  filler_words   ░░░░░░░░░░░░░░░░  ---
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---
@@ -275,36 +205,6 @@ weaknessHistory`. Each point is the percentage calculated at that time.
       "points": [72, 65, 48, 35],
       "peak": 72,
       "current": 35,
-      "lastUpdated": "2026-03-29"
-    },
-    "hedging": {
-      "points": [30, 45, 60, 82],
-      "peak": 82,
-      "current": 82,
-      "lastUpdated": "2026-03-29"
-    },
-    "flat_structure": {
-      "points": [55, 50, 42, 38],
-      "peak": 55,
-      "current": 38,
-      "lastUpdated": "2026-03-29"
-    },
-    "vague_nouns": {
-      "points": [90, 85, 70, 60],
-      "peak": 90,
-      "current": 60,
-      "lastUpdated": "2026-03-29"
-    },
-    "weak_verbs": {
-      "points": [55, 58, 60, 63],
-      "peak": 63,
-      "current": 63,
-      "lastUpdated": "2026-03-29"
-    },
-    "filler_words": {
-      "points": [60, 45, 30, 20],
-      "peak": 60,
-      "current": 20,
       "lastUpdated": "2026-03-29"
     }
   }
@@ -365,7 +265,7 @@ If fewer than 4 points exist, show `→ calibrating` instead of a trend.
 
 ## Improvement Badge Trigger
 
-The **📈 Improver** badge is awarded when the operator demonstrates
+The **Improver** badge is awarded when the operator demonstrates
 measurable improvement in any weakness category.
 
 ### Trigger Condition
@@ -392,20 +292,9 @@ After every weakness measurement update (every 5 missions):
 ### Examples
 
 ```
- utility_words: peak=72, current=35 → drop=37 → TRIGGERS ✓
+ utility_words: peak=72, current=35 → drop=37 → TRIGGERS
  hedging:       peak=82, current=82 → drop=0  → no trigger
- filler_words:  peak=60, current=20 → drop=40 → TRIGGERS ✓ (if not already earned)
-```
-
-### Display on Trigger
-
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📈 BADGE EARNED — IMPROVER
-  Your {category} weakness dropped from
-  {peak}% to {current}% — that's real
-  progress, operator.
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ filler_words:  peak=60, current=20 → drop=40 → TRIGGERS (if not already earned)
 ```
 
 ---
@@ -418,18 +307,14 @@ which weaknesses were present and how the operator handled them.
 ### Post-Mission Weakness Summary
 
 ```
-━━━ WEAKNESS DEBRIEF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
  ✓ FIXED     utility_words — "important" → "critical" (precise)
  ✓ FIXED     filler_words  — removed "basically" and "just"
  ✗ KEPT      hedging       — "I think we should" survived
  ✗ INTRODUCED weak_verbs   — "get" used where "retrieve" fits
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 **Rules for the debrief:**
-- Show only categories that were relevant to this mission (presented, kept,
+- Show only categories relevant to this mission (presented, kept,
   introduced, or fixed).
 - For FIXED items: show the specific improvement (original → replacement).
 - For KEPT items: show what survived and suggest an alternative.

@@ -81,29 +81,21 @@ Do NOT show:
 ## Presentation Format
 
 ```
-━━━ MISSION: REVIEW 🔄 ━━━━━━━━━━━━━━━━━━━━━
+**MISSION: REVIEW 🔄**
 
-REVIEWING: REWRITE mission from {date}
-PREVIOUS SCORE: 62/100
+REVIEWING: REWRITE mission from {date} | PREVIOUS SCORE: 62/100
 
-Original challenge:
+> "The **thing** we built is **really good** and **helps** people **do stuff** faster."
 
-> "The **thing** we built is **really good** and **helps** people
->  **do stuff** faster."
-
-Target: Replace the highlighted weak words.
 Your rewrite (fresh attempt):
 ```
 
 For FILL reviews:
 
 ```
-━━━ MISSION: REVIEW 🔄 ━━━━━━━━━━━━━━━━━━━━━
+**MISSION: REVIEW 🔄**
 
-REVIEWING: FILL PRECISION mission from {date}
-PREVIOUS SCORE: 60/100
-
-Original challenge:
+REVIEWING: FILL PRECISION from {date} | PREVIOUS SCORE: 60/100
 
 > "The API's response time was [___], often exceeding 3 seconds
 >  even for simple queries."
@@ -114,19 +106,13 @@ Your word (fresh attempt):
 For SCENARIO reviews:
 
 ```
-━━━ MISSION: REVIEW 🔄 ━━━━━━━━━━━━━━━━━━━━━
+**MISSION: REVIEW 🔄**
 
-REVIEWING: SCENARIO mission from {date}
-PREVIOUS SCORE: 71/100
+REVIEWING: SCENARIO from {date} | PREVIOUS SCORE: 71/100
 
-Original challenge:
-
-SITUATION: A potential customer emailed asking if your API supports
-           batch processing.
-ROLE: Founder / sole developer
-AUDIENCE: Technical PM at a mid-size SaaS company
-GOAL: Confirm, differentiate, close toward trial.
-WORD LIMIT: 80 words
+SITUATION: A potential customer emailed asking if your API supports batch processing.
+ROLE: Founder / sole developer | AUDIENCE: Technical PM at a mid-size SaaS
+GOAL: Confirm, differentiate, close toward trial. | WORD LIMIT: 80 words
 
 Your response (fresh attempt):
 ```
@@ -134,20 +120,12 @@ Your response (fresh attempt):
 For PROMPT_CRAFT reviews:
 
 ```
-━━━ MISSION: REVIEW 🔄 ━━━━━━━━━━━━━━━━━━━━━
+**MISSION: REVIEW 🔄**
 
-REVIEWING: PROMPT CRAFT mission from {date}
-PREVIOUS SCORE: 68/100
+REVIEWING: PROMPT CRAFT from {date} | PREVIOUS SCORE: 68/100
 
-Original challenge:
-
-GOAL: Get an LLM to draft a cold outreach email to a potential
-      API integration partner.
-CONSTRAINTS:
-  - Under 100 words
-  - Professional but not stiff
-  - Include a specific value proposition
-  - End with a clear call to action
+GOAL: Get an LLM to draft a cold outreach email to a potential API integration partner.
+CONSTRAINTS: Under 100 words | Professional but not stiff | Specific value proposition | Clear CTA
 
 Your prompt (fresh attempt):
 ```
@@ -171,66 +149,49 @@ Score the new response independently. Do not grade on a curve relative to the or
 
 ## Feedback Format -- Side-by-Side Comparison
 
-This is the unique element of REVIEW debriefs. After scoring the new response, reveal the old one and compare.
+After scoring the new response, reveal the old one and compare.
 
 ```
-━━━ REVIEW DEBRIEF 🔄 ━━━━━━━━━━━━━━━━━━━━━━
+**REVIEW DEBRIEF 🔄**
 
-THEN ({N} days ago):     Score: 62/100
+THEN ({N} days ago): 62/100
 > "Our product is a good tool that helps companies manage their stuff better."
 
-NOW:                     Score: 81/100
+NOW: 81/100
 > "Our workflow engine eliminates manual task routing for mid-market ops teams."
 
 IMPROVEMENT: +19 points
 
-KEY GAINS:
+**Key gains:**
 - "workflow engine" vs "product" -- specific noun replaces vague noun
 - "eliminates" vs "helps" -- decisive verb replaces weak verb
 - "manual task routing" vs "manage their stuff" -- concrete problem replaces vague action
 - "mid-market ops teams" vs "companies" -- defined audience replaces generic noun
 
-STILL ROOM TO GROW:
-- [Any weaknesses that persisted or new ones that appeared]
+**Sharper:** [any weaknesses that persisted or new ones that appeared]
 
-GOLD STANDARD:
+**Gold standard:**
 > "Our workflow engine automates task routing, cutting manual
 >  handoffs by 60% for mid-market operations teams."
 
-WEAKNESS COMPARISON:
-  THEN: utility_words, vague_nouns, weak_verbs
-  NOW:  none -- clean sweep
-  ELIMINATED: utility_words, vague_nouns, weak_verbs
+WEAKNESS COMPARISON: THEN: utility_words, vague_nouns, weak_verbs | NOW: none -- clean sweep | ELIMINATED: utility_words, vague_nouns, weak_verbs
 ```
 
 ### For FILL reviews:
 
 ```
-━━━ REVIEW DEBRIEF 🔄 ━━━━━━━━━━━━━━━━━━━━━━
+**REVIEW DEBRIEF 🔄**
 
-THEN ({N} days ago):
-  YOUR WORD: "slow"     Score: 60/100 (Acceptable)
-
-NOW:
-  YOUR WORD: "sluggish"  Score: 100/100 (Exact)
-
+THEN ({N} days ago): "slow" -- 60/100 (Acceptable)
+NOW: "sluggish" -- 100/100 (Exact)
 IMPROVEMENT: +40 points
 
-ANALYSIS:
-- 14 days ago, you reached for the utility adjective "slow"
-- Today, you produced the precision word "sluggish" from active vocabulary
-- This word has moved from passive to active recall
+**Analysis:** 14 days ago you reached for the utility adjective "slow". Today you produced "sluggish" from active vocabulary. This word has moved from passive to active recall.
 
 WORD MASTERY: "sluggish" --> Mastery level updated
 ```
 
 ### Improvement Tracking
-
-Calculate and display the point difference:
-
-```
-improvement = new_score - original_score
-```
 
 | Improvement | Display |
 |---|---|
@@ -240,37 +201,15 @@ improvement = new_score - original_score
 | 0 | "HOLDING STEADY -- aim higher next review" |
 | Negative | "REGRESSION -- {N} points below your previous attempt. Review the gold standard." |
 
-### KEY GAINS Section
+### Key Gains
 
-For every meaningful improvement between the old and new response:
+For every meaningful improvement: name the specific change (old vs new), categorize the gain (specific noun, decisive verb, tighter structure, etc.), explain why the new version is stronger. This is the core learning output.
 
-1. **Name the specific change:** old word/phrase vs new word/phrase
-2. **Categorize the gain:** specific noun, decisive verb, tighter structure, better register, etc.
-3. **Explain why the new version is stronger:** what precision or impact was added
+### Sharper / Weakness Comparison
 
-This section is the core learning output. It shows the operator exactly what changed in their vocabulary over time.
+**Sharper:** Only if weaknesses remain. Name the weak word, suggest a stronger alternative, frame constructively.
 
-### STILL ROOM TO GROW Section
-
-Only include if weaknesses remain or new ones appeared. Be specific:
-
-- Name the word/phrase that is still weak
-- Suggest a stronger alternative
-- Frame constructively: "still room to grow" not "you still failed at"
-
-### WEAKNESS COMPARISON Section
-
-Compare weakness tags from the original evaluation to the new one:
-
-```
-WEAKNESS COMPARISON:
-  THEN: utility_words, vague_nouns, weak_verbs
-  NOW:  hedging
-  ELIMINATED: utility_words, vague_nouns, weak_verbs
-  NEW: hedging
-```
-
-This directly feeds into weakness radar trend tracking. Eliminated weaknesses count as improvement. New weaknesses are noted but contextualized (the operator may have been experimenting with a new style).
+**Weakness comparison:** Compare tags from original to new attempt. Eliminated weaknesses count as wins. New weaknesses are noted but contextualized.
 
 ---
 

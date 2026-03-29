@@ -1,28 +1,15 @@
 # Onboarding
 
-## Welcome Banner
+## Welcome
 
-Display this banner on first run:
+Display on first run:
 
-```
-╔═══════════════════════════════════════════════════╗
-║     █████  ██████  ████████ ██  ██████ ██   ██   ║
-║    ██   ██ ██   ██    ██    ██ ██      ██   ██   ║
-║    ███████ ██████     ██    ██ ██      ██   ██   ║
-║    ██   ██ ██   ██    ██    ██ ██      ██   ██   ║
-║    ██   ██ ██   ██    ██    ██  ██████  █████    ║
-║          ╌╌╌ PRECISION LANGUAGE TRAINING ╌╌╌      ║
-╚═══════════════════════════════════════════════════╝
-```
+**ARTICULATE** — Precision Language Training
 
 ## Intro Text
 
-Display immediately after the banner:
-
 ```
-Welcome, operator. Articulate is your precision language training system.
-Every mission sharpens your active vocabulary through writing — not picking,
-not guessing. You write. We evaluate. You level up.
+Welcome, operator. You write. We evaluate. You level up.
 Let's configure your training profile.
 ```
 

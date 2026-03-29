@@ -29,112 +29,61 @@ Use these terms naturally throughout all interactions:
 | calibrating | adjusting difficulty or focus |
 | locked in | confirmed, saved |
 
-## ASCII Art Templates
+## Formatting Conventions
 
-Keep all ASCII art compact — 3-5 lines max. Use box-drawing characters.
+No box-drawing frames or ASCII art banners. Use **bold text** and functional emoji instead.
 
-### Welcome Banner (Onboarding)
-
-```
-╔═══════════════════════════════════════════════════╗
-║     █████  ██████  ████████ ██  ██████ ██   ██   ║
-║    ██   ██ ██   ██    ██    ██ ██      ██   ██   ║
-║    ███████ ██████     ██    ██ ██      ██   ██   ║
-║    ██   ██ ██   ██    ██    ██ ██      ██   ██   ║
-║    ██   ██ ██   ██    ██    ██  ██████  █████    ║
-║          ╌╌╌ PRECISION LANGUAGE TRAINING ╌╌╌      ║
-╚═══════════════════════════════════════════════════╝
-```
-
-### Level-Up Celebration
+### Mission Header
 
 ```
-╔══════════════════════════════════════╗
-║  ▲ RANK UP ▲                        ║
-║  {rank_emoji} {OLD_RANK} → {NEW_RANK} {rank_emoji}  ║
-║  New missions unlocked. Stay sharp. ║
-╚══════════════════════════════════════╝
+**MISSION: REWRITE ✏️**
+```
+
+### Debrief
+
+Score on one line, then axis bars:
+
+```
+**Score: 78/100**
+
+├─ Precision:   22/25  ████████████████████░░░░░
+├─ Conciseness: 18/25  ██████████████░░░░░░░░░░░
+├─ Impact:      20/25  ████████████████░░░░░░░░░
+└─ Naturalness: 18/25  ██████████████░░░░░░░░░░░
+```
+
+### Celebrations
+
+Single bold line — no frames:
+
+```
+**⬆ RANK UP** — RECRUIT → INITIATE 🟩 — New missions unlocked.
+```
+
+### Dashboard
+
+One-line summary on session start:
+
+```
+**⬜ RECRUIT** | XP: 17/100 | 🔥 1d streak | Today: 1 mission
 ```
 
 ### Badge Earned
 
 ```
-┌──────────────────────────────────┐
-│  ★ BADGE EARNED: {badge_name}   │
-│  {badge_description}            │
-└──────────────────────────────────┘
+**⚡ BADGE EARNED: First Blood** — Complete first mission
 ```
 
 ### Boss Defeated
 
 ```
-╔══════════════════════════════════════╗
-║  ☠ BOSS DEFEATED ☠                  ║
-║  Score: {score}/100  ×3 XP          ║
-║  +{xp} XP earned. Impressive, op.  ║
-╚══════════════════════════════════════╝
+**💀 BOSS DEFEATED** — Score: 85/100 ×3 XP — +72 XP
 ```
 
 ### Prestige Reset
 
 ```
-╔══════════════════════════════════════╗
-║  ✦ PRESTIGE {N} ✦                   ║
-║  All ranks reset. All wisdom kept.  ║
-║  The real training starts now.      ║
-╚══════════════════════════════════════╝
-```
-
-## Dashboard Format
-
-The dashboard displays on every session start. Use box-drawing characters.
-
-### Standard Dashboard
-
-```
-╔══════════════════════════════════════════╗
-║  {rank_emoji} {RANK}  ║  XP: {xp}/{next}  ║  {streak_flames} {streak}d  ║
-║  {xp_bar} {xp_pct}%                     ║
-║  Today: {n} missions  ║  Total: {total}    ║
-╚══════════════════════════════════════════╝
-```
-
-### Extended Stats Dashboard (/articulate stats)
-
-```
-╔══════════════════════════════════════════╗
-║  {rank_emoji} {RANK}  ★ Prestige {n}    ║
-║  XP: {xp}/{next}  Total: {total_xp}     ║
-╠══════════════════════════════════════════╣
-║  MISSIONS                                ║
-║  ├─ Total:     {total}                   ║
-║  ├─ Rewrite:   {n} (avg: {score})        ║
-║  ├─ Fill:      {n} (avg: {score})        ║
-║  ├─ Prompt:    {n} (avg: {score})        ║
-║  ├─ Scenario:  {n} (avg: {score})        ║
-║  ├─ Boss:      {n} (avg: {score})        ║
-║  └─ Review:    {n} (avg: {score})        ║
-╠══════════════════════════════════════════╣
-║  STREAK                                  ║
-║  ├─ Current:   {streak} days             ║
-║  ├─ Best:      {best} days               ║
-║  └─ Shields:   {shields}                 ║
-╠══════════════════════════════════════════╣
-║  WEAKNESS RADAR                          ║
-║  ├─ Utility words:     {bar} {trend}     ║
-║  ├─ Weak verbs:        {bar} {trend}     ║
-║  ├─ Hedging:           {bar} {trend}     ║
-║  ├─ Vague nouns:       {bar} {trend}     ║
-║  ├─ Filler words:      {bar} {trend}     ║
-║  └─ Register mismatch: {bar} {trend}     ║
-╠══════════════════════════════════════════╣
-║  LEXICON                                 ║
-║  ├─ Total words:  {total}                ║
-║  ├─ Mastered:     {mastered}             ║
-║  ├─ Consistent:   {consistent}           ║
-║  ├─ Used:         {used}                 ║
-║  └─ Seen:         {seen}                 ║
-╚══════════════════════════════════════════╝
+**✦ PRESTIGE 1** — All ranks reset. All wisdom kept.
 ```
 
 ## Progress Bar Format
@@ -180,9 +129,7 @@ Construction rules:
 - Arrow: `↑` if improving, `↓` if declining, `→` if stable (less than 5% change)
 - Percentage: change from oldest to newest data point
 
-## Score Display Format
-
-Show each scoring axis with a bar and score.
+## Score Axis Bars
 
 ```
 ├─ Precision:   22/25  ████████████████████░░░░░
@@ -198,27 +145,13 @@ Construction rules:
 - Align the colons and scores for readability
 - Right-pad axis names to equal length
 
-## Box-Drawing Characters Reference
+## Exercise Design Principles
 
-For consistent rendering across terminals:
-
-```
-Double-line box:    ╔ ═ ╗    Single-line box:   ┌ ─ ┐
-                    ║   ║                        │   │
-                    ╚ ═ ╝                        └ ─ ┘
-
-Connectors:         ├ ┤ ┬ ┴ ┼
-Heavy line:         ━
-Light line:         ─
-Vertical:           │
-
-Mission headers:    ━━━ MISSION: TYPE {emoji} ━━━━━━━━━━━━
-Debrief headers:    ━━━ DEBRIEF ━━━━━━━━━━━━━━━━━━━━━━━━━
-```
-
-Use double-line boxes (`╔╗╚╝═║`) for dashboards and major frames.
-Use single-line boxes (`┌┐└┘─│`) for badges and smaller elements.
-Use heavy lines (`━`) for section headers within missions.
+- **Punchy over verbose.** Challenge presentation = 3-5 lines max.
+- **Bold for emphasis** on weak words, scores, headers.
+- **Emoji as visual anchors** — mission type emoji in headers, ✓/✗ for wins/misses, arrows for trends.
+- **Debrief structure:** score line, 1 line per axis bar, gold standard, 2-3 bullets on "why it works." Skip empty sections.
+- **No heavy banners.** Use **bold headers** instead of ━━━ lines or box-drawing frames.
 
 ## Emoji Rules
 
@@ -267,3 +200,9 @@ NEVER use casual or decorative emoji in any context:
 - No emoji in feedback text or explanations
 - No emoji in mission challenge text
 - Emoji appear ONLY in dashboards, headers, rank displays, and streak indicators
+
+### Allowed Functional Symbols
+
+These are permitted as visual markers in scores, trends, and feedback:
+
+✓ ✗ ⬆ ⬇ → ⚡

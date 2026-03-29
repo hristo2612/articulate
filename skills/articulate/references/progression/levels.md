@@ -1,7 +1,7 @@
 # Progression — Levels, Badges & Rank Systems
 
-> Self-contained reference. An AI agent reading only this file has everything
-> needed to manage operator rank, badges, prestige, streak shields, and decay.
+> Self-contained reference for managing operator rank, badges, prestige,
+> streak shields, and decay.
 
 ---
 
@@ -10,27 +10,21 @@
 Seven ranks from RECRUIT to MASTERMIND. XP is cumulative — never resets unless
 the operator triggers a Prestige reset.
 
-```
-━━━ RANK PROGRESSION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
- Level  Rank          XP Threshold  Badge  Unlocks
- ─────  ────────────  ────────────  ─────  ──────────────────────────
-   1    RECRUIT              0      ⬜     REWRITE, FILL
-   2    INITIATE           100      🟩     PROMPT_CRAFT, REVIEW
-   3    OPERATIVE          300      🟨     SCENARIO
-   4    SPECIALIST         600      🟧     BOSS
-   5    COMMANDER         1000      🔴     User-generated challenges
-   6    ARCHITECT         1800      💎     Teach mode
-   7    MASTERMIND        3000      👑     Prestige system
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+| Level | Rank | XP Threshold | Badge | Unlocks |
+|-------|------|-------------|-------|---------|
+| 1 | RECRUIT | 0 | ⬜ | REWRITE, FILL |
+| 2 | INITIATE | 100 | 🟩 | PROMPT_CRAFT, REVIEW |
+| 3 | OPERATIVE | 300 | 🟨 | SCENARIO |
+| 4 | SPECIALIST | 600 | 🟧 | BOSS |
+| 5 | COMMANDER | 1000 | 🔴 | User-generated challenges |
+| 6 | ARCHITECT | 1800 | 💎 | Teach mode |
+| 7 | MASTERMIND | 3000 | 👑 | Prestige system |
 
 ### Level-Up Rules
 
 1. After every XP award, compare `state.json → xp` against the table above.
 2. If XP crosses the next threshold, the operator levels up.
-3. Show a level-up banner (read `references/style.md` for template).
+3. Show a level-up banner (see `references/style.md` for template).
 4. Announce newly unlocked mission types.
 5. A single XP award can trigger multiple level-ups — check all thresholds.
 
@@ -39,21 +33,17 @@ the operator triggers a Prestige reset.
 Show rank with badge emoji, XP progress bar toward next level, and streak:
 
 ```
-╔══════════════════════════════════════════╗
-║  🟨 OPERATIVE ║ XP: 342/600 ║ 🔥 12d   ║
-║  ████████████████░░░░░░░ 57%            ║
-║  Today: 2 missions ║ Total: 47          ║
-╚══════════════════════════════════════════╝
+ 🟨 OPERATIVE  XP: 342/600  🔥 12d
+ ████████████████░░░░░░░ 57%
+ Today: 2 missions  Total: 47
 ```
 
 For MASTERMIND (max level), show XP total with no "next" threshold:
 
 ```
-╔══════════════════════════════════════════╗
-║  👑 MASTERMIND ║ XP: 4210 ║ 🔥 45d      ║
-║  ████████████████████████ MAX            ║
-║  Today: 1 mission ║ Total: 203           ║
-╚══════════════════════════════════════════╝
+ 👑 MASTERMIND  XP: 4210  🔥 45d
+ ████████████████████████ MAX
+ Today: 1 mission  Total: 203
 ```
 
 ---
@@ -66,29 +56,22 @@ permanent — once earned, never lost (even through prestige resets or rank deca
 Store earned badges in `state.json → badges` as an array of badge IDs with
 the ISO timestamp of when they were earned.
 
-```
-━━━ BADGE COLLECTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
- Badge  Name               Condition
- ─────  ─────────────────  ──────────────────────────────────────────
- ⚡     First Blood        Complete first mission
- 🔥     On Fire            Achieve a 3-day streak
- 💀     Unstoppable        Achieve a 7-day streak
- 🤖     Machine            Achieve a 30-day streak
- 🎯     Precision Strike   Score 90+ on 5 missions
- 🏆     Sharpshooter       Score 90+ on 20 missions
- ✏️     Rewriter           Complete 10 REWRITE missions
- 🎭     Operator           Complete 10 SCENARIO missions
- 🧠     Prompt Engineer    Complete 10 PROMPT_CRAFT missions
- 🎖️     Veteran            Complete 50 total missions
- ⚔️     Centurion          Complete 100 total missions
- 💪     Powerhouse         Earn 1000 cumulative XP
- 🌍     Polyglot           Complete missions in 2+ languages
- 📈     Improver           Weakness radar shows measurable improvement
-                           (any category drops 30+ points from peak)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+| Badge | Name | Condition |
+|-------|------|-----------|
+| ⚡ | First Blood | Complete first mission |
+| 🔥 | On Fire | Achieve a 3-day streak |
+| 💀 | Unstoppable | Achieve a 7-day streak |
+| 🤖 | Machine | Achieve a 30-day streak |
+| 🎯 | Precision Strike | Score 90+ on 5 missions |
+| 🏆 | Sharpshooter | Score 90+ on 20 missions |
+| ✏️ | Rewriter | Complete 10 REWRITE missions |
+| 🎭 | Operator | Complete 10 SCENARIO missions |
+| 🧠 | Prompt Engineer | Complete 10 PROMPT_CRAFT missions |
+| 🎖️ | Veteran | Complete 50 total missions |
+| ⚔️ | Centurion | Complete 100 total missions |
+| 💪 | Powerhouse | Earn 1000 cumulative XP |
+| 🌍 | Polyglot | Complete missions in 2+ languages |
+| 📈 | Improver | Any weakness category drops 30+ points from peak |
 
 ### Badge Check Logic
 
@@ -111,7 +94,7 @@ After every mission completion, run these checks in order:
 
 If a badge is newly earned (not already in `state.json → badges`):
 - Add it with timestamp
-- Show the badge-earned celebration (read `references/style.md`)
+- Show the badge-earned celebration (see `references/style.md`)
 - Multiple badges can trigger in a single mission — show all
 
 ### Badge Display Format
@@ -119,9 +102,7 @@ If a badge is newly earned (not already in `state.json → badges`):
 When displaying the badge shelf (e.g., in dashboard or stats):
 
 ```
-━━━ BADGES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  ⚡ 🔥 💀 ✏️ 🎯 💪            [6/14]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 Show earned badges in order. Unearned badges are omitted — show the count
@@ -137,7 +118,7 @@ initiated — never prompt or auto-trigger.
 ### How It Works
 
 1. Operator reaches MASTERMIND (3000+ XP) and requests prestige reset.
-2. Confirm with the operator: "Prestige resets your rank to RECRUIT ★ and
+2. Confirm with the operator: "Prestige resets your rank to RECRUIT and
    zeroes your XP. Badges are preserved. Proceed?"
 3. On confirmation:
    - Set `state.json → level` to 1
@@ -147,11 +128,11 @@ initiated — never prompt or auto-trigger.
    - DO NOT clear `state.json → badges`
    - DO NOT clear `history.json`
    - DO NOT clear `lexicon.json`
-4. Show prestige celebration banner (read `references/style.md`).
+4. Show prestige celebration banner (see `references/style.md`).
 
 ### Star Markers
 
-Each prestige run adds one ★ to the rank display.
+Each prestige run adds one star to the rank display.
 
 ```
  Prestige 0:  🟨 OPERATIVE
@@ -187,13 +168,11 @@ Protection against losing a streak due to a single missed day.
 
 Shields are awarded at these streak milestones:
 
-```
- Milestone    Shields Earned
- ───────────  ──────────────
- 30-day       +1 shield
- 60-day       +1 shield
- 100-day      +1 shield
-```
+| Milestone | Shields Earned |
+|-----------|---------------|
+| 30-day | +1 shield |
+| 60-day | +1 shield |
+| 100-day | +1 shield |
 
 Shields are earned the moment the streak hits the milestone. They are stored
 in `state.json → streakShields`.
@@ -204,7 +183,7 @@ in `state.json → streakShields`.
   milestone is reached, the new shield is lost.
 - **Auto-consume:** When the system detects a missed day during session start,
   check if shields > 0. If yes: decrement shield count by 1, preserve streak,
-  show notification: `"⛊ Streak shield deployed — streak preserved at {N} days."`
+  show notification: `"Streak shield deployed — streak preserved at {N} days."`
 - **One per gap:** Each shield covers exactly one missed calendar day. Two
   consecutive missed days require two shields.
 - **Display:** Show shield count in dashboard: `⛊ x2`
@@ -254,12 +233,10 @@ if days_inactive >= 7:
 ### Decay Notification
 
 ```
-━━━ RANK DECAY ━━━━━━━━━━━━━━━━━━━━━━━━━━
  ⚠ {days_inactive} days inactive.
  Rank dropped: {old_rank} → {new_rank}
  XP preserved at {xp}.
  Complete 3 missions to restore your rank.
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ### Restoration
