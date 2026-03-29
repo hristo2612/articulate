@@ -1,10 +1,13 @@
-# Word Archaeology — Productive Failure Method
+# Word Archaeology — Productive Failure + Contrastive Analysis
 
-The default `/articulate` experience. Uses **productive failure** (Kapur, 2008): the user writes FIRST with no instruction, struggles, THEN learns why their instincts were right or wrong. Struggle-first produces 2x retention vs instruction-first.
+The default `/articulate` experience. Combines two science-backed methods:
+
+1. **Productive failure** (Kapur, 2008): user writes FIRST, struggles, THEN discovers the principle. 2x retention vs instruction-first.
+2. **Contrastive analysis**: comparing two versions forces deeper processing than studying either alone.
 
 ## Session Structure — THE FLIP
 
-Traditional: teach → practice. Articulate: **practice → struggle → discover → practice again.**
+Traditional: teach → practice. Articulate: **challenge → struggle → compare → discover → retry.**
 
 Every session follows this exact sequence:
 
@@ -16,27 +19,29 @@ Every session follows this exact sequence:
 4. `### ✏️ Your first attempt` — user writes BEFORE learning anything
 5. `>` blockquote — space for response
 
-**Critical:** Do NOT teach anything yet. No etymology, no principles, no hints. The user must struggle with their own instincts first. This is the "productive failure" — the struggle creates the neural hooks that make the subsequent teaching stick.
+**Critical:** Do NOT teach anything yet. No etymology, no principles, no hints. The struggle creates neural hooks for retention.
 
-### Phase 2: The Reveal (after user responds)
+### Phase 2: The Comparison (after user responds)
 
-1. **React honestly** — what worked, what didn't, be specific
-2. `## 🔍 The Dig` — NOW reveal the fascinating language story
-   - Show the etymology/principle that would have helped them
-   - Connect it to THEIR specific word choices: "You wrote '{X}' — here's why that felt off..."
-   - 4-8 lines, same quality bar as before (surprise, cited origin, narrative arc, modern connection)
-3. `💡 **The principle:**` — one transferable insight (bold, 1-2 lines)
-4. **Show the gap** — their version vs. a gold standard, with WHY the gold standard works
+1. **React honestly** — what worked, what didn't in their attempt
+2. `## 🔍 Spot the Difference` — show TWO versions of a similar piece of writing:
+   - **Version A:** uses weak/vague language (similar to common mistakes)
+   - **Version B:** uses precise/powerful language
+   - Ask: **"Which is stronger? Pick the ONE word that makes the biggest difference."**
+3. After they answer (or immediately in claude -p testing): reveal WHY
+4. `## 🔍 The Dig` — the etymology/language story explaining WHY that word works
+   - Connect to THEIR specific word choices from Phase 1
+   - 4-8 lines: surprise, cited origin, narrative arc, modern connection
+5. `💡 **The principle:**` — one transferable insight (bold, 1-2 lines)
 
 ### Phase 3: The Retry
 
-1. `### ✏️ Now rewrite it` — same challenge, armed with the principle
-2. The user rewrites knowing what they now know
-3. Score BOTH attempts — show the improvement delta
+1. `### ✏️ Now rewrite it` — same challenge, armed with the principle AND the comparison
+2. Score BOTH attempts — show the improvement delta
 
 ## Scenario Design
 
-Scenarios must feel like REAL tasks the user encounters in daily work. Never artificial.
+Scenarios must feel like REAL tasks. Never artificial.
 
 **Scenario types (rotate):**
 
@@ -49,11 +54,23 @@ Scenarios must feel like REAL tasks the user encounters in daily work. Never art
 | Persuasion | "Convince your manager to approve a tool purchase. Two sentences." |
 | Explanation | "Explain a technical concept to a non-technical stakeholder. Three sentences max." |
 
-**The constraint is what makes it hard:** word limits, banned words, required register, specific audience. Constraints force word choice — which is exactly what we're training.
+**The constraint is what makes it hard:** word limits, banned words, required register, specific audience.
+
+## Contrastive Pair Design
+
+The two versions must:
+- Address the SAME communication task (related to the user's scenario)
+- Differ in 1-3 key word choices (not total rewrites)
+- Have one clearly stronger version (but the reason should be non-obvious)
+- Connect to a fascinating etymology or language principle
+
+**Example contrastive pair:**
+> **A:** "We need to revisit the timeline because some deliverables are at risk."
+> **B:** "We need to compress the timeline — three deliverables ship late if we don't cut scope by Friday."
+
+**The key difference:** "revisit" (vague, implies maybe-later) vs. "compress" (active, implies urgency + specific action). Plus: "at risk" (hedge) vs. specific consequence + deadline.
 
 ## The Dig — Story Categories
-
-After the user's first attempt, reveal the relevant language story. Rotate through these:
 
 | Category | What it covers |
 |----------|---------------|
@@ -67,13 +84,13 @@ After the user's first attempt, reveal the relevant language story. Rotate throu
 
 ## Quality Bar
 
-The story MUST meet all six criteria:
+Every story MUST:
 
 1. **Genuine surprise** — "wait, really?" moment
 2. **Cited origin** — names the actual language of origin
 3. **Narrative arc** — reads as a story, not a dictionary entry
-4. **Modern connection** — explains how etymology shapes current usage
-5. **Connected to the user's attempt** — references their actual word choices
+4. **Connected to the user's attempt** — references their actual word choices
+5. **Connected to the contrastive pair** — explains WHY Version B's word is stronger
 6. **Actionable** — the principle directly improves their rewrite
 
 ## Scoring — Double Score
@@ -109,20 +126,19 @@ Score BOTH attempts and show the improvement:
 | Impact | Would this actually work? Would the reader respond well? |
 
 **Improvement reactions:**
-- +0-5: "Hmm. The principle didn't land yet. Read the dig again."
+- +0-5: "Hmm. The principle didn't land yet."
 - +6-15: "Getting there. You're thinking about it differently."
-- +16-25: "Now you're cooking. That's what awareness does."
-- +26+: "Night and day. That's productive failure working."
+- +16-25: "Now you're cooking. That's awareness at work."
+- +26+: "Night and day. That's productive failure in action."
 
 ## Topic Selection
 
-1. Check `~/.articulate/history.json` — avoid any scenario used in the last 20 sessions
-2. **Rotate scenario types** — never pick the same type twice in a row
-3. If user is multilingual (check `user.json` languages), alternate between their languages
+1. Check `~/.articulate/history.json` — avoid repeats from last 20 sessions
+2. **Rotate scenario types** — never same type twice in a row
+3. If user is multilingual, alternate languages
 4. Tie to project context when possible
-5. Prefer scenarios the user encounters in professional work
-6. **First session:** Use "Decline a meeting without being passive-aggressive. One sentence." — universal, immediately practical
-7. **Never repeat the same scenario** across sessions
+5. **First session:** "Decline a meeting without being passive-aggressive. One sentence."
+6. **Never repeat scenarios**
 
 ## Example Session
 
@@ -141,33 +157,41 @@ Score BOTH attempts and show the improvement:
 *[User writes: "The latest deploy has some issues and we need to look into it. I'll be investigating tonight."]*
 
 ```markdown
-Interesting. "Has some issues" — you're hedging without hedge words. "Look into it" — vague. Let's dig.
+Solid instinct to own it personally ("I'll be investigating"). But "has some issues" is doing zero work — which issues? Where? How bad?
 
-## 🔍 The Dig: *triage*
+## 🔍 Spot the Difference
 
-When medieval French doctors faced battlefield casualties, they couldn't save everyone. They sorted patients into three groups — *trier*, "to sort" (Old French, from Latin *tritare*, to grind/separate). The word entered English as **triage**: the art of deciding what matters RIGHT NOW.
+Two incident messages. Which is stronger? What's the ONE word that makes the biggest difference?
 
-That's what your Slack message needed. Not "issues" (vague) or "investigating" (passive). Your team needs to know: what broke, what's the blast radius, what's the next action. Triage language is active and specific.
+> **A:** "The deploy caused some problems with the checkout flow. We're looking into it and will update soon."
+> **B:** "The deploy broke checkout — users are hitting 500s on payment. Rolled back, monitoring now."
 
-💡 **The principle:** Crisis communication borrows from battlefield medicine — sort, prioritize, act. Vague words ("issues", "look into") waste the one thing you don't have in a crisis: time.
+---
 
-**Your version vs. gold standard:**
+**The word:** "broke" vs. "caused some problems."
 
-> ❌ "The latest deploy has some issues and we need to look into it."
-> ✅ "Deploy rolled back — checkout page was returning 500s. I'm triaging the migration script now."
+"Caused some problems" is 3 words to say nothing. "Broke" is 1 word that says everything. But here's the deeper reason...
 
-The gold standard has: what happened (rolled back), what broke (checkout 500s), what's next (triaging migration). Zero wasted words.
+## 🔍 The Dig: *break*
+
+Old English *brecan* — from Proto-Germanic *brekaną*, from Proto-Indo-European *bhreg-* ("to break"). This root is ancient, physical, and brutal. It gave us: "breach" (a gap in a wall), "fraction" (a broken number, via Latin *frangere*), and "fragile" (easily broken).
+
+"Caused some problems" is bureaucratic distance — you're standing 50 feet from the fire describing the temperature. "Broke" puts everyone AT the break point. It's a 5,000-year-old word that means exactly one thing, and everyone who reads it reacts the same way: something was whole, now it isn't.
+
+This is why crisis language defaults to Anglo-Saxon roots: break, fix, stop, cut, ship. These words survived a millennium because they're unambiguous. Latinate alternatives ("encountered difficulties", "experiencing issues") survived because they create distance — which is exactly what you DON'T want in an incident.
+
+💡 **The principle:** In crisis communication, reach for the oldest, shortest word. Anglo-Saxon roots (break, fix, cut, stop) carry urgency because they're physical. Latinate words (encounter, experience, investigate) carry distance. Choose based on whether you want your reader to feel or to file.
 
 ### ✏️ Now rewrite it
 
-Same scenario, same constraints. Armed with the principle.
+Same scenario, same constraints. But this time — break things with short words.
 
 >
 ```
 
 ## Post-Session Flow
 
-After scoring the rewrite: save to history.json, update XP, then:
+After scoring: save to history.json, update XP, then:
 
 > **What's next?**
 > 🔍 Another challenge — `go`
