@@ -35,6 +35,13 @@ Rank passages by weakness density. Target these patterns:
 | 4 | Weak verb chains | 🔴 | "make it do the thing" instead of a precise verb |
 | 5 | Register confusion | 🟠 | Mixing casual slang into formal requests or vice versa |
 
+**After the weakness list, add a 1-2 line teaching moment** explaining WHY the dominant weakness matters. Examples:
+- For hedge stacking: "Every hedge is an apology for having an opinion. Three in one sentence and you're asking permission to exist."
+- For vague nouns: "'Thing' is a vocabulary void — your brain had a concept but your words gave up halfway."
+- For filler bloat: "Fillers are verbal throat-clearing. They signal 'I'm about to say something' instead of just saying it."
+- For weak verbs: "'Make' and 'do' are English's laziest verbs. They work anywhere, which means they mean nothing."
+- For register confusion: "Mixing 'gonna' with 'pursuant to' makes you sound like two different people arguing in one email."
+
 ## Presentation Format
 
 ```markdown
@@ -49,6 +56,15 @@ That's **{N} words** for a **{M}-word message**. Let me count:
 - 🔴 "{vague phrase}" — vague
 - 🟡 "{filler}" — filler
 ...
+
+**Severity:** {🔥 repeated 1-5 times} out of 5 — {witty label}
+
+Severity scale:
+- 🔥 (1) — "a gentle nudge"
+- 🔥🔥 (2) — "room for improvement"
+- 🔥🔥🔥 (3) — "that's a habit"
+- 🔥🔥🔥🔥 (4) — "verbal spaghetti"
+- 🔥🔥🔥🔥🔥 (5) — "code red"
 
 ### ✏️ Rewrite challenge
 Say what you actually mean. Max {N} words.
@@ -76,6 +92,8 @@ That's **23 words** for a **6-word job**. Let me count:
 - 🟠 "part of the system" — padding
 
 **6 weaknesses** in one sentence. That's impressive (not the good kind).
+
+**Severity:** 🔥🔥🔥🔥🔥 out of 5 — code red
 
 ### ✏️ Rewrite challenge
 Say what you actually mean. Max 8 words.

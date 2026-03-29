@@ -41,13 +41,14 @@ Every story MUST meet all six criteria:
 
 The exercise MUST flow from the story. It should feel like a natural next step, not a disconnected drill.
 
-**Exercise types (pick one per session):**
+**Exercise types (rotate — never do the same type twice in a row):**
 
-- Write a sentence applying the principle from the story
-- Rewrite a weak sentence using the etymology pattern
-- Find a better word by applying the origin insight
-- Write a professional passage using the featured word precisely
-- Identify a word in your own recent writing that has a similar drift pattern
+- **Rewrite with principle** — give a weak sentence, ask them to apply the principle. Classic format.
+- **Two-version challenge** — "Write this idea twice: once using [X] origin words, once using [Y] origin words." Forces register awareness.
+- **Precision swap** — "Replace the single weakest word in this sentence." Focuses attention on one word.
+- **Constraint writing** — "Describe [concept] in exactly 10 words using a word from the [root] family."
+- **Spot the buried metaphor** — "Which 3 words in this paragraph have physical/violent/spatial origins?" Then rewrite using them consciously.
+- **Professional application** — "Write a one-sentence [email opening / PR description / Slack update] using today's word precisely."
 
 **Constraints:** ONE exercise per session. Keep instructions to 2-3 lines. Set a word limit when appropriate.
 
@@ -93,6 +94,28 @@ Rewrite this sentence using a spatial metaphor instead of the abstract language:
 > "This issue is very important to the project's success and shouldn't be ignored."
 
 Max 20 words.
+
+>
+```
+
+## Example 2 (Two-Version Challenge)
+
+```markdown
+## 🔍 Word Archaeology: *muscle*
+
+Flex your arm. Look at the bicep moving under the skin. Ancient Romans looked at that same movement and saw something else: a little mouse running back and forth. *Musculus* — literally "little mouse" (diminutive of *mus*, mouse).
+
+The same root gave French *moule* (mussel — the shellfish also looked like a little mouse to someone). English got both: *muscle* from the body metaphor, *mussel* from the seafood metaphor. Same Latin mouse, two completely different dinner options.
+
+💡 **The principle:** The most vivid naming comes from analogy — seeing one thing as another. "Muscle" stuck for 2,000 years because the image is unforgettable. When naming or describing, reach for analogies over abstractions.
+
+### ✏️ Your turn
+
+Describe the same concept two ways — once using a body/physical analogy, once using a mechanical analogy:
+
+**Concept:** "The server is processing too many requests at once."
+
+Max 15 words each version.
 
 >
 ```

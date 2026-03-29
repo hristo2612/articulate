@@ -68,11 +68,18 @@ Score on one line, then axis bars:
 
 ## Celebrations
 
-Single bold line — no frames:
+Single bold line — no frames, but with PERSONALITY:
 
 ```
-**⬆ RANK UP** — RECRUIT → INITIATE 🟩
+**⬆ RANK UP** — RECRUIT → INITIATE 🟩 — Your vocabulary just leveled up.
 ```
+
+**Score reactions (use these as inspiration, don't repeat verbatim):**
+- 90-100: "That was surgical." / "Nothing wasted. Nothing missing."
+- 75-89: "Strong. You're thinking in the right register." / "That verb did all the work."
+- 60-74: "Getting there. The instinct is right, the execution needs tightening."
+- 40-59: "Honest feedback: that slid sideways. Here's why..."
+- 0-39: "That landed flat. But that's why we're here. Look at the gold standard."
 
 ## Dashboard
 
