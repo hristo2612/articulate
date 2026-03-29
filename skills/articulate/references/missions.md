@@ -22,15 +22,48 @@ Use this to PERSONALIZE:
 
 ## Opening Hooks (CRITICAL)
 
-Don't just show the mission type. HOOK the user with WHERE the challenge came from. Rotate these openers:
+Don't just show the mission type. HOOK the user with WHERE the challenge came from. **Rotate these openers — never repeat the same one twice in a row:**
 
-- "Found this in your writing:" (for Snipe — real source)
-- "Your Slack message, under the microscope:" (for context-aware)
-- "One word is dragging this sentence down:" (for Swap)
-- "This sentence is carrying dead weight:" (for Trim)
-- "This sentence has zero pulse:" (for Punch)
-- "Wrong room, wrong voice:" (for Flip)
-- "The blank is doing all the work:" (for Fill)
+**🎯 Swap openers:**
+- "One word is holding this sentence back:"
+- "Spot the weak link:"
+- "This word is doing zero work:"
+- "Found the lazy word:"
+
+**✂️ Trim openers:**
+- "This sentence is carrying dead weight:"
+- "Half these words are freeloading:"
+- "Too many words, not enough meaning:"
+- "Bloat alert:"
+
+**💪 Punch openers:**
+- "This sentence has zero pulse:"
+- "Flatline. Revive it:"
+- "Reads like a status report from a robot:"
+- "This could hit harder:"
+
+**🔍 Snipe openers:**
+- "Your words, under the microscope:"
+- "Found this in your recent writing:"
+- "Caught this one in the wild:"
+- "This came from YOU, {name}:"
+
+**🔄 Flip openers:**
+- "Wrong voice for the room:"
+- "This register doesn't match the audience:"
+- "Gear shift needed:"
+- "This sounds like a {casual/formal} talk in a {formal/casual} room:"
+
+**🧩 Fill openers:**
+- "The blank is doing all the work:"
+- "One word changes everything here:"
+- "The right word makes this sentence click:"
+- "What's missing?"
+
+**Context-aware openers (when using project context):**
+- "From your {project} work:"
+- "Your {project} PR comment, under the microscope:"
+- "Pulled this from your {project} conversations:"
 
 The opener should make the user CURIOUS before they even read the sentence.
 
@@ -312,10 +345,21 @@ One word.
 1. Check `history.json` — what was the last mission type? DON'T repeat it.
 2. Check `state.json → weaknesses` — which category is highest?
 3. Weight selection:
-   - If real writing samples available: 40% Snipe, 20% Swap, 15% Trim, 10% Punch, 10% Flip, 5% Fill
+   - If real writing samples available: 35% Snipe, 20% Swap, 15% Trim, 10% Punch, 10% Flip, 10% Fill
    - If no writing samples: 25% Swap, 20% Trim, 20% Punch, 5% Snipe, 15% Flip, 15% Fill
 4. Never same mission type twice in a row
 5. Rotate through weakness categories — don't always target the same one
+
+## Surprise Twists (10% of sessions)
+
+Occasionally throw a curveball to keep it fresh:
+
+- **Reverse Swap:** Instead of replacing a weak word, show a sentence with a STRONG word and ask: "Why is this word perfect here? What would be worse?" (tests understanding, not just replacement)
+- **Speed Trim:** "You have 3 words. GO." — ultra-tight constraint
+- **Blind Punch:** Show the sentence with the VERB hidden: "The meeting [???] three blockers." User guesses the verb, THEN sees the original flat version.
+- **Double Flip:** Flip twice — casual → formal → poetic (or any other register chain)
+
+These show up randomly (~10% of sessions). Don't announce them as special — just present them. The surprise IS the point.
 
 ## Scoring (all mission types)
 
