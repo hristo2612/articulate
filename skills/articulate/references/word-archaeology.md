@@ -1,13 +1,14 @@
-# Word Archaeology — Productive Failure + Contrastive Analysis
+# Word Archaeology — The Science-Backed Method
 
-The default `/articulate` experience. Combines two science-backed methods:
+The default `/articulate` experience. Stacks three proven learning methods:
 
-1. **Productive failure** (Kapur, 2008): user writes FIRST, struggles, THEN discovers the principle. 2x retention vs instruction-first.
+1. **Productive failure** (Kapur, 2008): user writes FIRST, struggles, THEN discovers the principle. 2x retention.
 2. **Contrastive analysis**: comparing two versions forces deeper processing than studying either alone.
+3. **Elaborative interrogation** (Pressley, 1987): asking "WHY does this work?" produces 2x retention vs being told.
 
-## Session Structure — THE FLIP
+## Session Structure
 
-Traditional: teach → practice. Articulate: **challenge → struggle → compare → discover → retry.**
+Traditional: teach → practice. Articulate: **challenge → struggle → compare → explain → discover → retry.**
 
 Every session follows this exact sequence:
 
@@ -19,20 +20,34 @@ Every session follows this exact sequence:
 4. `### ✏️ Your first attempt` — user writes BEFORE learning anything
 5. `>` blockquote — space for response
 
-**Critical:** Do NOT teach anything yet. No etymology, no principles, no hints. The struggle creates neural hooks for retention.
+**Critical:** Do NOT teach anything yet. No etymology, no principles, no hints. The struggle creates neural hooks.
 
-### Phase 2: The Comparison (after user responds)
+### Phase 2: Compare + Explain (after user responds)
 
-1. **React honestly** — what worked, what didn't in their attempt
+1. **React honestly** — what worked, what didn't in their attempt. Score Attempt 1.
 2. `## 🔍 Spot the Difference` — show TWO versions of a similar piece of writing:
-   - **Version A:** uses weak/vague language (similar to common mistakes)
-   - **Version B:** uses precise/powerful language
-   - Ask: **"Which is stronger? Pick the ONE word that makes the biggest difference."**
-3. After they answer (or immediately in claude -p testing): reveal WHY
-4. `## 🔍 The Dig` — the etymology/language story explaining WHY that word works
-   - Connect to THEIR specific word choices from Phase 1
+   - **Version A:** weak/vague language (similar to common mistakes)
+   - **Version B:** precise/powerful language
+3. **Ask TWO questions (elaborative interrogation):**
+   - "Which is stronger?"
+   - "WHY does that word work better? What does it do that the other doesn't?"
+4. `>` blockquote — space for their explanation
+
+**This is the key move.** The user must GENERATE the explanation, not consume it. Self-explanation activates deeper encoding than reading someone else's explanation.
+
+### Phase 3: The Dig (after user explains — or immediately in non-interactive mode)
+
+1. **React to their explanation** — what they got right, what they missed
+2. `## 🔍 The Dig` — the etymology/language story that reveals the FULL picture
+   - Connect to THEIR word choices from Phase 1 AND their explanation from Phase 2
    - 4-8 lines: surprise, cited origin, narrative arc, modern connection
-5. `💡 **The principle:**` — one transferable insight (bold, 1-2 lines)
+   - Show them what their explanation missed — the deeper layer
+3. `💡 **The principle:**` — one transferable insight (bold, 1-2 lines)
+
+### Phase 4: The Retry
+
+1. `### ✏️ Now rewrite it` — same challenge, armed with everything they've learned
+2. Score BOTH attempts — show the improvement delta
 
 ### Phase 3: The Retry
 
