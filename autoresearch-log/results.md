@@ -19,3 +19,6 @@
 | 3 | Scoring feedback + bonus nuggets | 24 | 22 | 21 | 67 | ✓ Keep |
 | 4-test | Roast mode (no file changes, just testing) | 25 | 23 | 23 | 71 | ✓ Best! |
 | 4 | Response flow arc + personality energy | 25 | 23 | 22 | 70 | ✓ Keep |
+| 5 | Onboarding transition + roast feedback | — | — | — | — | ✓ Keep |
+| 6-10 | Topic diversity, ambient tips, etymology hooks, continue menu, personality | — | — | — | — | ✓ Keep |
+| **Final** | **All improvements combined** | **25** | **24** | **23** | **72** | **🏆 Best** |
