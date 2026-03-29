@@ -229,9 +229,26 @@ Update all fields in `state.json`:
 
 Append entry to `history.json` (FIFO, max 100). Save `lexicon.json`.
 
-### H. Continue
+### H. Spaced Retrieval (if history has ≥ 3 sessions)
 
-After feedback, offer clear next options with personality:
+Before the continue menu, quiz the user on a word/principle from a PREVIOUS session. This is the spacing effect — the most powerful learning technique known.
+
+**Selection:** Pick a word from `lexicon.json` where `mastery` is `"seen"` or `"used"` (not yet mastered). Prefer words from 2-7 days ago (optimal spacing interval). If no words in that range, pick the oldest unmastered word.
+
+**Format:**
+```
+🧠 **Quick recall:** Last {N} days ago you learned that "{word}" comes from {origin language}.
+What was the principle? (One sentence.)
+>
+```
+
+After they respond: brief validation (1 line), update `timesUsed` in lexicon. If they nail it, upgrade mastery tier. If they blank, that's fine — the act of TRYING to recall strengthens the memory (testing effect).
+
+**Keep it fast.** One question, one response, one line of feedback. Don't let this overshadow the main session.
+
+### I. Continue
+
+After feedback (and spaced retrieval if applicable), offer clear next options:
 
 > **What's next?**
 > 🔍 Another word story — `go`
