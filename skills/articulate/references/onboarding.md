@@ -113,7 +113,8 @@ After all questions are answered, create the following files at `~/.articulate/`
   "dailyMinutes": {answer to Q4},
   "selfAssessment": {answer to Q5},
   "contextAware": {answer to Q6},
-  "createdAt": "{ISO date}"
+  "createdAt": "{ISO date}",
+  "lastUpdated": "{ISO date}"
 }
 ```
 
@@ -121,27 +122,41 @@ After all questions are answered, create the following files at `~/.articulate/`
 
 ```json
 {
+  "xp": 0,
   "level": 1,
   "rank": "RECRUIT",
-  "xp": 0,
-  "totalMissions": 0,
-  "todayMissionCount": 0,
+  "badge": "⬜",
   "streak": 0,
   "bestStreak": 0,
-  "lastPlayedDate": null,
-  "lastBossDate": null,
   "streakShields": 0,
+  "lastPlayedDate": null,
+  "todayMissionCount": 0,
+  "totalCompleted": 0,
+  "prestigeStars": 0,
+  "missionCounts": {
+    "rewrite": 0,
+    "fill": 0,
+    "prompt": 0,
+    "scenario": 0,
+    "boss": 0,
+    "review": 0
+  },
+  "perfectCount": 0,
+  "highScoreCount": 0,
   "earnedBadges": [],
   "weaknesses": {
     "utility_words": 0,
-    "weak_verbs": 0,
     "hedging": 0,
+    "flat_structure": 0,
     "vague_nouns": 0,
-    "filler_words": 0,
-    "register_mismatch": 0
+    "weak_verbs": 0,
+    "filler_words": 0
   },
-  "weaknessHistory": [],
-  "prestigeLevel": 0
+  "weaknessHistory": {},
+  "currentSeason": null,
+  "lastBossDate": null,
+  "dailyWord": null,
+  "dailyWordDate": null
 }
 ```
 
